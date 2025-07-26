@@ -1,0 +1,221 @@
+{
+  "name": "jaegis",
+  "version": "2.1.0",
+  "description": "JAEGIS - AI Agent Intelligence System with Advanced OpenRouter.ai Integration & Autonomous Learning",
+  "main": "src/nodejs/index.js",
+  "bin": {
+    "jaegis": "src/nodejs/cli.js"
+  },
+  "scripts": {
+    "start": "node src/nodejs/index.js",
+    "start:ai": "node examples/ai-integration-example.js",
+    "dev": "nodemon src/nodejs/index.js",
+    "dev:ai": "nodemon examples/ai-integration-example.js",
+    "test": "jest",
+    "test:ai": "jest tests/ai/",
+    "test:integration": "jest tests/integration/",
+    "test:e2e": "jest tests/e2e/",
+    "test:performance": "jest tests/performance/",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
+    "lint": "eslint src/nodejs/**/*.js",
+    "lint:fix": "eslint src/nodejs/**/*.js --fix",
+    "build": "npm run lint && npm run test",
+    "cli": "node src/nodejs/cli.js",
+    "cli:ai": "node src/nodejs/cli.js --ai-enabled",
+    "setup": "node scripts/setup.js",
+    "setup:ai": "node scripts/ai-setup.js",
+    "docs": "jsdoc -c jsdoc.conf.json",
+    "docs:ai": "jsdoc -c jsdoc.conf.json src/nodejs/ai/",
+    "clean": "rimraf dist coverage docs/generated",
+    "precommit": "npm run lint && npm run test",
+    "health": "node src/nodejs/cli.js health --ai",
+    "dashboard": "node src/nodejs/cli.js dashboard",
+    "agents": "node src/nodejs/cli.js agents list",
+    "research": "node src/nodejs/cli.js research",
+    "learning": "node src/nodejs/cli.js learning status"
+  },
+  "keywords": [
+    "ai",
+    "agent",
+    "intelligence",
+    "openrouter",
+    "autonomous-learning",
+    "command-processing",
+    "github-integration",
+    "automation",
+    "jaegis",
+    "hybrid-architecture",
+    "nodejs",
+    "python",
+    "redis",
+    "machine-learning",
+    "self-improving",
+    "background-processing",
+    "monitoring",
+    "dashboard"
+  ],
+  "author": {
+    "name": "JAEGIS Development Team",
+    "email": "use.manus.ai@gmail.com",
+    "url": "https://github.com/usemanusai"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/usemanusai/JAEGIS.git"
+  },
+  "bugs": {
+    "url": "https://github.com/usemanusai/JAEGIS/issues"
+  },
+  "homepage": "https://github.com/usemanusai/JAEGIS#readme",
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=8.0.0"
+  },
+  "dependencies": {
+    "axios": "^1.6.0",
+    "commander": "^11.1.0",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "fs-extra": "^11.1.1",
+    "inquirer": "^9.2.12",
+    "lodash": "^4.17.21",
+    "marked": "^9.1.6",
+    "node-cache": "^5.1.2",
+    "chalk": "^5.3.0",
+    "ora": "^7.0.1",
+    "figlet": "^1.7.0",
+    "boxen": "^7.1.1",
+    "ws": "^8.14.2",
+    "yaml": "^2.3.4",
+    "joi": "^17.11.0",
+    "winston": "^3.11.0",
+    "cors": "^2.8.5",
+    "helmet": "^7.1.0",
+    "rate-limiter-flexible": "^4.0.1",
+    "redis": "^4.6.10",
+    "ioredis": "^5.3.2",
+    "crypto": "^1.0.1",
+    "uuid": "^9.0.1",
+    "moment": "^2.29.4",
+    "cron": "^3.1.6",
+    "socket.io": "^4.7.4",
+    "socket.io-client": "^4.7.4",
+    "compression": "^1.7.4",
+    "express-rate-limit": "^7.1.5",
+    "express-validator": "^7.0.1",
+    "jsonwebtoken": "^9.0.2",
+    "bcryptjs": "^2.4.3",
+    "multer": "^1.4.5-lts.1",
+    "sharp": "^0.32.6",
+    "pdf-parse": "^1.1.1",
+    "cheerio": "^1.0.0-rc.12",
+    "puppeteer": "^21.5.2",
+    "node-nlp": "^4.27.0",
+    "natural": "^6.8.0",
+    "compromise": "^14.10.0",
+    "sentiment": "^5.0.2"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "nodemon": "^3.0.1",
+    "eslint": "^8.54.0",
+    "eslint-config-standard": "^17.1.0",
+    "eslint-plugin-import": "^2.29.0",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^6.1.1",
+    "jsdoc": "^4.0.2",
+    "rimraf": "^5.0.5",
+    "supertest": "^6.3.3",
+    "@types/jest": "^29.5.8",
+    "husky": "^8.0.3",
+    "lint-staged": "^15.1.0",
+    "redis-memory-server": "^0.10.0",
+    "nock": "^13.4.0",
+    "sinon": "^17.0.1",
+    "chai": "^4.3.10",
+    "mocha": "^10.2.0",
+    "nyc": "^15.1.0",
+    "artillery": "^2.0.3",
+    "clinic": "^12.1.0"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "collectCoverageFrom": [
+      "src/nodejs/**/*.js",
+      "!src/nodejs/**/*.test.js",
+      "!src/nodejs/test/**"
+    ],
+    "coverageDirectory": "coverage",
+    "coverageReporters": [
+      "text",
+      "lcov",
+      "html"
+    ],
+    "testMatch": [
+      "**/tests/**/*.test.js",
+      "**/src/**/*.test.js"
+    ],
+    "setupFilesAfterEnv": [
+      "<rootDir>/tests/setup.js"
+    ]
+  },
+  "lint-staged": {
+    "src/nodejs/**/*.js": [
+      "eslint --fix",
+      "git add"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "config": {
+    "github_commands_url": "https://raw.githubusercontent.com/usemanusai/JAEGIS/main/commands/commands.md",
+    "cache_duration": 3600000,
+    "max_retries": 3,
+    "timeout": 30000,
+    "ai": {
+      "enabled": true,
+      "config_path": "config/ai-config.json",
+      "redis_url": "redis://localhost:6379",
+      "openrouter_base_url": "https://openrouter.ai/api/v1",
+      "dashboard_port": 3001,
+      "monitoring_interval": 30000
+    }
+  },
+  "optionalDependencies": {
+    "canvas": "^2.11.2",
+    "tensorflow": "^4.13.0",
+    "@tensorflow/tfjs-node": "^4.13.0",
+    "opencv4nodejs": "^5.6.0",
+    "face-api.js": "^0.22.2"
+  },
+  "peerDependencies": {
+    "python": ">=3.8.0"
+  },
+  "funding": {
+    "type": "github",
+    "url": "https://github.com/sponsors/usemanusai"
+  },
+  "contributors": [
+    {
+      "name": "JAEGIS AI Team",
+      "email": "ai@jaegis.dev",
+      "url": "https://jaegis.dev"
+    }
+  ],
+  "files": [
+    "src/",
+    "config/",
+    "docs/",
+    "examples/",
+    "scripts/",
+    "tests/",
+    "README.md",
+    "LICENSE",
+    "CHANGELOG.md"
+  ]
+}
