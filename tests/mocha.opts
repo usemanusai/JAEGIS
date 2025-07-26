@@ -1,0 +1,7 @@
+--timeout 30000
+--recursive
+--exit
+--bail false
+--reporter spec
+--require tests/setup.js
+tests/**/*.test.js
