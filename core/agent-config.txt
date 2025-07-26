@@ -1,0 +1,190 @@
+# JAEGIS Standard Agent Configuration v2.1
+# 24-Agent System with 4-Tier Architecture
+# GitHub Repository: https://github.com/usemanusai/JAEGIS
+# Dynamic Resource Fetching Compatible
+
+==================== SYSTEM OVERVIEW ====================
+Total Agents: 24
+Architecture: 4-Tier System
+Coordination: Collaborative Intelligence
+Integration: GitHub-Local Hybrid with Dynamic Resource Fetching
+Validation: Comprehensive Quality Standards
+
+==================== TIER 1: ORCHESTRATOR ====================
+
+==================== START: JAEGIS ====================
+Title: AI Agent Orchestrator & System Intelligence
+Name: JAEGIS
+Description: Master orchestrator of the 24-agent ecosystem, managing coordination, system intelligence, and strategic decision-making with GitHub integration
+Persona: personas#jaegis-orchestrator
+Tasks:
+  - [System Orchestration](tasks#system-orchestration)
+  - [Agent Coordination](tasks#agent-coordination)
+  - [Strategic Decision Making](tasks#strategic-decision-making)
+  - [GitHub Integration Management](tasks#github-integration-management)
+Templates:
+  - [Orchestration Framework](templates#orchestration-framework)
+  - [Coordination Protocol](templates#coordination-protocol)
+Checklists:
+  - [System Validation](checklists#system-validation)
+  - [Coordination Check](checklists#coordination-check)
+Data:
+  - [System Intelligence Database](data#system-intelligence-database)
+  - [Performance Metrics](data#performance-metrics)
+Coordination: orchestrator
+Priority: 10
+Classification: ORCHESTRATOR
+==================== END: JAEGIS ====================
+
+==================== TIER 2: PRIMARY AGENTS ====================
+
+==================== START: john ====================
+Title: Product Manager & Stakeholder Coordination Specialist
+Name: John (Product Manager)
+Description: Master of product strategy and stakeholder management with market intelligence
+Persona: personas#john-product-manager
+Tasks:
+  - [Product Strategy Leadership](tasks#product-strategy-leadership)
+  - [Stakeholder Management](tasks#stakeholder-management)
+  - [Market Intelligence](tasks#market-intelligence)
+Templates:
+  - [Product Strategy Framework](templates#product-strategy-framework)
+  - [Stakeholder Management Protocol](templates#stakeholder-management-protocol)
+Checklists:
+  - [Product Strategy Standards](checklists#product-strategy-standards)
+  - [Stakeholder Satisfaction Check](checklists#stakeholder-satisfaction-check)
+Data:
+  - [Product Strategy Database](data#product-strategy-database)
+  - [Market Analysis Library](data#market-analysis-library)
+Coordination: collaborative
+Priority: 9
+Classification: PRIMARY
+==================== END: john ====================
+
+==================== START: fred ====================
+Title: System Architect & Technical Leadership Specialist
+Name: Fred (Architect)
+Description: Master of system architecture and technical leadership ensuring design excellence
+Persona: personas#fred-architect
+Tasks:
+  - [System Architecture Design](tasks#system-architecture-design)
+  - [Technical Leadership](tasks#technical-leadership)
+  - [Architectural Coherence](tasks#architectural-coherence)
+Templates:
+  - [Architecture Framework](templates#architecture-framework)
+  - [Technical Leadership Protocol](templates#technical-leadership-protocol)
+Checklists:
+  - [Architecture Excellence Standards](checklists#architecture-excellence-standards)
+  - [Technical Coherence Check](checklists#technical-coherence-check)
+Data:
+  - [Architecture Repository](data#architecture-repository)
+  - [Technical Patterns Library](data#technical-patterns-library)
+Coordination: collaborative
+Priority: 9
+Classification: PRIMARY
+==================== END: fred ====================
+
+==================== START: tyler ====================
+Title: Task Specialist & Execution Coordination Expert
+Name: Tyler (Task Specialist)
+Description: Master of task coordination and execution excellence ensuring operational optimization
+Persona: personas#tyler-task-specialist
+Tasks:
+  - [Task Coordination](tasks#task-coordination)
+  - [Execution Leadership](tasks#execution-leadership)
+  - [Operational Excellence](tasks#operational-excellence)
+Templates:
+  - [Task Coordination Framework](templates#task-coordination-framework)
+  - [Execution Protocol](templates#execution-protocol)
+Checklists:
+  - [Task Coordination Standards](checklists#task-coordination-standards)
+  - [Execution Excellence Check](checklists#execution-excellence-check)
+Data:
+  - [Task Coordination Database](data#task-coordination-database)
+  - [Execution Patterns Library](data#execution-patterns-library)
+Coordination: collaborative
+Priority: 9
+Classification: PRIMARY
+==================== END: tyler ====================
+
+==================== TIER 3: SPECIALIZED AGENTS (16 AGENTS) ====================
+
+# DEVELOPMENT AGENTS (4 agents)
+# Senior Developer, Frontend Developer, Backend Developer, Full-Stack Developer
+
+# QUALITY AGENTS (4 agents)  
+# QA Lead, Test Automation Engineer, Performance Tester, Security Tester
+
+# BUSINESS AGENTS (4 agents)
+# Business Analyst, Market Researcher, Financial Analyst, Sales Strategist
+
+# SYSTEM AGENTS (4 agents)
+# System Administrator, DevOps Engineer, Database Specialist, API Developer
+
+==================== TIER 4: CONDITIONAL AGENTS ====================
+
+==================== START: webcreator ====================
+Title: Web Development Specialist
+Name: WebCreator
+Description: Master of web development and digital experience creation
+Persona: personas#webcreator
+Tasks: [Web Development Excellence](tasks#web-development-excellence)
+Templates: [Web Development Framework](templates#web-development-framework)
+Coordination: conditional
+Priority: 7
+Classification: CONDITIONAL
+==================== END: webcreator ====================
+
+==================== START: idedev ====================
+Title: IDE Development Specialist
+Name: IDEDev
+Description: Master of IDE-based development and development environment optimization
+Persona: personas#idedev
+Tasks: [IDE Development Excellence](tasks#ide-development-excellence)
+Templates: [IDE Development Framework](templates#ide-development-framework)
+Coordination: conditional
+Priority: 7
+Classification: CONDITIONAL
+==================== END: idedev ====================
+
+==================== START: devopsaide ====================
+Title: DevOps Integration Specialist
+Name: DevOpsIDE
+Description: Master of DevOps integration and infrastructure automation
+Persona: personas#devopsaide
+Tasks: [DevOps Integration Excellence](tasks#devops-integration-excellence)
+Templates: [DevOps Integration Framework](templates#devops-integration-framework)
+Coordination: conditional
+Priority: 7
+Classification: CONDITIONAL
+==================== END: devopsaide ====================
+
+==================== START: advancedide ====================
+Title: Advanced Development Environment Specialist
+Name: AdvancedIDE
+Description: Master of advanced development environments and sophisticated tooling
+Persona: personas#advancedide
+Tasks: [Advanced IDE Excellence](tasks#advanced-ide-excellence)
+Templates: [Advanced IDE Framework](templates#advanced-ide-framework)
+Coordination: conditional
+Priority: 7
+Classification: CONDITIONAL
+==================== END: advancedide ====================
+
+==================== COORDINATION PROTOCOLS ====================
+
+Agent-Communication: standard-coordination-protocol
+Activation-Triggers: project-analysis-based
+Dependencies: intelligent-dependency-mapping
+Quality-Validation: comprehensive-validation
+Performance-Monitoring: real-time-performance-analytics
+
+==================== GITHUB INTEGRATION POINTS ====================
+
+Dynamic-Resource-Fetching: standard-resource-loading
+Command-Integration: standard-command-sets
+Template-Management: standard-templates
+Validation-Framework: standard-validation-protocols
+Performance-Analytics: standard-performance-monitoring
+
+==================== END CONFIGURATION ====================
