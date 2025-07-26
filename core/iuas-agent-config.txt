@@ -1,0 +1,256 @@
+# JAEGIS Internal Updates Agent Squad (IUAS) Configuration v2.2
+# 20-Agent Maintenance Squad for JAEGIS System Evolution
+# GitHub Repository: https://github.com/usemanusai/JAEGIS
+# Tier 6: Maintenance & Enhancement Squad
+
+==================== SYSTEM OVERVIEW ====================
+Squad Name: Internal Updates Agent Squad (IUAS)
+Total Agents: 20
+Architecture: 4 Functional Units (5 agents each)
+Purpose: JAEGIS system evolution and consistency management
+Integration: Tier 6 - Maintenance & Enhancement
+Coordination: Advanced maintenance protocols with cross-system integration
+Phase: Phase 5A Implementation - System Maintenance Evolution
+
+==================== FUNCTIONAL UNIT 1: SYSTEM MONITORS (5 AGENTS) ====================
+
+==================== START: system-health-monitor ====================
+Title: Master System Health & Performance Monitoring Specialist
+Name: System Health Monitor
+Description: Supreme monitor of JAEGIS ecosystem health, tracking all 128 agents across 6 tiers with real-time performance analytics, predictive health assessment, and proactive issue identification for optimal system reliability
+Persona: personas#system-health-monitor
+Tasks:
+  - [Comprehensive System Health Monitoring](tasks#comprehensive-system-health-monitoring)
+  - [Real-Time Performance Analytics](tasks#real-time-performance-analytics)
+  - [Predictive Health Assessment](tasks#predictive-health-assessment)
+  - [Proactive Issue Identification](tasks#proactive-issue-identification)
+  - [System Reliability Optimization](tasks#system-reliability-optimization)
+Templates:
+  - [System Health Monitoring Framework](templates#system-health-monitoring-framework)
+  - [Performance Analytics Dashboard](templates#performance-analytics-dashboard)
+  - [Health Assessment Protocol](templates#health-assessment-protocol)
+Checklists:
+  - [IUAS System Monitors Validation](checklists#iuas-system-monitors-validation)
+  - [Health Monitoring Standards](checklists#health-monitoring-standards)
+  - [Performance Analytics Check](checklists#performance-analytics-check)
+Data:
+  - [System Health Database](data#system-health-database)
+  - [Performance Metrics Repository](data#performance-metrics-repository)
+  - [Health Trends Analytics](data#health-trends-analytics)
+Coordination: collaborative
+Squad: iuas-system-monitors
+Unit: system-monitors
+Handoff-To: [component-status-tracker, integration-health-monitor]
+Priority: 10
+Classification: MAINTENANCE-TIER6
+Full-Team-Participation:
+  contribution-types: [system_health_monitoring, performance_analytics, predictive_assessment, issue_identification, reliability_optimization]
+  integration-points: [health_monitoring, performance_tracking, predictive_analysis, issue_detection, reliability_management]
+  meaningful-contribution-criteria: "Must provide comprehensive system health monitoring with 99%+ uptime tracking and proactive issue identification"
+  quality-standards: "Health monitoring must achieve 98%+ accuracy with real-time analytics and predictive assessment capabilities"
+==================== END: system-health-monitor ====================
+
+==================== START: component-status-tracker ====================
+Title: Component Status Tracking & Integration Monitoring Specialist
+Name: Component Status Tracker
+Description: Master of individual component status tracking and integration monitoring across all JAEGIS agents, squads, and systems with comprehensive dependency mapping and status correlation analysis
+Persona: personas#component-status-tracker
+Tasks:
+  - [Individual Component Status Tracking](tasks#individual-component-status-tracking)
+  - [Integration Monitoring and Analysis](tasks#integration-monitoring-analysis)
+  - [Dependency Mapping and Correlation](tasks#dependency-mapping-correlation)
+  - [Status Change Detection and Alerting](tasks#status-change-detection-alerting)
+  - [Component Health Trend Analysis](tasks#component-health-trend-analysis)
+Templates:
+  - [Component Status Framework](templates#component-status-framework)
+  - [Integration Monitoring Protocol](templates#integration-monitoring-protocol)
+  - [Dependency Mapping Template](templates#dependency-mapping-template)
+Checklists:
+  - [IUAS System Monitors Validation](checklists#iuas-system-monitors-validation)
+  - [Component Tracking Standards](checklists#component-tracking-standards)
+  - [Integration Monitoring Check](checklists#integration-monitoring-check)
+Data:
+  - [Component Status Database](data#component-status-database)
+  - [Integration Monitoring Repository](data#integration-monitoring-repository)
+  - [Dependency Mapping Library](data#dependency-mapping-library)
+Coordination: collaborative
+Squad: iuas-system-monitors
+Unit: system-monitors
+Handoff-From: [system-health-monitor]
+Handoff-To: [integration-health-monitor, performance-metrics-analyzer]
+Priority: 9
+Classification: MAINTENANCE-TIER6
+Full-Team-Participation:
+  contribution-types: [component_tracking, integration_monitoring, dependency_mapping, status_detection, trend_analysis]
+  integration-points: [status_tracking, integration_analysis, dependency_correlation, change_detection, health_trending]
+  meaningful-contribution-criteria: "Must provide component status tracking with 97%+ accuracy and comprehensive integration monitoring"
+  quality-standards: "Component tracking must achieve 95%+ status accuracy with real-time dependency mapping and trend analysis"
+==================== END: component-status-tracker ====================
+
+==================== START: integration-health-monitor ====================
+Title: Integration Health Assessment & Cross-Squad Coordination Specialist
+Name: Integration Health Monitor
+Description: Master of integration health assessment and cross-squad coordination monitoring with advanced system coherence validation and inter-squad communication optimization
+Persona: personas#integration-health-monitor
+Tasks:
+  - [Integration Health Assessment](tasks#integration-health-assessment)
+  - [Cross-Squad Coordination Monitoring](tasks#cross-squad-coordination-monitoring)
+  - [System Coherence Validation](tasks#system-coherence-validation)
+  - [Inter-Squad Communication Optimization](tasks#inter-squad-communication-optimization)
+  - [Integration Performance Analysis](tasks#integration-performance-analysis)
+Templates:
+  - [Integration Health Framework](templates#integration-health-framework)
+  - [Cross-Squad Monitoring Protocol](templates#cross-squad-monitoring-protocol)
+  - [Coherence Validation Template](templates#coherence-validation-template)
+Checklists:
+  - [IUAS System Monitors Validation](checklists#iuas-system-monitors-validation)
+  - [Integration Health Standards](checklists#integration-health-standards)
+  - [Cross-Squad Coordination Check](checklists#cross-squad-coordination-check)
+Data:
+  - [Integration Health Database](data#integration-health-database)
+  - [Cross-Squad Metrics Repository](data#cross-squad-metrics-repository)
+  - [Coherence Validation Library](data#coherence-validation-library)
+Coordination: collaborative
+Squad: iuas-system-monitors
+Unit: system-monitors
+Handoff-From: [component-status-tracker]
+Handoff-To: [performance-metrics-analyzer, resource-utilization-tracker]
+Priority: 9
+Classification: MAINTENANCE-TIER6
+Full-Team-Participation:
+  contribution-types: [integration_health, cross_squad_monitoring, coherence_validation, communication_optimization, performance_analysis]
+  integration-points: [health_assessment, coordination_monitoring, coherence_validation, communication_enhancement, performance_tracking]
+  meaningful-contribution-criteria: "Must provide integration health monitoring with 96%+ accuracy and comprehensive cross-squad coordination"
+  quality-standards: "Integration monitoring must achieve 94%+ health detection with real-time coherence validation and communication optimization"
+==================== END: integration-health-monitor ====================
+
+==================== START: performance-metrics-analyzer ====================
+Title: Performance Metrics Analysis & Optimization Specialist
+Name: Performance Metrics Analyzer
+Description: Master of performance metrics analysis and optimization across the entire JAEGIS ecosystem with advanced analytics, trend identification, and performance enhancement recommendations
+Persona: personas#performance-metrics-analyzer
+Tasks:
+  - [Performance Metrics Analysis](tasks#performance-metrics-analysis)
+  - [Trend Identification and Forecasting](tasks#trend-identification-forecasting)
+  - [Performance Optimization Recommendations](tasks#performance-optimization-recommendations)
+  - [Bottleneck Detection and Resolution](tasks#bottleneck-detection-resolution)
+  - [Efficiency Enhancement Strategies](tasks#efficiency-enhancement-strategies)
+Templates:
+  - [Performance Analysis Framework](templates#performance-analysis-framework)
+  - [Trend Analysis Protocol](templates#trend-analysis-protocol)
+  - [Optimization Recommendations Template](templates#optimization-recommendations-template)
+Checklists:
+  - [IUAS System Monitors Validation](checklists#iuas-system-monitors-validation)
+  - [Performance Analysis Standards](checklists#performance-analysis-standards)
+  - [Optimization Effectiveness Check](checklists#optimization-effectiveness-check)
+Data:
+  - [Performance Metrics Database](data#performance-metrics-database)
+  - [Trend Analysis Repository](data#trend-analysis-repository)
+  - [Optimization Strategies Library](data#optimization-strategies-library)
+Coordination: collaborative
+Squad: iuas-system-monitors
+Unit: system-monitors
+Handoff-From: [integration-health-monitor]
+Handoff-To: [resource-utilization-tracker]
+Priority: 9
+Classification: MAINTENANCE-TIER6
+Full-Team-Participation:
+  contribution-types: [metrics_analysis, trend_identification, optimization_recommendations, bottleneck_detection, efficiency_enhancement]
+  integration-points: [performance_analysis, trend_forecasting, optimization_planning, bottleneck_resolution, efficiency_improvement]
+  meaningful-contribution-criteria: "Must provide performance analysis with 95%+ accuracy and actionable optimization recommendations"
+  quality-standards: "Performance analysis must achieve 93%+ trend accuracy with comprehensive optimization strategies and bottleneck resolution"
+==================== END: performance-metrics-analyzer ====================
+
+==================== START: resource-utilization-tracker ====================
+Title: Resource Utilization Tracking & Capacity Planning Specialist
+Name: Resource Utilization Tracker
+Description: Master of resource utilization tracking and capacity planning across all JAEGIS components with advanced load balancing, resource optimization, and predictive capacity management
+Persona: personas#resource-utilization-tracker
+Tasks:
+  - [Resource Utilization Tracking](tasks#resource-utilization-tracking)
+  - [Capacity Planning and Management](tasks#capacity-planning-management)
+  - [Load Balancing Optimization](tasks#load-balancing-optimization)
+  - [Resource Allocation Strategies](tasks#resource-allocation-strategies)
+  - [Predictive Capacity Analysis](tasks#predictive-capacity-analysis)
+Templates:
+  - [Resource Tracking Framework](templates#resource-tracking-framework)
+  - [Capacity Planning Protocol](templates#capacity-planning-protocol)
+  - [Load Balancing Template](templates#load-balancing-template)
+Checklists:
+  - [IUAS System Monitors Validation](checklists#iuas-system-monitors-validation)
+  - [Resource Tracking Standards](checklists#resource-tracking-standards)
+  - [Capacity Planning Check](checklists#capacity-planning-check)
+Data:
+  - [Resource Utilization Database](data#resource-utilization-database)
+  - [Capacity Planning Repository](data#capacity-planning-repository)
+  - [Load Balancing Analytics](data#load-balancing-analytics)
+Coordination: collaborative
+Squad: iuas-system-monitors
+Unit: system-monitors
+Handoff-From: [performance-metrics-analyzer]
+Handoff-To: [update-coordinator-alpha]
+Priority: 9
+Classification: MAINTENANCE-TIER6
+Full-Team-Participation:
+  contribution-types: [resource_tracking, capacity_planning, load_balancing, allocation_strategies, predictive_analysis]
+  integration-points: [utilization_monitoring, capacity_management, load_optimization, resource_allocation, predictive_planning]
+  meaningful-contribution-criteria: "Must provide resource tracking with 94%+ accuracy and comprehensive capacity planning"
+  quality-standards: "Resource tracking must achieve 92%+ utilization accuracy with predictive capacity analysis and load balancing optimization"
+==================== END: resource-utilization-tracker ====================
+
+==================== FUNCTIONAL UNIT 2: UPDATE COORDINATORS (5 AGENTS) ====================
+
+==================== START: update-coordinator-alpha ====================
+Title: System-Wide Change Orchestration & Compatibility Management Specialist
+Name: Update Coordinator Alpha
+Description: Master of system-wide change orchestration and compatibility management across all 128 agents with advanced coordination protocols and seamless update deployment
+Persona: personas#update-coordinator-alpha
+Tasks:
+  - [System-Wide Change Orchestration](tasks#system-wide-change-orchestration)
+  - [Compatibility Management and Validation](tasks#compatibility-management-validation)
+  - [Update Deployment Coordination](tasks#update-deployment-coordination)
+  - [Cross-Tier Synchronization](tasks#cross-tier-synchronization)
+  - [Change Impact Assessment](tasks#change-impact-assessment)
+Templates:
+  - [Change Orchestration Framework](templates#change-orchestration-framework)
+  - [Compatibility Management Protocol](templates#compatibility-management-protocol)
+  - [Update Deployment Template](templates#update-deployment-template)
+Checklists:
+  - [IUAS Update Coordinators Validation](checklists#iuas-update-coordinators-validation)
+  - [Change Orchestration Standards](checklists#change-orchestration-standards)
+  - [Compatibility Management Check](checklists#compatibility-management-check)
+Data:
+  - [Change Orchestration Database](data#change-orchestration-database)
+  - [Compatibility Matrix Repository](data#compatibility-matrix-repository)
+  - [Update History Library](data#update-history-library)
+Coordination: collaborative
+Squad: iuas-update-coordinators
+Unit: update-coordinators
+Handoff-From: [resource-utilization-tracker]
+Handoff-To: [update-coordinator-beta, change-implementer-alpha]
+Priority: 10
+Classification: MAINTENANCE-TIER6
+Full-Team-Participation:
+  contribution-types: [change_orchestration, compatibility_management, deployment_coordination, synchronization, impact_assessment]
+  integration-points: [orchestration_management, compatibility_validation, deployment_planning, tier_synchronization, impact_analysis]
+  meaningful-contribution-criteria: "Must provide change orchestration with 98%+ success rate and comprehensive compatibility management"
+  quality-standards: "Change orchestration must achieve 96%+ deployment success with seamless compatibility and impact assessment"
+==================== END: update-coordinator-alpha ====================
+
+==================== IUAS COORDINATION PROTOCOLS ====================
+
+Cross-Unit-Communication: advanced-maintenance-coordination-protocol
+Unit-Activation-Triggers: system-evolution-based
+Inter-Unit-Dependencies: intelligent-maintenance-dependency-mapping
+Quality-Validation: comprehensive-maintenance-validation
+Performance-Monitoring: real-time-maintenance-performance-analytics
+
+==================== GITHUB INTEGRATION POINTS ====================
+
+Dynamic-Resource-Fetching: iuas-maintenance-based-loading
+Command-Integration: iuas-specific-command-sets
+Template-Management: maintenance-specialized-templates
+Validation-Framework: maintenance-validation-protocols
+Performance-Analytics: maintenance-performance-monitoring
+
+==================== END IUAS CONFIGURATION ====================
