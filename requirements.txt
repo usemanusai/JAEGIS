@@ -1,0 +1,87 @@
+# JAEGIS Python Dependencies
+# Core dependencies for GitHub integration and markdown processing
+
+# HTTP and API clients
+requests>=2.31.0
+httpx>=0.25.0
+
+# Markdown processing
+markdown>=3.5.1
+python-markdown>=3.5.1
+markdownify>=0.11.6
+beautifulsoup4>=4.12.2
+
+# GitHub API integration
+PyGithub>=1.59.1
+github3.py>=4.0.1
+
+# Configuration and environment
+python-dotenv>=1.0.0
+pydantic>=2.5.0
+pydantic-settings>=2.1.0
+
+# Caching and storage
+redis>=5.0.1
+diskcache>=5.6.3
+
+# Logging and monitoring
+loguru>=0.7.2
+structlog>=23.2.0
+
+# Data processing
+pandas>=2.1.4
+numpy>=1.25.2
+
+# Async support
+asyncio>=3.4.3
+aiohttp>=3.9.1
+aiofiles>=23.2.1
+
+# CLI and user interface
+click>=8.1.7
+rich>=13.7.0
+typer>=0.9.0
+
+# Testing
+pytest>=7.4.3
+pytest-asyncio>=0.21.1
+pytest-cov>=4.1.0
+pytest-mock>=3.12.0
+
+# Code quality
+black>=23.11.0
+flake8>=6.1.0
+mypy>=1.7.1
+isort>=5.12.0
+
+# Security
+cryptography>=41.0.7
+python-jose>=3.3.0
+
+# Inter-process communication
+zmq>=0.0.0
+pyzmq>=25.1.1
+
+# JSON and YAML processing
+pyyaml>=6.0.1
+jsonschema>=4.20.0
+
+# Date and time handling
+python-dateutil>=2.8.2
+arrow>=1.3.0
+
+# Performance monitoring
+psutil>=5.9.6
+memory-profiler>=0.61.0
+
+# Development tools
+ipython>=8.17.2
+jupyter>=1.0.0
+
+# Optional AI/ML dependencies (for future enhancements)
+# Uncomment if needed:
+# openai>=1.3.0
+# anthropic>=0.7.0
+# langchain>=0.0.350
+# transformers>=4.35.0
+# torch>=2.1.0
