@@ -1,0 +1,150 @@
+{
+  "system": {
+    "name": "JAEGIS",
+    "version": "2.0.0",
+    "environment": "development",
+    "debug": true,
+    "log_level": "info"
+  },
+  "github": {
+    "commands_url": "https://raw.githubusercontent.com/usemanusai/JAEGIS/main/commands/commands.md",
+    "api_base_url": "https://api.github.com",
+    "repository": {
+      "owner": "usemanusai",
+      "name": "JAEGIS"
+    },
+    "token": "YOUR_GITHUB_TOKEN_HERE",
+    "timeout": 30000,
+    "max_retries": 3,
+    "retry_delay": 1000
+  },
+  "cache": {
+    "enabled": true,
+    "type": "memory",
+    "duration": 3600000,
+    "max_size": 100,
+    "cleanup_interval": 300000,
+    "redis": {
+      "host": "localhost",
+      "port": 6379,
+      "db": 0,
+      "password": null
+    }
+  },
+  "server": {
+    "port": 3000,
+    "host": "localhost",
+    "cors": {
+      "enabled": true,
+      "origins": ["http://localhost:3000", "http://localhost:8080"]
+    },
+    "rate_limiting": {
+      "enabled": true,
+      "window_ms": 900000,
+      "max_requests": 100
+    }
+  },
+  "agents": {
+    "max_concurrent": 10,
+    "timeout": 60000,
+    "default_mode": "balanced",
+    "activation_threshold": 0.7,
+    "squads": {
+      "analysis": ["research-agent", "data-agent", "insight-agent"],
+      "development": ["code-agent", "test-agent", "deploy-agent"],
+      "design": ["ui-agent", "ux-agent", "architecture-agent"],
+      "management": ["project-agent", "coordination-agent", "monitor-agent"],
+      "quality": ["qa-agent", "validation-agent", "security-agent"],
+      "documentation": ["doc-agent", "tutorial-agent", "api-agent"]
+    }
+  },
+  "commands": {
+    "prefix": "/",
+    "case_sensitive": false,
+    "auto_complete": true,
+    "history_size": 100,
+    "aliases": {
+      "h": "help",
+      "c": "config",
+      "s": "status",
+      "a": "agents"
+    }
+  },
+  "processing": {
+    "max_concurrent_commands": 5,
+    "command_timeout": 30000,
+    "queue_size": 50,
+    "priority_levels": ["emergency", "high", "normal", "low"],
+    "default_priority": "normal"
+  },
+  "monitoring": {
+    "enabled": true,
+    "metrics": {
+      "performance": true,
+      "usage": true,
+      "errors": true,
+      "health": true
+    },
+    "alerts": {
+      "enabled": true,
+      "thresholds": {
+        "response_time": 5000,
+        "error_rate": 0.05,
+        "memory_usage": 0.8,
+        "cpu_usage": 0.8
+      }
+    }
+  },
+  "security": {
+    "encryption": {
+      "enabled": true,
+      "algorithm": "aes-256-gcm"
+    },
+    "authentication": {
+      "required": false,
+      "type": "token",
+      "token_expiry": 86400000
+    },
+    "input_validation": {
+      "enabled": true,
+      "max_input_length": 10000,
+      "sanitize_html": true
+    }
+  },
+  "python_integration": {
+    "enabled": true,
+    "python_path": "python3",
+    "script_timeout": 60000,
+    "max_memory": "512MB",
+    "communication": {
+      "type": "http",
+      "port": 5000,
+      "host": "localhost"
+    }
+  },
+  "features": {
+    "auto_update": true,
+    "telemetry": false,
+    "analytics": true,
+    "backup": {
+      "enabled": true,
+      "interval": 86400000,
+      "retention_days": 30
+    }
+  },
+  "ui": {
+    "theme": "dark",
+    "language": "en",
+    "accessibility": {
+      "high_contrast": false,
+      "large_text": false,
+      "screen_reader": false
+    }
+  },
+  "development": {
+    "hot_reload": true,
+    "source_maps": true,
+    "profiling": false,
+    "test_mode": false
+  }
+}
