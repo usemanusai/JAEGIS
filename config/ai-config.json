@@ -1,0 +1,336 @@
+{
+  "ai": {
+    "enabled": true,
+    "auto_start": true,
+    "integration_mode": "enhanced",
+    "graceful_shutdown": true,
+    "health_check_interval": 60000,
+    "max_initialization_time": 120000,
+    "enable_metrics": true,
+    "enable_dashboard": true,
+    "enable_learning": true,
+    "enable_background_processing": true,
+    
+    "openrouter": {
+      "keys": [
+        {
+          "key": "sk-or-v1-your-free-key-1",
+          "tier": "free",
+          "description": "Free tier key #1"
+        },
+        {
+          "key": "sk-or-v1-your-free-key-2",
+          "tier": "free",
+          "description": "Free tier key #2"
+        },
+        {
+          "key": "sk-or-v1-your-paid-key-1",
+          "tier": "paid",
+          "description": "Paid tier key #1"
+        }
+      ],
+      "default_timeout": 30000,
+      "retry_delay": 1000,
+      "quota_warning_threshold": 0.8,
+      "auto_key_rotation": true,
+      "enable_model_discovery": true,
+      "cache_responses": true,
+      "cache_ttl": 3600000
+    },
+    
+    "redis": {
+      "environment": "development",
+      "max_agents": 12000,
+      "max_conversations": 1000,
+      "max_learning_history": 10000,
+      "enable_vector_search": true,
+      "enable_streams": true,
+      "enable_pubsub": true,
+      "compression_enabled": false,
+      "ttl_default": 86400000,
+      "cleanup_interval": 3600000,
+      "production": {
+        "url": "${REDIS_CLOUD_URL}",
+        "max_agents": 50,
+        "max_conversations": 100,
+        "max_learning_history": 500,
+        "compression_enabled": true
+      }
+    },
+    
+    "learning": {
+      "enabled": true,
+      "max_concurrent_discussions": 5,
+      "discussion_timeout": 300000,
+      "min_participants": 2,
+      "max_participants": 5,
+      "learning_interval": 3600000,
+      "synthesis_threshold": 0.7,
+      "consensus_threshold": 0.8,
+      "improvement_threshold": 0.1,
+      "max_learning_history": 1000
+    },
+    
+    "background": {
+      "enabled": true,
+      "max_concurrent_tasks": 3,
+      "max_queue_size": 100,
+      "task_timeout": 300000,
+      "retry_attempts": 3,
+      "retry_delay": 60000,
+      "health_check_interval": 300000,
+      "research_interval": 3600000,
+      "cleanup_interval": 86400000
+    },
+    
+    "integration": {
+      "enabled": true,
+      "enhancement_level": "enhanced",
+      "enable_command_enhancement": true,
+      "enable_intelligent_routing": true,
+      "enable_context_enrichment": true,
+      "enable_response_optimization": true,
+      "enable_learning_integration": true,
+      "enable_predictive_caching": true,
+      "ai_response_threshold": 0.7,
+      "max_ai_processing_time": 10000,
+      "fallback_to_original": true
+    },
+    
+    "dashboard": {
+      "enabled": true,
+      "refresh_interval": 30000,
+      "api_quota_warning": 0.8,
+      "api_quota_critical": 0.95,
+      "performance_warning": 1000,
+      "performance_critical": 5000,
+      "error_rate_warning": 0.1,
+      "error_rate_critical": 0.2,
+      "memory_warning": 0.8,
+      "memory_critical": 0.95,
+      "retention_period": 86400000,
+      "max_alerts": 100,
+      "enable_realtime": true,
+      "enable_alert_notifications": true
+    }
+  },
+  
+  "environment_overrides": {
+    "production": {
+      "ai": {
+        "redis": {
+          "environment": "production",
+          "max_agents": 50,
+          "max_conversations": 100,
+          "max_learning_history": 500,
+          "compression_enabled": true
+        },
+        "learning": {
+          "max_concurrent_discussions": 2,
+          "learning_interval": 7200000
+        },
+        "background": {
+          "max_concurrent_tasks": 2,
+          "max_queue_size": 50,
+          "research_interval": 7200000
+        },
+        "dashboard": {
+          "refresh_interval": 60000,
+          "retention_period": 43200000
+        }
+      }
+    },
+    
+    "development": {
+      "ai": {
+        "redis": {
+          "environment": "development",
+          "max_agents": 12000,
+          "compression_enabled": false
+        },
+        "learning": {
+          "learning_interval": 1800000
+        },
+        "background": {
+          "research_interval": 1800000
+        },
+        "dashboard": {
+          "refresh_interval": 15000
+        }
+      }
+    },
+    
+    "testing": {
+      "ai": {
+        "enabled": false,
+        "auto_start": false,
+        "enable_learning": false,
+        "enable_background_processing": false,
+        "enable_dashboard": false
+      }
+    }
+  },
+  
+  "model_configurations": {
+    "reasoning": {
+      "primary": "deepseek/deepseek-r1-0528:free",
+      "fallback": "deepseek/deepseek-chat-v3-0324:free",
+      "max_tokens": 1000,
+      "temperature": 0.7,
+      "top_p": 0.9
+    },
+    
+    "chat": {
+      "primary": "deepseek/deepseek-chat-v3-0324:free",
+      "fallback": "qwen/qwen3-coder:free",
+      "max_tokens": 800,
+      "temperature": 0.8,
+      "top_p": 0.9
+    },
+    
+    "coding": {
+      "primary": "qwen/qwen3-coder:free",
+      "fallback": "deepseek/deepseek-chat-v3-0324:free",
+      "max_tokens": 1200,
+      "temperature": 0.3,
+      "top_p": 0.8
+    },
+    
+    "analysis": {
+      "primary": "deepseek/deepseek-chat-v3-0324:free",
+      "fallback": "deepseek/deepseek-r1-0528:free",
+      "max_tokens": 1000,
+      "temperature": 0.5,
+      "top_p": 0.9
+    }
+  },
+  
+  "research_topics": [
+    "AI developments 2025",
+    "JavaScript performance optimization",
+    "Node.js best practices",
+    "Redis optimization techniques",
+    "OpenRouter.ai updates",
+    "Machine learning trends",
+    "Software architecture patterns",
+    "API security best practices",
+    "Cloud computing innovations",
+    "DevOps automation tools"
+  ],
+  
+  "agent_templates": {
+    "research_agent": {
+      "type": "research",
+      "capabilities": ["web_research", "data_analysis", "trend_identification"],
+      "performance_score": 0.7,
+      "learning_progress": {},
+      "metadata": {
+        "specialization": "technology_research",
+        "priority": "medium"
+      }
+    },
+    
+    "analysis_agent": {
+      "type": "analysis",
+      "capabilities": ["data_analysis", "pattern_recognition", "insight_generation"],
+      "performance_score": 0.8,
+      "learning_progress": {},
+      "metadata": {
+        "specialization": "performance_analysis",
+        "priority": "high"
+      }
+    },
+    
+    "learning_agent": {
+      "type": "learning",
+      "capabilities": ["knowledge_synthesis", "discussion_facilitation", "consensus_building"],
+      "performance_score": 0.6,
+      "learning_progress": {},
+      "metadata": {
+        "specialization": "autonomous_learning",
+        "priority": "medium"
+      }
+    },
+    
+    "optimization_agent": {
+      "type": "optimization",
+      "capabilities": ["performance_optimization", "resource_management", "efficiency_analysis"],
+      "performance_score": 0.75,
+      "learning_progress": {},
+      "metadata": {
+        "specialization": "system_optimization",
+        "priority": "high"
+      }
+    }
+  },
+  
+  "task_priorities": {
+    "web_research": 3,
+    "knowledge_synthesis": 2,
+    "agent_training": 3,
+    "performance_analysis": 2,
+    "system_optimization": 1,
+    "data_cleanup": 4,
+    "health_check": 1,
+    "learning_session": 3,
+    "capability_assessment": 3,
+    "trend_analysis": 4
+  },
+  
+  "alert_configurations": {
+    "api_quota": {
+      "warning_threshold": 0.8,
+      "critical_threshold": 0.95,
+      "check_interval": 60000
+    },
+    
+    "performance": {
+      "response_time_warning": 1000,
+      "response_time_critical": 5000,
+      "error_rate_warning": 0.1,
+      "error_rate_critical": 0.2,
+      "check_interval": 30000
+    },
+    
+    "system_health": {
+      "memory_warning": 0.8,
+      "memory_critical": 0.95,
+      "component_health_check": 120000
+    },
+    
+    "learning": {
+      "discussion_timeout": 300000,
+      "consensus_failure_threshold": 0.3,
+      "learning_efficiency_warning": 0.4
+    }
+  },
+  
+  "security": {
+    "enable_input_validation": true,
+    "enable_output_filtering": true,
+    "enable_rate_limiting": true,
+    "enable_threat_detection": true,
+    "max_request_size": 100000,
+    "max_response_size": 500000,
+    "allowed_domains": ["openrouter.ai", "redis.com"],
+    "blocked_patterns": ["eval(", "exec(", "system(", "shell_exec"]
+  },
+  
+  "logging": {
+    "level": "info",
+    "enable_ai_logging": true,
+    "enable_performance_logging": true,
+    "enable_error_logging": true,
+    "log_retention_days": 7,
+    "sensitive_data_masking": true
+  },
+  
+  "monitoring": {
+    "enable_metrics_collection": true,
+    "enable_performance_tracking": true,
+    "enable_usage_analytics": true,
+    "metrics_retention_hours": 168,
+    "export_metrics": false,
+    "metrics_endpoint": "/metrics"
+  }
+}
