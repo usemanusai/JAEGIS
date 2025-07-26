@@ -1,0 +1,260 @@
+{
+  "agent_system": {
+    "name": "JAEGIS Method Agent",
+    "version": "2.0.0",
+    "type": "hybrid_intelligence",
+    "activation_mode": "dynamic",
+    "coordination_enabled": true
+  },
+  "github_integration": {
+    "primary_commands_source": {
+      "url": "https://raw.githubusercontent.com/usemanusai/JAEGIS/main/commands/commands.md",
+      "type": "markdown",
+      "update_frequency": "30m",
+      "cache_duration": "1h",
+      "fallback_enabled": true
+    },
+    "repository_config": {
+      "owner": "usemanusai",
+      "name": "JAEGIS",
+      "branch": "main",
+      "api_base": "https://api.github.com",
+      "raw_base": "https://raw.githubusercontent.com"
+    },
+    "authentication": {
+      "token_required": false,
+      "rate_limit_aware": true,
+      "retry_strategy": "exponential_backoff",
+      "max_retries": 3
+    }
+  },
+  "agent_squads": {
+    "analysis_squad": {
+      "agents": ["research-agent", "data-agent", "insight-agent"],
+      "activation_threshold": 0.7,
+      "coordination_mode": "collaborative",
+      "specialization": "data_analysis_research"
+    },
+    "development_squad": {
+      "agents": ["code-agent", "test-agent", "deploy-agent"],
+      "activation_threshold": 0.8,
+      "coordination_mode": "sequential",
+      "specialization": "software_development"
+    },
+    "design_squad": {
+      "agents": ["ui-agent", "ux-agent", "architecture-agent"],
+      "activation_threshold": 0.6,
+      "coordination_mode": "collaborative",
+      "specialization": "design_architecture"
+    },
+    "management_squad": {
+      "agents": ["project-agent", "coordination-agent", "monitor-agent"],
+      "activation_threshold": 0.5,
+      "coordination_mode": "hierarchical",
+      "specialization": "project_management"
+    },
+    "quality_squad": {
+      "agents": ["qa-agent", "validation-agent", "security-agent"],
+      "activation_threshold": 0.9,
+      "coordination_mode": "parallel",
+      "specialization": "quality_assurance"
+    },
+    "documentation_squad": {
+      "agents": ["doc-agent", "tutorial-agent", "api-agent"],
+      "activation_threshold": 0.4,
+      "coordination_mode": "collaborative",
+      "specialization": "documentation"
+    }
+  },
+  "command_processing": {
+    "decision_engine": {
+      "enabled": true,
+      "algorithm": "intelligent_routing",
+      "factors": [
+        "command_complexity",
+        "data_requirements",
+        "processing_time",
+        "resource_availability",
+        "user_context"
+      ],
+      "learning_enabled": true,
+      "optimization_mode": "performance"
+    },
+    "routing_rules": {
+      "help_commands": {
+        "pattern": "^/(help|h).*",
+        "requires_github_data": true,
+        "priority": "high",
+        "cache_strategy": "aggressive"
+      },
+      "config_commands": {
+        "pattern": "^/(config|c).*",
+        "requires_github_data": false,
+        "priority": "normal",
+        "cache_strategy": "minimal"
+      },
+      "status_commands": {
+        "pattern": "^/(status|s).*",
+        "requires_github_data": false,
+        "priority": "high",
+        "cache_strategy": "none"
+      },
+      "agent_commands": {
+        "pattern": "^/(agents|a).*",
+        "requires_github_data": true,
+        "priority": "normal",
+        "cache_strategy": "moderate"
+      },
+      "complex_commands": {
+        "pattern": "^/(analytics|optimize|debug).*",
+        "requires_github_data": true,
+        "priority": "low",
+        "cache_strategy": "aggressive",
+        "squad_activation": true
+      }
+    }
+  },
+  "intelligence_parameters": {
+    "deep_web_research_frequency": 75,
+    "task_decomposition_depth": 80,
+    "agent_activation_frequency": 85,
+    "quality_validation_intensity": 90,
+    "real_time_monitoring_freq": 70,
+    "cross_validation_frequency": 65,
+    "learning_rate": 0.1,
+    "adaptation_speed": "moderate"
+  },
+  "operational_modes": {
+    "documentation_mode": {
+      "enabled": true,
+      "output_format": "markdown",
+      "deliverables": ["prd.md", "architecture.md", "checklist.md"],
+      "agent_coordination": "full_squad",
+      "quality_threshold": 0.95
+    },
+    "development_mode": {
+      "enabled": true,
+      "output_format": "interactive",
+      "deliverables": ["functional_application"],
+      "agent_coordination": "dynamic_activation",
+      "quality_threshold": 0.85
+    },
+    "analysis_mode": {
+      "enabled": true,
+      "output_format": "structured_data",
+      "deliverables": ["analysis_report", "recommendations"],
+      "agent_coordination": "analysis_squad",
+      "quality_threshold": 0.90
+    }
+  },
+  "performance_optimization": {
+    "caching_strategy": {
+      "github_content": {
+        "ttl": 3600,
+        "max_size": "100MB",
+        "compression": true,
+        "invalidation": "smart"
+      },
+      "command_results": {
+        "ttl": 1800,
+        "max_size": "50MB",
+        "compression": false,
+        "invalidation": "time_based"
+      },
+      "agent_context": {
+        "ttl": 7200,
+        "max_size": "25MB",
+        "compression": true,
+        "invalidation": "manual"
+      }
+    },
+    "resource_management": {
+      "max_concurrent_agents": 10,
+      "memory_limit_per_agent": "128MB",
+      "cpu_throttling": true,
+      "priority_scheduling": true
+    }
+  },
+  "monitoring_and_analytics": {
+    "performance_tracking": {
+      "enabled": true,
+      "metrics": [
+        "response_time",
+        "success_rate",
+        "agent_utilization",
+        "cache_hit_ratio",
+        "github_api_usage"
+      ],
+      "reporting_interval": "5m",
+      "alert_thresholds": {
+        "response_time": 5000,
+        "error_rate": 0.05,
+        "memory_usage": 0.8
+      }
+    },
+    "usage_analytics": {
+      "enabled": true,
+      "track_commands": true,
+      "track_patterns": true,
+      "privacy_mode": "anonymized",
+      "retention_period": "30d"
+    }
+  },
+  "security_and_validation": {
+    "input_validation": {
+      "enabled": true,
+      "max_command_length": 1000,
+      "sanitization": true,
+      "injection_protection": true
+    },
+    "rate_limiting": {
+      "enabled": true,
+      "requests_per_minute": 60,
+      "burst_allowance": 10,
+      "whitelist_enabled": false
+    },
+    "authentication": {
+      "required": false,
+      "methods": ["token", "api_key"],
+      "session_timeout": "24h"
+    }
+  },
+  "integration_endpoints": {
+    "github_api": {
+      "base_url": "https://api.github.com",
+      "timeout": 30000,
+      "retry_attempts": 3,
+      "rate_limit_buffer": 100
+    },
+    "python_service": {
+      "base_url": "http://localhost:5000",
+      "timeout": 60000,
+      "health_check_interval": 30000,
+      "auto_restart": true
+    },
+    "cache_service": {
+      "type": "redis",
+      "url": "redis://localhost:6379",
+      "fallback": "memory",
+      "cluster_mode": false
+    }
+  },
+  "development_settings": {
+    "debug_mode": true,
+    "verbose_logging": true,
+    "hot_reload": true,
+    "test_mode": false,
+    "mock_github": false,
+    "profiling_enabled": false
+  },
+  "feature_flags": {
+    "ai_suggestions": true,
+    "command_learning": true,
+    "auto_optimization": true,
+    "advanced_caching": true,
+    "squad_coordination": true,
+    "real_time_updates": true,
+    "performance_monitoring": true,
+    "error_recovery": true
+  }
+}
