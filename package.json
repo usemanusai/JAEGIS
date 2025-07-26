@@ -1,0 +1,122 @@
+{
+  "name": "jaegis",
+  "version": "2.0.0",
+  "description": "JAEGIS - AI Agent Intelligence System with Command Processing & GitHub Integration",
+  "main": "src/nodejs/index.js",
+  "bin": {
+    "jaegis": "src/nodejs/cli.js"
+  },
+  "scripts": {
+    "start": "node src/nodejs/index.js",
+    "dev": "nodemon src/nodejs/index.js",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
+    "lint": "eslint src/nodejs/**/*.js",
+    "lint:fix": "eslint src/nodejs/**/*.js --fix",
+    "build": "npm run lint && npm run test",
+    "cli": "node src/nodejs/cli.js",
+    "setup": "node scripts/setup.js",
+    "docs": "jsdoc -c jsdoc.conf.json",
+    "clean": "rimraf dist coverage docs/generated",
+    "precommit": "npm run lint && npm run test"
+  },
+  "keywords": [
+    "ai",
+    "agent",
+    "intelligence",
+    "command-processing",
+    "github-integration",
+    "automation",
+    "jaegis",
+    "hybrid-architecture",
+    "nodejs",
+    "python"
+  ],
+  "author": {
+    "name": "JAEGIS Development Team",
+    "email": "use.manus.ai@gmail.com",
+    "url": "https://github.com/usemanusai"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/usemanusai/JAEGIS.git"
+  },
+  "bugs": {
+    "url": "https://github.com/usemanusai/JAEGIS/issues"
+  },
+  "homepage": "https://github.com/usemanusai/JAEGIS#readme",
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=8.0.0"
+  },
+  "dependencies": {
+    "axios": "^1.6.0",
+    "commander": "^11.1.0",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "fs-extra": "^11.1.1",
+    "inquirer": "^9.2.12",
+    "lodash": "^4.17.21",
+    "marked": "^9.1.6",
+    "node-cache": "^5.1.2",
+    "chalk": "^5.3.0",
+    "ora": "^7.0.1",
+    "figlet": "^1.7.0",
+    "boxen": "^7.1.1",
+    "ws": "^8.14.2",
+    "yaml": "^2.3.4",
+    "joi": "^17.11.0",
+    "winston": "^3.11.0",
+    "cors": "^2.8.5",
+    "helmet": "^7.1.0",
+    "rate-limiter-flexible": "^4.0.1"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "nodemon": "^3.0.1",
+    "eslint": "^8.54.0",
+    "eslint-config-standard": "^17.1.0",
+    "eslint-plugin-import": "^2.29.0",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^6.1.1",
+    "jsdoc": "^4.0.2",
+    "rimraf": "^5.0.5",
+    "supertest": "^6.3.3",
+    "@types/jest": "^29.5.8",
+    "husky": "^8.0.3",
+    "lint-staged": "^15.1.0"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "collectCoverageFrom": [
+      "src/nodejs/**/*.js",
+      "!src/nodejs/**/*.test.js",
+      "!src/nodejs/test/**"
+    ],
+    "coverageDirectory": "coverage",
+    "coverageReporters": [
+      "text",
+      "lcov",
+      "html"
+    ]
+  },
+  "lint-staged": {
+    "src/nodejs/**/*.js": [
+      "eslint --fix",
+      "git add"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "config": {
+    "github_commands_url": "https://raw.githubusercontent.com/usemanusai/JAEGIS/main/commands/commands.md",
+    "cache_duration": 3600000,
+    "max_retries": 3,
+    "timeout": 30000
+  }
+}
