@@ -1,0 +1,164 @@
+{
+  "openrouter_integration": {
+    "api_configuration": {
+      "total_api_keys": 3000,
+      "load_balancing_strategy": "intelligent_round_robin",
+      "failover_mechanism": "automatic_cascade",
+      "rate_limiting": {
+        "requests_per_minute": 150000,
+        "daily_message_capacity": 150000,
+        "burst_capacity": 500,
+        "throttling_enabled": true
+      }
+    },
+    "model_configuration": {
+      "primary_models": [
+        "anthropic/claude-3.5-sonnet",
+        "openai/gpt-4-turbo",
+        "google/gemini-pro-1.5",
+        "meta-llama/llama-3.1-405b-instruct"
+      ],
+      "fallback_models": [
+        "anthropic/claude-3-haiku",
+        "openai/gpt-3.5-turbo",
+        "google/gemini-pro",
+        "meta-llama/llama-3.1-70b-instruct"
+      ],
+      "specialized_models": {
+        "code_generation": "anthropic/claude-3.5-sonnet",
+        "reasoning": "openai/gpt-4-turbo",
+        "analysis": "google/gemini-pro-1.5",
+        "creative": "meta-llama/llama-3.1-405b-instruct"
+      }
+    },
+    "jaegis_integration": {
+      "tier_1_master": {
+        "model": "anthropic/claude-3.5-sonnet",
+        "context_window": 200000,
+        "temperature": 0.1,
+        "max_tokens": 4096
+      },
+      "tier_2_coordinators": {
+        "model": "openai/gpt-4-turbo",
+        "context_window": 128000,
+        "temperature": 0.2,
+        "max_tokens": 3072
+      },
+      "tier_3_specialized": {
+        "model": "google/gemini-pro-1.5",
+        "context_window": 100000,
+        "temperature": 0.3,
+        "max_tokens": 2048
+      },
+      "tier_4_conditional": {
+        "model": "meta-llama/llama-3.1-70b-instruct",
+        "context_window": 80000,
+        "temperature": 0.4,
+        "max_tokens": 1536
+      }
+    },
+    "squad_specific_configuration": {
+      "garas_squads": {
+        "model": "anthropic/claude-3.5-sonnet",
+        "specialized_prompting": true,
+        "gap_analysis_mode": true,
+        "context_window": 150000
+      },
+      "iuas_squads": {
+        "model": "openai/gpt-4-turbo",
+        "maintenance_mode": true,
+        "system_monitoring": true,
+        "context_window": 120000
+      },
+      "chimera_squads": {
+        "model": "google/gemini-pro-1.5",
+        "performance_optimization": true,
+        "security_enhanced": true,
+        "context_window": 180000
+      }
+    },
+    "nlds_integration": {
+      "tier_0_component": {
+        "enabled": true,
+        "model": "anthropic/claude-3.5-sonnet",
+        "natural_language_processing": true,
+        "dynamic_system_adaptation": true,
+        "context_window": 200000
+      },
+      "language_understanding": {
+        "multi_language_support": true,
+        "context_preservation": true,
+        "semantic_analysis": true,
+        "intent_recognition": true
+      }
+    },
+    "pitces_framework_integration": {
+      "sequential_waterfall_mode": {
+        "model": "openai/gpt-4-turbo",
+        "structured_processing": true,
+        "dependency_tracking": true
+      },
+      "ci_ar_mode": {
+        "model": "google/gemini-pro-1.5",
+        "continuous_integration": true,
+        "adaptive_reasoning": true
+      },
+      "hybrid_workflow": {
+        "intelligent_mode_selection": true,
+        "complexity_based_routing": true,
+        "performance_optimization": true
+      }
+    },
+    "security_configuration": {
+      "api_key_rotation": {
+        "enabled": true,
+        "rotation_interval_hours": 24,
+        "automatic_rotation": true,
+        "security_scanning": true
+      },
+      "request_validation": {
+        "input_sanitization": true,
+        "output_filtering": true,
+        "content_moderation": true,
+        "threat_detection": true
+      },
+      "audit_logging": {
+        "enabled": true,
+        "detailed_logging": true,
+        "retention_days": 90,
+        "compliance_reporting": true
+      }
+    },
+    "performance_optimization": {
+      "caching_strategy": {
+        "response_caching": true,
+        "cache_duration_minutes": 60,
+        "intelligent_cache_invalidation": true
+      },
+      "request_optimization": {
+        "batch_processing": true,
+        "request_compression": true,
+        "response_streaming": true
+      },
+      "monitoring": {
+        "real_time_metrics": true,
+        "performance_analytics": true,
+        "cost_optimization": true,
+        "usage_forecasting": true
+      }
+    },
+    "github_sync_integration": {
+      "dynamic_resource_fetching": {
+        "enabled": true,
+        "sync_interval_minutes": 60,
+        "automatic_updates": true,
+        "version_control": true
+      },
+      "configuration_management": {
+        "centralized_config": true,
+        "environment_specific": true,
+        "rollback_capability": true
+      }
+    }
+  }
+}
