@@ -1,0 +1,29 @@
+# Enhanced JAEGIS Bulk Upload Automation Dependencies
+# Install with: pip install -r requirements_enhanced_upload.txt
+
+# Core async HTTP client for GitHub API
+aiohttp>=3.8.0
+
+# Async file operations
+aiofiles>=22.1.0
+
+# HTTP requests for configuration and validation
+requests>=2.28.0
+
+# System monitoring and resource tracking
+psutil>=5.9.0
+
+# Color output for enhanced console display
+colorama>=0.4.6
+
+# Enhanced JSON handling (optional but recommended)
+ujson>=5.4.0
+
+# Progress bars and terminal utilities (optional)
+tqdm>=4.64.0
+
+# Better logging capabilities (optional)
+colorlog>=6.7.0
+
+# Data validation (optional)
+pydantic>=1.10.0
