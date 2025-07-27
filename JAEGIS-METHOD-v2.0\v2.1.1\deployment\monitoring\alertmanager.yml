@@ -1,0 +1,277 @@
+# AlertManager Configuration for N.L.D.S.
+# JAEGIS Enhanced Agent System v2.2 - Tier 0 Component
+
+global:
+  # SMTP configuration for email alerts
+  smtp_smarthost: 'smtp.gmail.com:587'
+  smtp_from: 'alerts@jaegis.ai'
+  smtp_auth_username: 'alerts@jaegis.ai'
+  smtp_auth_password: '${SMTP_PASSWORD}'
+  smtp_require_tls: true
+
+  # Slack configuration
+  slack_api_url: '${SLACK_WEBHOOK_URL}'
+
+  # PagerDuty configuration
+  pagerduty_url: 'https://events.pagerduty.com/v2/enqueue'
+
+# Templates for alert notifications
+templates:
+  - '/etc/alertmanager/templates/*.tmpl'
+
+# Routing configuration
+route:
+  group_by: ['alertname', 'cluster', 'service']
+  group_wait: 10s
+  group_interval: 10s
+  repeat_interval: 1h
+  receiver: 'default-receiver'
+  
+  routes:
+    # Critical alerts go to PagerDuty and Slack
+    - match:
+        severity: critical
+      receiver: 'critical-alerts'
+      group_wait: 5s
+      repeat_interval: 30m
+      
+    # Warning alerts go to Slack only
+    - match:
+        severity: warning
+      receiver: 'warning-alerts'
+      group_wait: 30s
+      repeat_interval: 2h
+      
+    # Security alerts get immediate attention
+    - match:
+        component: security
+      receiver: 'security-alerts'
+      group_wait: 0s
+      repeat_interval: 15m
+      
+    # Database alerts
+    - match:
+        component: database
+      receiver: 'database-alerts'
+      group_wait: 15s
+      repeat_interval: 1h
+      
+    # Infrastructure alerts
+    - match:
+        component: infrastructure
+      receiver: 'infrastructure-alerts'
+      group_wait: 20s
+      repeat_interval: 1h
+
+# Alert receivers
+receivers:
+  # Default receiver for unmatched alerts
+  - name: 'default-receiver'
+    email_configs:
+      - to: 'ops-team@jaegis.ai'
+        subject: '[N.L.D.S.] {{ .GroupLabels.alertname }} - {{ .Status | toUpper }}'
+        body: |
+          {{ range .Alerts }}
+          Alert: {{ .Annotations.summary }}
+          Description: {{ .Annotations.description }}
+          Severity: {{ .Labels.severity }}
+          Service: {{ .Labels.service }}
+          Instance: {{ .Labels.instance }}
+          {{ end }}
+        headers:
+          X-Priority: 'Normal'
+
+  # Critical alerts - PagerDuty + Slack + Email
+  - name: 'critical-alerts'
+    pagerduty_configs:
+      - routing_key: '${PAGERDUTY_ROUTING_KEY}'
+        description: '[N.L.D.S. CRITICAL] {{ .GroupLabels.alertname }}'
+        details:
+          summary: '{{ range .Alerts }}{{ .Annotations.summary }}{{ end }}'
+          description: '{{ range .Alerts }}{{ .Annotations.description }}{{ end }}'
+          severity: '{{ range .Alerts }}{{ .Labels.severity }}{{ end }}'
+          service: '{{ range .Alerts }}{{ .Labels.service }}{{ end }}'
+          runbook_url: '{{ range .Alerts }}{{ .Annotations.runbook_url }}{{ end }}'
+        client: 'N.L.D.S. AlertManager'
+        client_url: 'https://monitoring.jaegis.ai/alertmanager'
+        
+    slack_configs:
+      - api_url: '${SLACK_WEBHOOK_URL}'
+        channel: '#nlds-critical-alerts'
+        username: 'N.L.D.S. AlertManager'
+        icon_emoji: ':rotating_light:'
+        title: '[CRITICAL] {{ .GroupLabels.alertname }}'
+        text: |
+          {{ range .Alerts }}
+          *Alert:* {{ .Annotations.summary }}
+          *Description:* {{ .Annotations.description }}
+          *Severity:* {{ .Labels.severity }}
+          *Service:* {{ .Labels.service }}
+          *Instance:* {{ .Labels.instance }}
+          *Runbook:* {{ .Annotations.runbook_url }}
+          {{ end }}
+        color: 'danger'
+        send_resolved: true
+        
+    email_configs:
+      - to: 'oncall@jaegis.ai,ops-team@jaegis.ai'
+        subject: '[N.L.D.S. CRITICAL] {{ .GroupLabels.alertname }} - {{ .Status | toUpper }}'
+        body: |
+          CRITICAL ALERT - Immediate attention required!
+          
+          {{ range .Alerts }}
+          Alert: {{ .Annotations.summary }}
+          Description: {{ .Annotations.description }}
+          Severity: {{ .Labels.severity }}
+          Service: {{ .Labels.service }}
+          Instance: {{ .Labels.instance }}
+          Runbook: {{ .Annotations.runbook_url }}
+          
+          Time: {{ .StartsAt.Format "2006-01-02 15:04:05 UTC" }}
+          {{ end }}
+        headers:
+          X-Priority: 'High'
+
+  # Warning alerts - Slack + Email
+  - name: 'warning-alerts'
+    slack_configs:
+      - api_url: '${SLACK_WEBHOOK_URL}'
+        channel: '#nlds-alerts'
+        username: 'N.L.D.S. AlertManager'
+        icon_emoji: ':warning:'
+        title: '[WARNING] {{ .GroupLabels.alertname }}'
+        text: |
+          {{ range .Alerts }}
+          *Alert:* {{ .Annotations.summary }}
+          *Description:* {{ .Annotations.description }}
+          *Service:* {{ .Labels.service }}
+          *Instance:* {{ .Labels.instance }}
+          {{ end }}
+        color: 'warning'
+        send_resolved: true
+        
+    email_configs:
+      - to: 'ops-team@jaegis.ai'
+        subject: '[N.L.D.S. WARNING] {{ .GroupLabels.alertname }} - {{ .Status | toUpper }}'
+        body: |
+          {{ range .Alerts }}
+          Alert: {{ .Annotations.summary }}
+          Description: {{ .Annotations.description }}
+          Service: {{ .Labels.service }}
+          Instance: {{ .Labels.instance }}
+          {{ end }}
+
+  # Security alerts - Immediate escalation
+  - name: 'security-alerts'
+    pagerduty_configs:
+      - routing_key: '${PAGERDUTY_SECURITY_KEY}'
+        description: '[N.L.D.S. SECURITY] {{ .GroupLabels.alertname }}'
+        severity: 'critical'
+        
+    slack_configs:
+      - api_url: '${SLACK_WEBHOOK_URL}'
+        channel: '#nlds-security-alerts'
+        username: 'N.L.D.S. Security'
+        icon_emoji: ':shield:'
+        title: '[SECURITY ALERT] {{ .GroupLabels.alertname }}'
+        text: |
+          {{ range .Alerts }}
+          *SECURITY INCIDENT DETECTED*
+          *Alert:* {{ .Annotations.summary }}
+          *Description:* {{ .Annotations.description }}
+          *Instance:* {{ .Labels.instance }}
+          *Immediate Action Required*
+          {{ end }}
+        color: 'danger'
+        
+    email_configs:
+      - to: 'security@jaegis.ai,oncall@jaegis.ai'
+        subject: '[N.L.D.S. SECURITY ALERT] {{ .GroupLabels.alertname }}'
+        body: |
+          SECURITY ALERT - Immediate investigation required!
+          
+          {{ range .Alerts }}
+          Alert: {{ .Annotations.summary }}
+          Description: {{ .Annotations.description }}
+          Instance: {{ .Labels.instance }}
+          Time: {{ .StartsAt.Format "2006-01-02 15:04:05 UTC" }}
+          {{ end }}
+        headers:
+          X-Priority: 'Urgent'
+
+  # Database alerts
+  - name: 'database-alerts'
+    slack_configs:
+      - api_url: '${SLACK_WEBHOOK_URL}'
+        channel: '#nlds-database-alerts'
+        username: 'N.L.D.S. Database Monitor'
+        icon_emoji: ':database:'
+        title: '[DATABASE] {{ .GroupLabels.alertname }}'
+        text: |
+          {{ range .Alerts }}
+          *Database Alert:* {{ .Annotations.summary }}
+          *Description:* {{ .Annotations.description }}
+          *Instance:* {{ .Labels.instance }}
+          {{ end }}
+        color: 'warning'
+        
+    email_configs:
+      - to: 'dba@jaegis.ai,ops-team@jaegis.ai'
+        subject: '[N.L.D.S. DATABASE] {{ .GroupLabels.alertname }}'
+        body: |
+          {{ range .Alerts }}
+          Database Alert: {{ .Annotations.summary }}
+          Description: {{ .Annotations.description }}
+          Instance: {{ .Labels.instance }}
+          {{ end }}
+
+  # Infrastructure alerts
+  - name: 'infrastructure-alerts'
+    slack_configs:
+      - api_url: '${SLACK_WEBHOOK_URL}'
+        channel: '#nlds-infrastructure'
+        username: 'N.L.D.S. Infrastructure'
+        icon_emoji: ':gear:'
+        title: '[INFRASTRUCTURE] {{ .GroupLabels.alertname }}'
+        text: |
+          {{ range .Alerts }}
+          *Infrastructure Alert:* {{ .Annotations.summary }}
+          *Description:* {{ .Annotations.description }}
+          *Node/Pod:* {{ .Labels.instance }}
+          {{ end }}
+        color: 'warning'
+
+# Inhibition rules to prevent alert spam
+inhibit_rules:
+  # Inhibit warning alerts when critical alerts are firing
+  - source_match:
+      severity: 'critical'
+    target_match:
+      severity: 'warning'
+    equal: ['alertname', 'instance']
+    
+  # Inhibit individual pod alerts when node is down
+  - source_match:
+      alertname: 'NLDSNodeResourcePressure'
+    target_match_re:
+      alertname: 'NLDS.*'
+    equal: ['instance']
+    
+  # Inhibit database connection alerts when database is down
+  - source_match:
+      alertname: 'NLDSDatabaseDown'
+    target_match:
+      alertname: 'NLDSDatabaseConnectionHigh'
+    equal: ['instance']
+
+# Silence configuration
+silences:
+  # Maintenance window silences can be configured here
+  # Example: Silence all alerts during planned maintenance
+  # - matchers:
+  #     - name: alertname
+  #       value: ".*"
+  #   startsAt: "2025-07-26T02:00:00Z"
+  #   endsAt: "2025-07-26T04:00:00Z"
+  #   createdBy: "maintenance-script"
+  #   comment: "Planned maintenance window"
