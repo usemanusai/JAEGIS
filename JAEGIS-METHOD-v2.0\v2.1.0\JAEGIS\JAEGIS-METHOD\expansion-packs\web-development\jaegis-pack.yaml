@@ -1,0 +1,300 @@
+metadata:
+  pack_id: "modern_web_development"
+  pack_name: "Modern Web Development Pack"
+  version: "1.0.0"
+  description: "Comprehensive JAEGIS expansion pack for modern web application development with full-stack capabilities"
+  author: "JAEGIS Core Team"
+  license: "MIT"
+  homepage: "https://jaegis-method.com/packs/web-dev"
+  repository: "https://github.com/jaegis-method/web-dev-pack"
+  keywords:
+    - "web-development"
+    - "full-stack"
+    - "frontend"
+    - "backend"
+    - "api"
+    - "react"
+    - "node"
+  created_date: "2025-01-23"
+  updated_date: "2025-01-23"
+
+dependencies:
+  core_version: "1.0.0"
+  required_packs: []
+  optional_packs:
+    - "cloud_deployment_pack"
+    - "security_pack"
+    - "performance_optimization_pack"
+  python_packages:
+    - "requests>=2.28.0"
+    - "beautifulsoup4>=4.11.0"
+    - "selenium>=4.0.0"
+  system_requirements:
+    node_version: ">=18.0.0"
+    npm_version: ">=8.0.0"
+    platforms:
+      - "Windows"
+      - "macOS"
+      - "Linux"
+    disk_space: "1GB"
+
+capabilities:
+  provided_agents:
+    - "frontend_architect"
+    - "backend_api_designer"
+    - "fullstack_coordinator"
+    - "web_performance_optimizer"
+    - "security_specialist"
+  provided_templates:
+    - "web_app_prd"
+    - "frontend_architecture"
+    - "api_specification"
+    - "database_schema"
+    - "deployment_config"
+  provided_workflows:
+    - "web_app_development"
+    - "api_first_development"
+    - "frontend_backend_integration"
+    - "web_deployment_pipeline"
+  provided_integrations:
+    - "github_integration"
+    - "vercel_deployment"
+    - "aws_services"
+    - "database_connectors"
+  provided_data_sources:
+    - "web_frameworks_database"
+    - "ui_component_libraries"
+    - "api_patterns_library"
+    - "security_best_practices"
+
+configuration:
+  settings_schema:
+    type: "object"
+    properties:
+      frontend_framework:
+        type: "string"
+        description: "Primary frontend framework"
+        default: "React"
+        enum: ["React", "Vue", "Angular", "Svelte", "Next.js"]
+      backend_framework:
+        type: "string"
+        description: "Primary backend framework"
+        default: "Node.js/Express"
+        enum: ["Node.js/Express", "Python/FastAPI", "Python/Django", "Java/Spring", "C#/.NET"]
+      database_type:
+        type: "string"
+        description: "Primary database type"
+        default: "PostgreSQL"
+        enum: ["PostgreSQL", "MySQL", "MongoDB", "SQLite", "Redis"]
+      deployment_platform:
+        type: "string"
+        description: "Deployment platform"
+        default: "Vercel"
+        enum: ["Vercel", "Netlify", "AWS", "Google Cloud", "Azure", "Heroku"]
+      css_framework:
+        type: "string"
+        description: "CSS framework or approach"
+        default: "Tailwind CSS"
+        enum: ["Tailwind CSS", "Bootstrap", "Material-UI", "Styled Components", "CSS Modules"]
+      state_management:
+        type: "string"
+        description: "State management solution"
+        default: "Context API"
+        enum: ["Context API", "Redux", "Zustand", "Recoil", "MobX"]
+      testing_framework:
+        type: "string"
+        description: "Testing framework"
+        default: "Jest"
+        enum: ["Jest", "Vitest", "Cypress", "Playwright", "Testing Library"]
+    required:
+      - "frontend_framework"
+      - "backend_framework"
+      - "database_type"
+
+  default_settings:
+    frontend_framework: "React"
+    backend_framework: "Node.js/Express"
+    database_type: "PostgreSQL"
+    deployment_platform: "Vercel"
+    css_framework: "Tailwind CSS"
+    state_management: "Context API"
+    testing_framework: "Jest"
+    enable_typescript: true
+    enable_pwa: false
+    enable_ssr: true
+    api_versioning: "v1"
+    cors_enabled: true
+    rate_limiting: true
+
+  validation_rules:
+    - "compatible_framework_combination"
+    - "valid_database_for_backend"
+    - "deployment_platform_supports_framework"
+
+workflow_modifications:
+  brainstorming_phase:
+    additional_steps:
+      - "user_experience_exploration"
+      - "technical_stack_evaluation"
+      - "scalability_considerations"
+      - "performance_requirements"
+    specialized_techniques:
+      - "user_journey_mapping"
+      - "technical_feasibility_analysis"
+      - "competitive_feature_analysis"
+
+  modeling_phase:
+    template_override: "web_app_prd"
+    additional_sections:
+      - "user_interface_requirements"
+      - "api_requirements"
+      - "data_model_specifications"
+      - "performance_criteria"
+      - "security_requirements"
+    validation_criteria:
+      - "user_flows_defined"
+      - "api_endpoints_specified"
+      - "data_relationships_clear"
+
+  architecture_phase:
+    template_override: "frontend_architecture"
+    additional_templates:
+      - "api_specification"
+      - "database_schema"
+    specialized_agents:
+      - "frontend_architect"
+      - "backend_api_designer"
+      - "fullstack_coordinator"
+
+  development_phase:
+    additional_workflows:
+      - "frontend_backend_integration"
+      - "api_first_development"
+    specialized_validation:
+      - "cross_browser_compatibility"
+      - "api_contract_validation"
+      - "performance_benchmarking"
+
+integrations:
+  github_integration:
+    description: "GitHub repository and workflow integration"
+    features:
+      - "repository_creation"
+      - "branch_management"
+      - "pull_request_automation"
+      - "ci_cd_setup"
+    authentication: "github_token"
+
+  vercel_deployment:
+    description: "Vercel deployment platform integration"
+    features:
+      - "project_deployment"
+      - "domain_management"
+      - "environment_variables"
+      - "analytics_integration"
+    authentication: "vercel_token"
+
+  aws_services:
+    description: "AWS cloud services integration"
+    supported_services:
+      - "S3"
+      - "CloudFront"
+      - "Lambda"
+      - "RDS"
+      - "DynamoDB"
+    authentication: "aws_credentials"
+
+quality_assurance:
+  automated_tests:
+    - "unit_tests"
+    - "integration_tests"
+    - "e2e_tests"
+    - "api_contract_tests"
+    - "performance_tests"
+    - "security_tests"
+
+  code_quality:
+    - "eslint_configuration"
+    - "prettier_formatting"
+    - "typescript_strict_mode"
+    - "code_coverage_requirements"
+
+  performance_standards:
+    - "lighthouse_score_90+"
+    - "first_contentful_paint_<2s"
+    - "largest_contentful_paint_<2.5s"
+    - "cumulative_layout_shift_<0.1"
+
+security:
+  best_practices:
+    - "input_validation"
+    - "output_encoding"
+    - "authentication_implementation"
+    - "authorization_checks"
+    - "secure_headers"
+    - "csrf_protection"
+    - "sql_injection_prevention"
+
+  security_tools:
+    - "helmet_js"
+    - "cors_configuration"
+    - "rate_limiting"
+    - "security_headers"
+
+accessibility:
+  standards:
+    - "wcag_2.1_aa_compliance"
+    - "semantic_html"
+    - "keyboard_navigation"
+    - "screen_reader_support"
+    - "color_contrast_compliance"
+
+  testing_tools:
+    - "axe_core"
+    - "lighthouse_accessibility"
+    - "screen_reader_testing"
+
+performance:
+  optimization_techniques:
+    - "code_splitting"
+    - "lazy_loading"
+    - "image_optimization"
+    - "caching_strategies"
+    - "cdn_integration"
+    - "bundle_analysis"
+
+  monitoring_tools:
+    - "web_vitals"
+    - "lighthouse_ci"
+    - "performance_budgets"
+    - "real_user_monitoring"
+
+example_projects:
+  - name: "E-commerce Platform"
+    description: "Full-stack e-commerce application with React and Node.js"
+    path: "examples/ecommerce-platform"
+    features:
+      - "product_catalog"
+      - "shopping_cart"
+      - "user_authentication"
+      - "payment_integration"
+      - "admin_dashboard"
+
+  - name: "Social Media Dashboard"
+    description: "Social media management dashboard with real-time updates"
+    path: "examples/social-dashboard"
+    features:
+      - "multi_platform_integration"
+      - "real_time_analytics"
+      - "content_scheduling"
+      - "team_collaboration"
+
+  - name: "Task Management App"
+    description: "Collaborative task management application"
+    path: "examples/task-management"
+    features:
+      - "project_organization"
+      - "team_collaboration"
+      - "real_time_updates"
+      - "file_attachments"
+      - "time_tracking"
