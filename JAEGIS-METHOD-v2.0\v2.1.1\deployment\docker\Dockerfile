@@ -1,0 +1,109 @@
+# N.L.D.S. Production Dockerfile
+# JAEGIS Enhanced Agent System v2.2 - Tier 0 Component
+
+# Multi-stage build for optimized production image
+FROM python:3.9-slim-bullseye as builder
+
+# Set build arguments
+ARG BUILD_DATE
+ARG VERSION
+ARG VCS_REF
+
+# Add metadata labels
+LABEL maintainer="JAEGIS Team <support@jaegis.ai>" \
+      org.opencontainers.image.title="N.L.D.S. - Natural Language Detection System" \
+      org.opencontainers.image.description="Tier 0 component for JAEGIS Enhanced Agent System v2.2" \
+      org.opencontainers.image.version="${VERSION}" \
+      org.opencontainers.image.created="${BUILD_DATE}" \
+      org.opencontainers.image.revision="${VCS_REF}" \
+      org.opencontainers.image.vendor="JAEGIS" \
+      org.opencontainers.image.url="https://github.com/usemanusai/JAEGIS" \
+      org.opencontainers.image.source="https://github.com/usemanusai/JAEGIS" \
+      org.opencontainers.image.documentation="https://docs.jaegis.ai"
+
+# Install system dependencies and security updates
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends \
+        build-essential \
+        curl \
+        git \
+        libpq-dev \
+        && \
+    apt-get upgrade -y && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
+# Create application directory
+WORKDIR /app
+
+# Copy requirements first for better caching
+COPY requirements.txt requirements-prod.txt ./
+
+# Install Python dependencies
+RUN pip install --no-cache-dir --upgrade pip setuptools wheel && \
+    pip install --no-cache-dir -r requirements-prod.txt
+
+# Copy application code
+COPY nlds/ ./nlds/
+COPY config/ ./config/
+COPY scripts/ ./scripts/
+
+# Create non-root user for security
+RUN groupadd -r nlds && \
+    useradd -r -g nlds -d /app -s /bin/bash nlds && \
+    chown -R nlds:nlds /app
+
+# Production stage
+FROM python:3.9-slim-bullseye as production
+
+# Install runtime dependencies only
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends \
+        curl \
+        libpq5 \
+        && \
+    apt-get upgrade -y && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
+# Create non-root user
+RUN groupadd -r nlds && \
+    useradd -r -g nlds -d /app -s /bin/bash nlds
+
+# Copy from builder stage
+COPY --from=builder --chown=nlds:nlds /usr/local/lib/python3.9/site-packages /usr/local/lib/python3.9/site-packages
+COPY --from=builder --chown=nlds:nlds /usr/local/bin /usr/local/bin
+COPY --from=builder --chown=nlds:nlds /app /app
+
+# Set working directory
+WORKDIR /app
+
+# Switch to non-root user
+USER nlds
+
+# Create necessary directories
+RUN mkdir -p logs temp cache
+
+# Set environment variables
+ENV PYTHONPATH=/app \
+    PYTHONUNBUFFERED=1 \
+    PYTHONDONTWRITEBYTECODE=1 \
+    PIP_NO_CACHE_DIR=1 \
+    PIP_DISABLE_PIP_VERSION_CHECK=1 \
+    NLDS_ENV=production \
+    NLDS_LOG_LEVEL=INFO
+
+# Expose port
+EXPOSE 8000
+
+# Health check
+HEALTHCHECK --interval=30s --timeout=10s --start-period=60s --retries=3 \
+    CMD curl -f http://localhost:8000/health || exit 1
+
+# Default command
+CMD ["python", "-m", "nlds.api.main", "--host", "0.0.0.0", "--port", "8000"]
+
+# Security: Run as non-root, read-only root filesystem
+# These will be set in Kubernetes deployment
+# USER nlds
+# --read-only --tmpfs /tmp --tmpfs /var/run --tmpfs /var/log
