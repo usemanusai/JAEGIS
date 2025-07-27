@@ -1,0 +1,59 @@
+# N.L.D.S. Development Dockerfile
+# JAEGIS Enhanced Agent System v2.2 - Tier 0 Component
+
+FROM python:3.9-slim as base
+
+# Set environment variables
+ENV PYTHONUNBUFFERED=1 \
+    PYTHONDONTWRITEBYTECODE=1 \
+    PIP_NO_CACHE_DIR=1 \
+    PIP_DISABLE_PIP_VERSION_CHECK=1
+
+# Install system dependencies
+RUN apt-get update && apt-get install -y \
+    build-essential \
+    gcc \
+    g++ \
+    curl \
+    git \
+    libpq-dev \
+    && rm -rf /var/lib/apt/lists/*
+
+# Create application directory
+WORKDIR /app
+
+# Copy requirements first for better caching
+COPY requirements.txt requirements-dev.txt ./
+
+# Install Python dependencies
+RUN pip install --upgrade pip && \
+    pip install -r requirements.txt && \
+    pip install -r requirements-dev.txt
+
+# Download spaCy models
+RUN python -m spacy download en_core_web_lg && \
+    python -m spacy download xx_ent_wiki_sm
+
+# Download NLTK data
+RUN python -c "import nltk; nltk.download('punkt'); nltk.download('stopwords'); nltk.download('wordnet'); nltk.download('vader_lexicon'); nltk.download('averaged_perceptron_tagger')"
+
+# Copy application code
+COPY nlds/ ./nlds/
+COPY tests/ ./tests/
+COPY scripts/ ./scripts/
+
+# Create necessary directories
+RUN mkdir -p /app/data /app/logs /app/models
+
+# Set permissions
+RUN chmod +x scripts/*.sh
+
+# Health check
+HEALTHCHECK --interval=30s --timeout=10s --retries=3 \
+    CMD curl -f http://localhost:8000/health || exit 1
+
+# Expose port
+EXPOSE 8000
+
+# Development command with hot reload
+CMD ["uvicorn", "nlds.main:app", "--host", "0.0.0.0", "--port", "8000", "--reload", "--log-level", "debug"]
