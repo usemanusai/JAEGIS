@@ -1,0 +1,421 @@
+{
+  "agent_configuration": {
+    "version": "2.2",
+    "type": "standard_24_agents",
+    "description": "Standard 24-agent configuration for JAEGIS Enhanced Agent System v2.2",
+    "total_agents": 24,
+    "tier_structure": "4-tier",
+    "last_updated": "2025-01-27",
+    "agents": [
+      {
+        "id": "tier1_orchestrator",
+        "name": "JAEGIS Master Orchestrator",
+        "tier": 1,
+        "role": "system_orchestrator",
+        "capabilities": [
+          "system_coordination",
+          "task_delegation",
+          "resource_management",
+          "performance_monitoring"
+        ],
+        "specialization": "Master coordination and system oversight",
+        "priority": 10,
+        "status": "active",
+        "integration": {
+          "acid_compatible": true,
+          "nlds_tier0": true,
+          "brain_protocol": true
+        }
+      },
+      {
+        "id": "tier2_john",
+        "name": "John - Strategic Planning Agent",
+        "tier": 2,
+        "role": "strategic_planner",
+        "capabilities": [
+          "strategic_analysis",
+          "long_term_planning",
+          "resource_allocation",
+          "risk_assessment"
+        ],
+        "specialization": "Strategic planning and high-level coordination",
+        "priority": 9,
+        "status": "active",
+        "integration": {
+          "acid_compatible": true,
+          "formation_leader": true
+        }
+      },
+      {
+        "id": "tier2_fred",
+        "name": "Fred - Technical Implementation Agent",
+        "tier": 2,
+        "role": "technical_lead",
+        "capabilities": [
+          "technical_implementation",
+          "code_generation",
+          "architecture_design",
+          "quality_assurance"
+        ],
+        "specialization": "Technical implementation and code quality",
+        "priority": 9,
+        "status": "active",
+        "integration": {
+          "acid_compatible": true,
+          "formation_leader": true
+        }
+      },
+      {
+        "id": "tier2_tyler",
+        "name": "Tyler - Operations Management Agent",
+        "tier": 2,
+        "role": "operations_manager",
+        "capabilities": [
+          "operations_management",
+          "deployment_coordination",
+          "monitoring_systems",
+          "incident_response"
+        ],
+        "specialization": "Operations management and system deployment",
+        "priority": 9,
+        "status": "active",
+        "integration": {
+          "acid_compatible": true,
+          "formation_leader": true
+        }
+      },
+      {
+        "id": "tier3_code_architect",
+        "name": "Code Architecture Specialist",
+        "tier": 3,
+        "role": "specialist",
+        "capabilities": [
+          "system_architecture",
+          "design_patterns",
+          "scalability_planning",
+          "performance_optimization"
+        ],
+        "specialization": "Software architecture and design patterns",
+        "priority": 8,
+        "status": "active"
+      },
+      {
+        "id": "tier3_security_specialist",
+        "name": "Security Specialist",
+        "tier": 3,
+        "role": "specialist",
+        "capabilities": [
+          "security_analysis",
+          "vulnerability_assessment",
+          "compliance_checking",
+          "threat_modeling"
+        ],
+        "specialization": "Security analysis and threat assessment",
+        "priority": 8,
+        "status": "active"
+      },
+      {
+        "id": "tier3_database_specialist",
+        "name": "Database Specialist",
+        "tier": 3,
+        "role": "specialist",
+        "capabilities": [
+          "database_design",
+          "query_optimization",
+          "data_modeling",
+          "performance_tuning"
+        ],
+        "specialization": "Database design and optimization",
+        "priority": 7,
+        "status": "active"
+      },
+      {
+        "id": "tier3_ui_ux_specialist",
+        "name": "UI/UX Design Specialist",
+        "tier": 3,
+        "role": "specialist",
+        "capabilities": [
+          "user_interface_design",
+          "user_experience_optimization",
+          "accessibility_compliance",
+          "design_systems"
+        ],
+        "specialization": "User interface and experience design",
+        "priority": 7,
+        "status": "active"
+      },
+      {
+        "id": "tier3_api_specialist",
+        "name": "API Development Specialist",
+        "tier": 3,
+        "role": "specialist",
+        "capabilities": [
+          "api_design",
+          "rest_development",
+          "graphql_implementation",
+          "api_documentation"
+        ],
+        "specialization": "API design and development",
+        "priority": 7,
+        "status": "active"
+      },
+      {
+        "id": "tier3_devops_specialist",
+        "name": "DevOps Specialist",
+        "tier": 3,
+        "role": "specialist",
+        "capabilities": [
+          "ci_cd_pipeline",
+          "infrastructure_automation",
+          "container_orchestration",
+          "monitoring_setup"
+        ],
+        "specialization": "DevOps and infrastructure automation",
+        "priority": 7,
+        "status": "active"
+      },
+      {
+        "id": "tier3_testing_specialist",
+        "name": "Testing Specialist",
+        "tier": 3,
+        "role": "specialist",
+        "capabilities": [
+          "test_automation",
+          "quality_assurance",
+          "performance_testing",
+          "test_strategy"
+        ],
+        "specialization": "Testing and quality assurance",
+        "priority": 7,
+        "status": "active"
+      },
+      {
+        "id": "tier3_frontend_specialist",
+        "name": "Frontend Development Specialist",
+        "tier": 3,
+        "role": "specialist",
+        "capabilities": [
+          "react_development",
+          "vue_development",
+          "javascript_optimization",
+          "responsive_design"
+        ],
+        "specialization": "Frontend development and optimization",
+        "priority": 7,
+        "status": "active"
+      },
+      {
+        "id": "tier3_backend_specialist",
+        "name": "Backend Development Specialist",
+        "tier": 3,
+        "role": "specialist",
+        "capabilities": [
+          "server_development",
+          "microservices_architecture",
+          "api_implementation",
+          "data_processing"
+        ],
+        "specialization": "Backend development and services",
+        "priority": 7,
+        "status": "active"
+      },
+      {
+        "id": "tier3_mobile_specialist",
+        "name": "Mobile Development Specialist",
+        "tier": 3,
+        "role": "specialist",
+        "capabilities": [
+          "mobile_app_development",
+          "cross_platform_development",
+          "mobile_optimization",
+          "app_store_deployment"
+        ],
+        "specialization": "Mobile application development",
+        "priority": 6,
+        "status": "active"
+      },
+      {
+        "id": "tier3_data_specialist",
+        "name": "Data Science Specialist",
+        "tier": 3,
+        "role": "specialist",
+        "capabilities": [
+          "data_analysis",
+          "machine_learning",
+          "statistical_modeling",
+          "data_visualization"
+        ],
+        "specialization": "Data science and analytics",
+        "priority": 6,
+        "status": "active"
+      },
+      {
+        "id": "tier3_cloud_specialist",
+        "name": "Cloud Infrastructure Specialist",
+        "tier": 3,
+        "role": "specialist",
+        "capabilities": [
+          "cloud_architecture",
+          "aws_services",
+          "azure_services",
+          "cloud_optimization"
+        ],
+        "specialization": "Cloud infrastructure and services",
+        "priority": 6,
+        "status": "active"
+      },
+      {
+        "id": "tier3_performance_specialist",
+        "name": "Performance Optimization Specialist",
+        "tier": 3,
+        "role": "specialist",
+        "capabilities": [
+          "performance_analysis",
+          "optimization_strategies",
+          "load_testing",
+          "scalability_planning"
+        ],
+        "specialization": "Performance optimization and scalability",
+        "priority": 6,
+        "status": "active"
+      },
+      {
+        "id": "tier3_integration_specialist",
+        "name": "Integration Specialist",
+        "tier": 3,
+        "role": "specialist",
+        "capabilities": [
+          "system_integration",
+          "third_party_apis",
+          "data_migration",
+          "legacy_system_integration"
+        ],
+        "specialization": "System integration and data migration",
+        "priority": 6,
+        "status": "active"
+      },
+      {
+        "id": "tier3_documentation_specialist",
+        "name": "Documentation Specialist",
+        "tier": 3,
+        "role": "specialist",
+        "capabilities": [
+          "technical_writing",
+          "api_documentation",
+          "user_guides",
+          "knowledge_management"
+        ],
+        "specialization": "Technical documentation and knowledge management",
+        "priority": 5,
+        "status": "active"
+      },
+      {
+        "id": "tier3_compliance_specialist",
+        "name": "Compliance Specialist",
+        "tier": 3,
+        "role": "specialist",
+        "capabilities": [
+          "regulatory_compliance",
+          "audit_preparation",
+          "policy_implementation",
+          "risk_management"
+        ],
+        "specialization": "Compliance and regulatory requirements",
+        "priority": 5,
+        "status": "active"
+      },
+      {
+        "id": "tier4_emergency_response",
+        "name": "Emergency Response Agent",
+        "tier": 4,
+        "role": "conditional",
+        "capabilities": [
+          "incident_response",
+          "crisis_management",
+          "emergency_coordination",
+          "rapid_deployment"
+        ],
+        "specialization": "Emergency response and crisis management",
+        "priority": 10,
+        "status": "standby",
+        "activation_conditions": [
+          "system_failure",
+          "security_breach",
+          "critical_error"
+        ]
+      },
+      {
+        "id": "tier4_research_agent",
+        "name": "Research and Development Agent",
+        "tier": 4,
+        "role": "conditional",
+        "capabilities": [
+          "research_analysis",
+          "technology_evaluation",
+          "innovation_assessment",
+          "competitive_analysis"
+        ],
+        "specialization": "Research and development initiatives",
+        "priority": 6,
+        "status": "standby",
+        "activation_conditions": [
+          "research_request",
+          "technology_evaluation",
+          "innovation_project"
+        ]
+      },
+      {
+        "id": "tier4_optimization_agent",
+        "name": "System Optimization Agent",
+        "tier": 4,
+        "role": "conditional",
+        "capabilities": [
+          "system_optimization",
+          "resource_efficiency",
+          "performance_tuning",
+          "cost_optimization"
+        ],
+        "specialization": "System optimization and efficiency",
+        "priority": 5,
+        "status": "standby",
+        "activation_conditions": [
+          "performance_degradation",
+          "resource_constraints",
+          "optimization_request"
+        ]
+      },
+      {
+        "id": "tier4_training_agent",
+        "name": "Training and Development Agent",
+        "tier": 4,
+        "role": "conditional",
+        "capabilities": [
+          "training_development",
+          "skill_assessment",
+          "knowledge_transfer",
+          "capability_enhancement"
+        ],
+        "specialization": "Training and capability development",
+        "priority": 4,
+        "status": "standby",
+        "activation_conditions": [
+          "training_request",
+          "skill_gap_identified",
+          "knowledge_transfer_needed"
+        ]
+      }
+    ],
+    "coordination_protocols": {
+      "tier1_oversight": "Master orchestrator coordinates all activities",
+      "tier2_leadership": "Strategic, technical, and operational leadership",
+      "tier3_specialization": "Domain-specific expertise and implementation",
+      "tier4_conditional": "Activated based on specific conditions and needs"
+    },
+    "integration_features": {
+      "acid_compatibility": "All agents compatible with A.C.I.D. formation and swarm modes",
+      "nlds_integration": "Tier 0 N.L.D.S. provides natural language interface",
+      "brain_protocol": "All agents follow Brain Protocol Suite v1.0 mandates",
+      "dynamic_scaling": "Conditional agents provide flexible resource scaling"
+    }
+  }
+}
