@@ -1,0 +1,653 @@
+"""
+JAEGIS Configuration Management System - Performance Metrics Tracking
+Comprehensive tracking system for performance metrics and optimization suggestions
+"""
+
+import asyncio
+import logging
+import json
+from typing import Dict, List, Optional, Any, Tuple
+from dataclasses import dataclass, field, asdict
+from datetime import datetime, timedelta
+from collections import defaultdict, deque
+import statistics
+import uuid
+
+from ..core.config_engine import ConfigurationEngine, ConfigurationChangeEvent
+from ..core.security import SecurityManager, Permission
+
+logger = logging.getLogger(__name__)
+
+@dataclass
+class PerformanceMetric:
+    """Individual performance metric data point"""
+    metric_id: str
+    name: str
+    value: float
+    unit: str
+    timestamp: datetime
+    context: Dict[str, Any] = field(default_factory=dict)
+    tags: List[str] = field(default_factory=list)
+    
+    def to_dict(self) -> Dict[str, Any]:
+        return {
+            "metric_id": self.metric_id,
+            "name": self.name,
+            "value": self.value,
+            "unit": self.unit,
+            "timestamp": self.timestamp.isoformat(),
+            "context": self.context,
+            "tags": self.tags
+        }
+
+@dataclass
+class PerformanceTrend:
+    """Performance trend analysis"""
+    metric_name: str
+    trend_direction: str  # "improving", "declining", "stable"
+    trend_strength: float  # 0.0 to 1.0
+    change_rate: float  # Rate of change per time unit
+    confidence: float  # 0.0 to 1.0
+    time_period: str
+    
+    def to_dict(self) -> Dict[str, Any]:
+        return asdict(self)
+
+@dataclass
+class OptimizationSuggestion:
+    """Performance optimization suggestion"""
+    suggestion_id: str
+    title: str
+    description: str
+    category: str  # "parameter", "workflow", "resource", "system"
+    priority: str  # "low", "medium", "high", "critical"
+    potential_impact: float  # Expected improvement percentage
+    confidence: float  # 0.0 to 1.0
+    implementation_effort: str  # "low", "medium", "high"
+    suggested_actions: List[str]
+    metrics_affected: List[str]
+    created_at: datetime = field(default_factory=datetime.now)
+    
+    def to_dict(self) -> Dict[str, Any]:
+        return {
+            "suggestion_id": self.suggestion_id,
+            "title": self.title,
+            "description": self.description,
+            "category": self.category,
+            "priority": self.priority,
+            "potential_impact": self.potential_impact,
+            "confidence": self.confidence,
+            "implementation_effort": self.implementation_effort,
+            "suggested_actions": self.suggested_actions,
+            "metrics_affected": self.metrics_affected,
+            "created_at": self.created_at.isoformat()
+        }
+
+class PerformanceMetricsTracker:
+    """Comprehensive performance metrics tracking and optimization system"""
+    
+    def __init__(self, config_engine: ConfigurationEngine, security_manager: SecurityManager):
+        self.config_engine = config_engine
+        self.security_manager = security_manager
+        
+        # Metrics storage
+        self.metrics_history: Dict[str, deque] = defaultdict(lambda: deque(maxlen=10000))
+        self.current_metrics: Dict[str, PerformanceMetric] = {}
+        
+        # Trend analysis
+        self.trends: Dict[str, PerformanceTrend] = {}
+        self.trend_update_interval = 300  # 5 minutes
+        
+        # Optimization suggestions
+        self.suggestions: List[OptimizationSuggestion] = []
+        self.suggestion_history: List[OptimizationSuggestion] = []
+        
+        # Performance baselines
+        self.baselines: Dict[str, float] = {}
+        self.baseline_percentiles = {"p50": 0.5, "p75": 0.75, "p90": 0.9, "p95": 0.95}
+        
+        # Metric definitions
+        self.metric_definitions = self._initialize_metric_definitions()
+        
+        # Configuration change tracking
+        self.config_engine.add_change_listener(self._on_configuration_change)
+        
+        # Start background tasks
+        asyncio.create_task(self._trend_analysis_loop())
+        asyncio.create_task(self._optimization_analysis_loop())
+        
+        logger.info("Performance Metrics Tracker initialized")
+    
+    def _initialize_metric_definitions(self) -> Dict[str, Dict[str, Any]]:
+        """Initialize metric definitions and metadata""return_workflow_efficiency": {
+                "name": "Workflow Efficiency",
+                "description": "Overall efficiency of workflow execution",
+                "unit": "percentage",
+                "higher_is_better": True,
+                "baseline_target": 75.0,
+                "critical_threshold": 50.0,
+                "category": "workflowresponse_time": {
+                "name": "Average Response Time",
+                "description": "Average time to generate responses",
+                "unit": "seconds",
+                "higher_is_better": False,
+                "baseline_target": 5.0,
+                "critical_threshold": 15.0,
+                "category": "performancequality_score": {
+                "name": "Output Quality Score",
+                "description": "Measured quality of generated outputs",
+                "unit": "score",
+                "higher_is_better": True,
+                "baseline_target": 8.0,
+                "critical_threshold": 6.0,
+                "category": "qualityresource_utilization": {
+                "name": "Resource Utilization",
+                "description": "Efficiency of resource usage",
+                "unit": "percentage",
+                "higher_is_better": True,
+                "baseline_target": 70.0,
+                "critical_threshold": 90.0,
+                "category": "resourceerror_rate": {
+                "name": "Error Rate",
+                "description": "Percentage of operations resulting in errors",
+                "unit": "percentage",
+                "higher_is_better": False,
+                "baseline_target": 2.0,
+                "critical_threshold": 10.0,
+                "category": "reliabilitythroughput": {
+                "name": "System Throughput",
+                "description": "Number of operations completed per time unit",
+                "unit": "ops/minute",
+                "higher_is_better": True,
+                "baseline_target": 100.0,
+                "critical_threshold": 50.0,
+                "category": "performanceagent_coordination_efficiency": {
+                "name": "Agent Coordination Efficiency",
+                "description": "Efficiency of multi-agent coordination",
+                "unit": "percentage",
+                "higher_is_better": True,
+                "baseline_target": 80.0,
+                "critical_threshold": 60.0,
+                "category": "coordinationuser_satisfaction": {
+                "name": "User Satisfaction Score",
+                "description": "User satisfaction with system performance",
+                "unit": "score",
+                "higher_is_better": True,
+                "baseline_target": 8.5,
+                "critical_threshold": 6.0,
+                "category": "satisfaction"
+            }
+        }
+    
+    def record_metric(self, metric_name: str, value: float, context: Optional[Dict[str, Any]] = None,
+                     tags: Optional[List[str]] = None) -> str:
+        """Record a performance metric"""
+        metric_id = str(uuid.uuid4())
+        timestamp = datetime.now()
+        
+        # Get metric definition
+        definition = self.metric_definitions.get(metric_name, {})
+        unit = definition.get("unit", "value")
+        
+        metric = PerformanceMetric(
+            metric_id=metric_id,
+            name=metric_name,
+            value=value,
+            unit=unit,
+            timestamp=timestamp,
+            context=context or {},
+            tags=tags or []
+        )
+        
+        # Store metric
+        self.metrics_history[metric_name].append(metric)
+        self.current_metrics[metric_name] = metric
+        
+        # Update baselines if needed
+        self._update_baselines(metric_name)
+        
+        # Check for alerts
+        self._check_metric_alerts(metric)
+        
+        logger.debug(f"Recorded metric {metric_name}: {value} {unit}")
+        return metric_id
+    
+    def record_batch_metrics(self, metrics: List[Tuple[str, float, Optional[Dict[str, Any]], Optional[List[str]]]]) -> List[str]:
+        """Record multiple metrics in batch"""
+        metric_ids = []
+        for metric_name, value, context, tags in metrics:
+            metric_id = self.record_metric(metric_name, value, context, tags)
+            metric_ids.append(metric_id)
+        return metric_ids
+    
+    def get_metric_history(self, metric_name: str, time_range: Optional[timedelta] = None,
+                          limit: Optional[int] = None) -> List[PerformanceMetric]:
+        """Get historical data for a metric"""
+        if metric_name not in self.metrics_history:
+            return []
+        
+        metrics = list(self.metrics_history[metric_name])
+        
+        # Apply time range filter
+        if time_range:
+            cutoff_time = datetime.now() - time_range
+            metrics = [m for m in metrics if m.timestamp >= cutoff_time]
+        
+        # Apply limit
+        if limit:
+            metrics = metrics[-limit:]
+        
+        return metrics
+    
+    def get_current_metrics(self) -> Dict[str, PerformanceMetric]:
+        """Get current metric values"""
+        return self.current_metrics.copy()
+    
+    def calculate_metric_statistics(self, metric_name: str, 
+                                  time_range: Optional[timedelta] = None) -> Dict[str, float]:
+        """Calculate statistics for a metric"""
+        history = self.get_metric_history(metric_name, time_range)
+        
+        if not history:
+            return {}
+        
+        values = [m.value for m in history]
+        
+        stats = {
+            "count": len(values),
+            "mean": statistics.mean(values),
+            "median": statistics.median(values),
+            "min": min(values),
+            "max": max(values),
+            "std_dev": statistics.stdev(values) if len(values) > 1 else 0.0
+        }
+        
+        # Add percentiles
+        if len(values) >= 2:
+            sorted_values = sorted(values)
+            for name, percentile in self.baseline_percentiles.items():
+                index = int(percentile * (len(sorted_values) - 1))
+                stats[name] = sorted_values[index]
+        
+        return stats
+    
+    def _update_baselines(self, metric_name: str):
+        """Update baseline values for a metric"""
+        # Use last 1000 data points for baseline calculation
+        recent_history = list(self.metrics_history[metric_name])[-1000:]
+        
+        if len(recent_history) >= 10:  # Need minimum data points
+            values = [m.value for m in recent_history]
+            # Use 75th percentile as baseline
+            sorted_values = sorted(values)
+            baseline_index = int(0.75 * (len(sorted_values) - 1))
+            self.baselines[metric_name] = sorted_values[baseline_index]
+    
+    def _check_metric_alerts(self, metric: PerformanceMetric):
+        """Check if metric triggers any alerts"""
+        definition = self.metric_definitions.get(metric.name, {})
+        critical_threshold = definition.get("critical_threshold")
+        higher_is_better = definition.get("higher_is_better", True)
+        
+        if critical_threshold is not None:
+            is_critical = (
+                (higher_is_better and metric.value < critical_threshold) or
+                (not higher_is_better and metric.value > critical_threshold)
+            )
+            
+            if is_critical:
+                logger.warning(f"Critical metric alert: {metric.name} = {metric.value} {metric.unit}")
+                # Here you could trigger notifications, escalations, etc.
+    
+    async def _trend_analysis_loop(self):
+        """Background task for trend analysis"""
+        while True:
+            try:
+                await self._analyze_trends()
+                await asyncio.sleep(self.trend_update_interval)
+            except Exception as e:
+                logger.error(f"Error in trend analysis: {e}")
+                await asyncio.sleep(60)  # Wait before retrying
+    
+    async def _analyze_trends(self):
+        """Analyze trends for all metrics"""
+        for metric_name in self.metrics_history.keys():
+            trend = self._calculate_trend(metric_name)
+            if trend:
+                self.trends[metric_name] = trend
+    
+    def _calculate_trend(self, metric_name: str, time_window: timedelta = timedelta(hours=1)) -> Optional[PerformanceTrend]:
+        """Calculate trend for a specific metric"""
+        recent_metrics = self.get_metric_history(metric_name, time_window)
+        
+        if len(recent_metrics) < 5:  # Need minimum data points
+            return None
+        
+        # Calculate trend using linear regression
+        timestamps = [(m.timestamp - recent_metrics[0].timestamp).total_seconds() for m in recent_metrics]
+        values = [m.value for m in recent_metrics]
+        
+        # Simple linear regression
+        n = len(timestamps)
+        sum_x = sum(timestamps)
+        sum_y = sum(values)
+        sum_xy = sum(x * y for x, y in zip(timestamps, values))
+        sum_x2 = sum(x * x for x in timestamps)
+        
+        if n * sum_x2 - sum_x * sum_x == 0:
+            return None
+        
+        slope = (n * sum_xy - sum_x * sum_y) / (n * sum_x2 - sum_x * sum_x)
+        
+        # Determine trend direction and strength
+        if abs(slope) < 0.001:
+            trend_direction = "stable"
+            trend_strength = 0.0
+        elif slope > 0:
+            trend_direction = "improving"
+            trend_strength = min(1.0, abs(slope) * 1000)
+        else:
+            trend_direction = "declining"
+            trend_strength = min(1.0, abs(slope) * 1000)
+        
+        # Calculate confidence based on data consistency
+        mean_value = statistics.mean(values)
+        variance = statistics.variance(values) if len(values) > 1 else 0
+        confidence = max(0.1, 1.0 - (variance / (mean_value * mean_value)) if mean_value != 0 else 0.1)
+        
+        return PerformanceTrend(
+            metric_name=metric_name,
+            trend_direction=trend_direction,
+            trend_strength=trend_strength,
+            change_rate=slope,
+            confidence=min(1.0, confidence),
+            time_period=f"{time_window.total_seconds()/3600:.1f}h"
+        )
+    
+    async def _optimization_analysis_loop(self):
+        """Background task for generating optimization suggestions"""
+        while True:
+            try:
+                await self._generate_optimization_suggestions()
+                await asyncio.sleep(600)  # Run every 10 minutes
+            except Exception as e:
+                logger.error(f"Error in optimization analysis: {e}")
+                await asyncio.sleep(120)  # Wait before retrying
+    
+    async def _generate_optimization_suggestions(self):
+        """Generate optimization suggestions based on current metrics and trends"""
+        new_suggestions = []
+        
+        # Analyze each metric for optimization opportunities
+        for metric_name, trend in self.trends.items():
+            suggestions = self._analyze_metric_for_optimization(metric_name, trend)
+            new_suggestions.extend(suggestions)
+        
+        # Analyze cross-metric patterns
+        cross_metric_suggestions = self._analyze_cross_metric_patterns()
+        new_suggestions.extend(cross_metric_suggestions)
+        
+        # Update suggestions list
+        self.suggestions = new_suggestions
+        
+        # Archive old suggestions
+        for suggestion in self.suggestions:
+            if suggestion not in self.suggestion_history:
+                self.suggestion_history.append(suggestion)
+        
+        # Keep only recent suggestions in history
+        cutoff_time = datetime.now() - timedelta(days=7)
+        self.suggestion_history = [
+            s for s in self.suggestion_history 
+            if s.created_at >= cutoff_time
+        ]
+    
+    def _analyze_metric_for_optimization(self, metric_name: str, trend: PerformanceTrend) -> List[OptimizationSuggestion]:
+        """Analyze a single metric for optimization opportunities"""
+        suggestions = []
+        current_metric = self.current_metrics.get(metric_name)
+        
+        if not current_metric:
+            return suggestions
+        
+        definition = self.metric_definitions.get(metric_name, {})
+        baseline_target = definition.get("baseline_target")
+        higher_is_better = definition.get("higher_is_better", True)
+        
+        # Check if metric is below target
+        if baseline_target and current_metric.value:
+            is_below_target = (
+                (higher_is_better and current_metric.value < baseline_target) or
+                (not higher_is_better and current_metric.value > baseline_target)
+            )
+            
+            if is_below_target:
+                suggestion = self._create_metric_improvement_suggestion(metric_name, current_metric, trend, definition)
+                if suggestion:
+                    suggestions.append(suggestion)
+        
+        # Check for declining trends
+        if trend.trend_direction == "declining" and trend.trend_strength > 0.3:
+            suggestion = self._create_trend_reversal_suggestion(metric_name, trend, definition)
+            if suggestion:
+                suggestions.append(suggestion)
+        
+        return suggestions
+    
+    def _create_metric_improvement_suggestion(self, metric_name: str, metric: PerformanceMetric,
+                                           trend: PerformanceTrend, definition: Dict[str, Any]) -> Optional[OptimizationSuggestion]:
+        """Create suggestion for improving a specific metric"""
+        category = definition.get("category", "performance")
+        
+        # Generate suggestions based on metric type
+        if metric_name == "workflow_efficiency":
+            return OptimizationSuggestion(
+                suggestion_id=str(uuid.uuid4()),
+                title="Improve Workflow Efficiency",
+                description=f"Current efficiency is {metric.value:.1f}%, below target of {definition.get('baseline_target', 75)}%",
+                category="workflow",
+                priority="medium",
+                potential_impact=15.0,
+                confidence=0.7,
+                implementation_effort="medium",
+                suggested_actions=[
+                    "Review and optimize task decomposition parameters",
+                    "Increase validation thoroughness for better quality",
+                    "Consider applying Quality Mode preset"
+                ],
+                metrics_affected=[metric_name]
+            )
+        
+        elif metric_name == "response_time":
+            return OptimizationSuggestion(
+                suggestion_id=str(uuid.uuid4()),
+                title="Optimize Response Time",
+                description=f"Average response time is {metric.value:.1f}s, above target of {definition.get('baseline_target', 5)}s",
+                category="performance",
+                priority="high",
+                potential_impact=25.0,
+                confidence=0.8,
+                implementation_effort="low",
+                suggested_actions=[
+                    "Reduce research intensity for faster responses",
+                    "Apply Speed Mode preset for time-critical tasks",
+                    "Optimize agent utilization settings"
+                ],
+                metrics_affected=[metric_name]
+            )
+        
+        return None
+    
+    def _create_trend_reversal_suggestion(self, metric_name: str, trend: PerformanceTrend,
+                                        definition: Dict[str, Any]) -> OptimizationSuggestion:
+        """Create suggestion for reversing negative trends"""
+        return OptimizationSuggestion(
+            suggestion_id=str(uuid.uuid4()),
+            title=f"Address Declining {definition.get('name', metric_name)}",
+            description=f"Metric shows declining trend with {trend.trend_strength:.1%} strength",
+            category="trend_reversal",
+            priority="high" if trend.trend_strength > 0.7 else "medium",
+            potential_impact=20.0,
+            confidence=trend.confidence,
+            implementation_effort="medium",
+            suggested_actions=[
+                "Investigate root cause of performance decline",
+                "Review recent configuration changes",
+                "Consider reverting to previous stable configuration"
+            ],
+            metrics_affected=[metric_name]
+        )
+    
+    def _analyze_cross_metric_patterns(self) -> List[OptimizationSuggestion]:
+        """Analyze patterns across multiple metrics"""
+        suggestions = []
+        
+        # Check for quality vs speed trade-offs
+        quality_metric = self.current_metrics.get("quality_score")
+        response_time_metric = self.current_metrics.get("response_time")
+        
+        if quality_metric and response_time_metric:
+            if quality_metric.value < 7.0 and response_time_metric.value < 3.0:
+                suggestions.append(OptimizationSuggestion(
+                    suggestion_id=str(uuid.uuid4()),
+                    title="Balance Quality and Speed",
+                    description="Low quality with fast response time suggests room for quality improvement",
+                    category="balance",
+                    priority="medium",
+                    potential_impact=18.0,
+                    confidence=0.6,
+                    implementation_effort="low",
+                    suggested_actions=[
+                        "Increase validation thoroughness",
+                        "Slightly increase research intensity",
+                        "Monitor quality improvements"
+                    ],
+                    metrics_affected=["quality_score", "response_time"]
+                ))
+        
+        return suggestions
+    
+    def get_optimization_suggestions(self, session_id: str, category: Optional[str] = None,
+                                   priority: Optional[str] = None) -> List[OptimizationSuggestion]:
+        """Get current optimization suggestions"""
+        # Check permissions
+        if not self.security_manager.check_permission(session_id, Permission.READ_CONFIG):
+            return []
+        
+        suggestions = self.suggestions.copy()
+        
+        # Apply filters
+        if category:
+            suggestions = [s for s in suggestions if s.category == category]
+        
+        if priority:
+            suggestions = [s for s in suggestions if s.priority == priority]
+        
+        # Sort by priority and potential impact
+        priority_order = {"critical": 4, "high": 3, "medium": 2, "low": 1}
+        suggestions.sort(key=lambda s: (priority_order.get(s.priority, 0), s.potential_impact), reverse=True)
+        
+        return suggestions
+    
+    def get_performance_summary(self, session_id: str) -> Dict[str, Any]:
+        """Get comprehensive performance summary"""
+        if not self.security_manager.check_permission(session_id, Permission.READ_CONFIG):
+            return {"error": "Insufficient permissions"}
+        
+        summary = {
+            "timestamp": datetime.now().isoformat(),
+            "metrics_countlen_self_current_metrics_current_metrics": {},
+            "trends": {},
+            "suggestions_count": len(self.suggestions),
+            "baselines": self.baselines.copy()
+        }
+        
+        # Add current metric values
+        for name, metric in self.current_metrics.items():
+            definition = self.metric_definitions.get(name, {})
+            summary["current_metrics"][name] = {
+                "value": metric.value,
+                "unit": metric.unit,
+                "timestamp": metric.timestamp.isoformat(),
+                "baseline": self.baselines.get(name),
+                "target": definition.get("baseline_target"),
+                "status": self._get_metric_status(name, metric.value)
+            }
+        
+        # Add trend information
+        for name, trend in self.trends.items():
+            summary["trends"][name] = trend.to_dict()
+        
+        return summary
+    
+    def _get_metric_status(self, metric_name: str, value: float) -> str:
+        """Get status of a metric (good, warning, critical)"""
+        definition = self.metric_definitions.get(metric_name, {})
+        baseline_target = definition.get("baseline_target")
+        critical_threshold = definition.get("critical_threshold")
+        higher_is_better = definition.get("higher_is_better", True)
+        
+        if critical_threshold is not None:
+            is_critical = (
+                (higher_is_better and value < critical_threshold) or
+                (not higher_is_better and value > critical_threshold)
+            )
+            if is_critical:
+                return "critical"
+        
+        if baseline_target is not None:
+            is_below_target = (
+                (higher_is_better and value < baseline_target * 0.9) or
+                (not higher_is_better and value > baseline_target * 1.1)
+            )
+            if is_below_target:
+                return "warning"
+        
+        return "good"
+    
+    async def _on_configuration_change(self, event: ConfigurationChangeEvent):
+        """Handle configuration changes and track their impact"""
+        # Record configuration change as a context event
+        context = {
+            "parameter": event.parameter_name,
+            "old_value": event.old_value,
+            "new_value": event.new_value,
+            "change_type": "configuration"
+        }
+        
+        # This could trigger special tracking of metrics after configuration changes
+        logger.info(f"Configuration change detected: {event.parameter_name}")
+    
+    def export_metrics(self, session_id: str, time_range: Optional[timedelta] = None) -> Dict[str, Any]:
+        """Export metrics data"""
+        if not self.security_manager.check_permission(session_id, Permission.EXPORT_CONFIG):
+            return {"error": "Insufficient permissions"}
+        
+        export_data = {
+            "export_timestamp": datetime.now().isoformat(),
+            "tool_7164": {},
+            "trends": {name: trend.to_dict() for name, trend in self.trends.items()},
+            "suggestions": [s.to_dict() for s in self.suggestions],
+            "baselines": self.baselines.copy()
+        }
+        
+        # Export metric history
+        for metric_name in self.metrics_history.keys():
+            history = self.get_metric_history(metric_name, time_range)
+            export_data["metrics"][metric_name] = [m.to_dict() for m in history]
+        
+        return export_data
+    
+    def get_tracker_statistics(self) -> Dict[str, Any]:
+        """Get tracker statistics"""
+        total_metrics = sum(len(history) for history in self.metrics_history.values())
+        
+        return {
+            "total_metrics_recorded": total_metrics,
+            "unique_metric_types": len(self.metrics_history),
+            "current_metrics": len(self.current_metrics),
+            "trends_tracked": len(self.trends),
+            "active_suggestions": len(self.suggestions),
+            "baselines_established": len(self.baselines),
+            "metric_definitions": len(self.metric_definitions)
+        }
