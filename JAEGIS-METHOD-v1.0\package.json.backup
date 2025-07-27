@@ -1,0 +1,789 @@
+{
+  "name": "JAEGIS-vscode-extension",
+  "displayName": "JAEGIS AI Agent Orchestrator",
+  "description": "Collaborative AI agent workflows for comprehensive development with intelligent automation and zero-configuration setup",
+  "version": "1.0.0",
+  "publisher": "JAEGIS-code"engines": {
+    "vscode": "^1.92.0",
+    "node": ">=20.0.0",
+    "npm": ">=10.0.0"
+  },
+  "categories": [
+    "Other",
+    "Machine Learning",
+    "Snippets",
+    "Debuggers",
+    "Extension Packs"
+  ],
+  "keywords": [
+    "ai",
+    "agents",
+    "collaboration",
+    "documentation",
+    "architecture",
+    "project-management",
+    "automation",
+    "workflow",
+    "orchestration"
+  ],
+  "main": "./out/extension.js",
+  "activationEvents": [
+    "onStartupFinished",
+    "workspaceContains:package.json",
+    "workspaceContains:requirements.txt",
+    "workspaceContains:Cargo.toml",
+    "workspaceContains:go.mod",
+    "workspaceContains:pom.xml",
+    "workspaceContains:composer.json"contributes": {
+    "commands": [
+      {
+        "command": "JAEGIS.activateDocumentationMode",
+        "title": "Activate Documentation Mode",
+        "category": "JAEGIS",
+        "icon": "$(book)"
+      },
+      {
+        "command": "JAEGIS.activateFullDevelopmentMode",
+        "title": "Activate Full Development Mode",
+        "category": "JAEGIS",
+        "icon": "$(rocket)"
+      },
+      {
+        "command": "JAEGIS.continueProject",
+        "title": "Continue Existing Project",
+        "category": "JAEGIS",
+        "icon": "$(debug-continue)"
+      },
+      {
+        "command": "JAEGIS.taskOverview",
+        "title": "Task List Overview",
+        "category": "JAEGIS",
+        "icon": "$(list-tree)"
+      },
+      {
+        "command": "JAEGIS.debugMode",
+        "title": "Debug & Troubleshoot Mode",
+        "category": "JAEGIS",
+        "icon": "$(debug)"
+      },
+      {
+        "command": "JAEGIS.continuousExecution",
+        "title": "Continuous Execution Mode",
+        "category": "JAEGIS",
+        "icon": "$(play)"
+      },
+      {
+        "command": "JAEGIS.featureGapAnalysis",
+        "title": "Feature Gap Analysis Mode",
+        "category": "JAEGIS",
+        "icon": "$(search)"
+      },
+      {
+        "command": "JAEGIS.githubIntegration",
+        "title": "GitHub Integration & Documentation Mode",
+        "category": "JAEGIS",
+        "icon": "$(github)"
+      },
+      {
+        "command": "JAEGIS.scanWorkspace",
+        "title": "Scan Workspace",
+        "category": "JAEGIS",
+        "icon": "$(search-view-icon)"
+      },
+      {
+        "command": "JAEGIS.autoSetup",
+        "title": "Auto Setup Project",
+        "category": "JAEGIS",
+        "icon": "$(gear)"
+      },
+      {
+        "command": "JAEGIS.detectStack",
+        "title": "Detect Technology Stack",
+        "category": "JAEGIS",
+        "icon": "$(layers)"
+      },
+      {
+        "command": "JAEGIS.selectAgents",
+        "title": "Select AI Agents",
+        "category": "JAEGIS",
+        "icon": "$(organization)"
+      },
+      {
+        "command": "JAEGIS.agentHandoff",
+        "title": "Agent Handoff",
+        "category": "JAEGIS",
+        "icon": "$(arrow-swap)"
+      },
+      {
+        "command": "JAEGIS.debugCurrentFile",
+        "title": "Debug Current File",
+        "category": "JAEGIS",
+        "icon": "$(debug)"
+      },
+      {
+        "command": "JAEGIS.documentCurrentFile",
+        "title": "Document Current File",
+        "category": "JAEGIS",
+        "icon": "$(book)"
+      },
+      {
+        "command": "JAEGIS.debugSelection",
+        "title": "Debug Selection",
+        "category": "JAEGIS",
+        "icon": "$(debug)"
+      },
+      {
+        "command": "JAEGIS.explainCode",
+        "title": "Explain Code",
+        "category": "JAEGIS",
+        "icon": "$(question)"
+      },
+      {
+        "command": "JAEGIS.generateTests",
+        "title": "Generate Tests",
+        "category": "JAEGIS",
+        "icon": "$(beaker)"
+      },
+      {
+        "command": "JAEGIS.analyzeFolder",
+        "title": "Analyze Folder",
+        "category": "JAEGIS",
+        "icon": "$(search)"
+      },
+      {
+        "command": "JAEGIS.generateDocsForFolder",
+        "title": "Generate Documentation for Folder",
+        "category": "JAEGIS",
+        "icon": "$(book)"
+      },
+      {
+        "command": "JAEGIS.refreshAnalysis",
+        "title": "Refresh Analysis",
+        "category": "JAEGIS",
+        "icon": "$(refresh)"
+      },
+      {
+        "command": "JAEGIS.openSettings",
+        "title": "Open JAEGIS Settings",
+        "category": "JAEGIS",
+        "icon": "$(settings-gear)"
+      },
+      {
+        "command": "JAEGIS.showHelp",
+        "title": "Show Help",
+        "category": "JAEGIS",
+        "icon": "$(question)"
+      },
+      {
+        "command": "JAEGIS.dependencyAudit",
+        "title": "Dakota: Dependency Audit",
+        "category": "JAEGIS",
+        "icon": "$(search)"
+      },
+      {
+        "command": "JAEGIS.dependencyModernization",
+        "title": "Dakota: Modernize Dependencies",
+        "category": "JAEGIS",
+        "icon": "$(arrow-up)"
+      },
+      {
+        "command": "JAEGIS.startDependencyMonitoring",
+        "title": "Dakota: Start Monitoring",
+        "category": "JAEGIS",
+        "icon": "$(eye)"
+      },
+      {
+        "command": "JAEGIS.stopDependencyMonitoring",
+        "title": "Dakota: Stop Monitoring",
+        "category": "JAEGIS",
+        "icon": "$(eye-closed)"
+      },
+      {
+        "command": "JAEGIS.checkSecurityVulnerabilities",
+        "title": "Dakota: Security Scan",
+        "category": "JAEGIS",
+        "icon": "$(shield)"
+      },
+      {
+        "command": "JAEGIS.updateOutdatedDependencies",
+        "title": "Dakota: Update Outdated",
+        "category": "JAEGIS",
+        "icon": "$(package)"
+      },
+      {
+        "command": "JAEGIS.generateDependencyReport",
+        "title": "Dakota: Generate Report",
+        "category": "JAEGIS",
+        "icon": "$(file-text)"
+      },
+      {
+        "command": "JAEGIS.analyzeDependencyLicenses",
+        "title": "Dakota: License Analysis",
+        "category": "JAEGIS",
+        "icon": "$(law)"
+      },
+      {
+        "command": "JAEGIS.deploymentPreparation",
+        "title": "Phoenix: Deployment Preparation",
+        "category": "JAEGIS",
+        "icon": "$(rocket)"
+      },
+      {
+        "command": "JAEGIS.containerizeProject",
+        "title": "Phoenix: Containerize Project",
+        "category": "JAEGIS",
+        "icon": "$(package)"
+      },
+      {
+        "command": "JAEGIS.crossPlatformSetup",
+        "title": "Phoenix: Cross-Platform Setup",
+        "category": "JAEGIS",
+        "icon": "$(globe)"
+      },
+      {
+        "command": "JAEGIS.generateDeploymentScripts",
+        "title": "Phoenix: Generate Deployment Scripts",
+        "category": "JAEGIS",
+        "icon": "$(file-code)"
+      },
+      {
+        "command": "JAEGIS.validateDeploymentConfig",
+        "title": "Phoenix: Validate Configuration",
+        "category": "JAEGIS",
+        "icon": "$(check)"
+      },
+      {
+        "command": "JAEGIS.deploymentHealthCheck",
+        "title": "Phoenix: Health Check",
+        "category": "JAEGIS",
+        "icon": "$(pulse)"
+      },
+      {
+        "command": "JAEGIS.rollbackDeployment",
+        "title": "Phoenix: Rollback Deployment",
+        "category": "JAEGIS",
+        "icon": "$(history)"
+      },
+      {
+        "command": "JAEGIS.deploymentDocumentation",
+        "title": "Phoenix: Generate Documentation",
+        "category": "JAEGIS",
+        "icon": "$(book)"
+      },
+      {
+        "command": "JAEGIS.versionTracking",
+        "title": "Chronos: Version Tracking",
+        "category": "JAEGIS",
+        "icon": "$(versions)"
+      },
+      {
+        "command": "JAEGIS.tokenMonitoring",
+        "title": "Chronos: Token Monitoring",
+        "category": "JAEGIS",
+        "icon": "$(dashboard)"
+      },
+      {
+        "command": "JAEGIS.modelUpdatesResearch",
+        "title": "Chronos: Model Updates Research",
+        "category": "JAEGIS",
+        "icon": "$(search)"
+      },
+      {
+        "command": "JAEGIS.generateVersionChangelog",
+        "title": "Chronos: Generate Changelog",
+        "category": "JAEGIS",
+        "icon": "$(list-ordered)"
+      },
+      {
+        "command": "JAEGIS.optimizeTokenUsage",
+        "title": "Chronos: Optimize Token Usage",
+        "category": "JAEGIS",
+        "icon": "$(zap)"
+      },
+      {
+        "command": "JAEGIS.checkTokenLimits",
+        "title": "Chronos: Check Token Limits",
+        "category": "JAEGIS",
+        "icon": "$(gauge)"
+      },
+      {
+        "command": "JAEGIS.updateModelSpecs",
+        "title": "Chronos: Update Model Specifications",
+        "category": "JAEGIS",
+        "icon": "$(refresh)"
+      },
+      {
+        "command": "JAEGIS.generateTokenReport",
+        "title": "Chronos: Generate Token Report",
+        "category": "JAEGIS",
+        "icon": "$(graph)"
+      },
+      {
+        "command": "JAEGIS.taskCompletionMonitoring",
+        "title": "Sentinel: Task Completion Monitoring",
+        "category": "JAEGIS",
+        "icon": "$(checklist)"
+      },
+      {
+        "command": "JAEGIS.checklistValidation",
+        "title": "Sentinel: Checklist Validation",
+        "category": "JAEGIS",
+        "icon": "$(list-ordered)"
+      },
+      {
+        "command": "JAEGIS.qualityAssuranceReview",
+        "title": "Sentinel: Quality Assurance Review",
+        "category": "JAEGIS",
+        "icon": "$(verified)"
+      },
+      {
+        "command": "JAEGIS.generateCompletionReport",
+        "title": "Sentinel: Generate Completion Report",
+        "category": "JAEGIS",
+        "icon": "$(file-text)"
+      },
+      {
+        "command": "JAEGIS.validateTaskCriteria",
+        "title": "Sentinel: Validate Task Criteria",
+        "category": "JAEGIS",
+        "icon": "$(check)"
+      },
+      {
+        "command": "JAEGIS.updateCompletionStatus",
+        "title": "Sentinel: Update Completion Status",
+        "category": "JAEGIS",
+        "icon": "$(sync)"
+      },
+      {
+        "command": "JAEGIS.monitorQualityStandards",
+        "title": "Sentinel: Monitor Quality Standards",
+        "category": "JAEGIS",
+        "icon": "$(shield)"
+      },
+      {
+        "command": "JAEGIS.generateQualityAssessment",
+        "title": "Sentinel: Generate Quality Assessment",
+        "category": "JAEGIS",
+        "icon": "$(star)"
+      },
+      {
+        "command": "JAEGIS.healthCheck",
+        "title": "Project Health Check",
+        "category": "JAEGIS",
+        "icon": "$(pulse)"
+      },
+      {
+        "command": "JAEGIS.showProgress",
+        "title": "Show Progress Details",
+        "category": "JAEGIS",
+        "icon": "$(graph)"
+      },
+      {
+        "command": "JAEGIS.quickModeSelect",
+        "title": "Quick Mode Selection",
+        "category": "JAEGIS",
+        "icon": "$(list-selection)"
+      },
+      {
+        "command": "JAEGIS.conceptualizeAgent",
+        "title": "Creator: Conceptualize New Agent",
+        "category": "JAEGIS",
+        "icon": "$(lightbulb)"
+      },
+      {
+        "command": "JAEGIS.generateAgent",
+        "title": "Creator: Generate New Agent",
+        "category": "JAEGIS",
+        "icon": "$(gear)"
+      },
+      {
+        "command": "JAEGIS.deployAgent",
+        "title": "Creator: Deploy New Agent",
+        "category": "JAEGIS",
+        "icon": "$(rocket)"
+      },
+      {
+        "command": "JAEGIS.generateAgentBrief",
+        "title": "Creator: Generate New Agent Brief",
+        "category": "JAEGIS",
+        "icon": "$(file-text)"
+      },
+      {
+        "command": "JAEGIS.validateAgentConcept",
+        "title": "Creator: Validate Agent Concept",
+        "category": "JAEGIS",
+        "icon": "$(check)"
+      },
+      {
+        "command": "JAEGIS.analyzeAgentPerformance",
+        "title": "Creator: Analyze Agent Performance",
+        "category": "JAEGIS",
+        "icon": "$(graph)"
+      },
+      {
+        "command": "JAEGIS.researchAgentModels",
+        "title": "Creator: Research Agent Models",
+        "category": "JAEGIS",
+        "icon": "$(search)"
+      },
+      {
+        "command": "JAEGIS.generateDeploymentPlan",
+        "title": "Creator: Generate Deployment Plan",
+        "category": "JAEGIS",
+        "icon": "$(file-code)"
+      },
+      {
+        "command": "JAEGIS.designWebAgentUI",
+        "title": "Web Creator: Design Web Agent UI",
+        "category": "JAEGIS",
+        "icon": "$(paintcan)"
+      },
+      {
+        "command": "JAEGIS.generateWebAgent",
+        "title": "Web Creator: Generate Web Agent",
+        "category": "JAEGIS",
+        "icon": "$(code)"
+      },
+      {
+        "command": "JAEGIS.deployWebAgent",
+        "title": "Web Creator: Deploy Web Agent",
+        "category": "JAEGIS",
+        "icon": "$(cloud-upload)"
+      },
+      {
+        "command": "JAEGIS.generateWebAgentSpec",
+        "title": "Web Creator: Generate Web Agent Spec",
+        "category": "JAEGIS",
+        "icon": "$(file-text)"
+      },
+      {
+        "command": "JAEGIS.validateWebAgentDesign",
+        "title": "Web Creator: Validate Web Agent Design",
+        "category": "JAEGIS",
+        "icon": "$(check)"
+      },
+      {
+        "command": "JAEGIS.analyzeWebAgentPerformance",
+        "title": "Web Creator: Analyze Web Performance",
+        "category": "JAEGIS",
+        "icon": "$(graph)"
+      },
+      {
+        "command": "JAEGIS.researchWebTechnologies",
+        "title": "Web Creator: Research Web Technologies",
+        "category": "JAEGIS",
+        "icon": "$(search)"
+      },
+      {
+        "command": "JAEGIS.generateStyleGuide",
+        "title": "Web Creator: Generate Style Guide",
+        "category": "JAEGIS",
+        "icon": "$(symbol-color)"
+      },
+      {
+        "command": "JAEGIS.analyzeDocumentation",
+        "title": "DocQA: Analyze Documentation",
+        "category": "JAEGIS",
+        "icon": "$(search)"
+      },
+      {
+        "command": "JAEGIS.validateDocumentationStandards",
+        "title": "DocQA: Validate Documentation Standards",
+        "category": "JAEGIS",
+        "icon": "$(verified)"
+      },
+      {
+        "command": "JAEGIS.generateDocumentationReport",
+        "title": "DocQA: Generate Documentation Report",
+        "category": "JAEGIS",
+        "icon": "$(file-text)"
+      },
+      {
+        "command": "JAEGIS.improveDocumentation",
+        "title": "DocQA: Improve Documentation",
+        "category": "JAEGIS",
+        "icon": "$(tools)"
+      },
+      {
+        "command": "JAEGIS.auditContentQuality",
+        "title": "DocQA: Audit Content Quality",
+        "category": "JAEGIS",
+        "icon": "$(checklist)"
+      },
+      {
+        "command": "JAEGIS.generateDocumentationSpec",
+        "title": "DocQA: Generate Documentation Spec",
+        "category": "JAEGIS",
+        "icon": "$(file-code)"
+      },
+      {
+        "command": "JAEGIS.createStyleGuide",
+        "title": "DocQA: Create Style Guide",
+        "category": "JAEGIS",
+        "icon": "$(paintcan)"
+      },
+      {
+        "command": "JAEGIS.researchDocumentationBestPractices",
+        "title": "DocQA: Research Best Practices",
+        "category": "JAEGIS",
+        "icon": "$(book)"
+      },
+      {
+        "command": "JAEGIS.decomposeTask",
+        "title": "Chunky: Decompose Task",
+        "category": "JAEGIS",
+        "icon": "$(symbol-structure)"
+      },
+      {
+        "command": "JAEGIS.orchestrateExecution",
+        "title": "Chunky: Orchestrate Execution",
+        "category": "JAEGIS",
+        "icon": "$(organization)"
+      },
+      {
+        "command": "JAEGIS.performBackgroundOptimization",
+        "title": "Chunky: Background Optimization",
+        "category": "JAEGIS",
+        "icon": "$(pulse)"
+      },
+      {
+        "command": "JAEGIS.generateDecompositionPlan",
+        "title": "Chunky: Generate Decomposition Plan",
+        "category": "JAEGIS",
+        "icon": "$(file-text)"
+      },
+      {
+        "command": "JAEGIS.createOrchestrationFramework",
+        "title": "Chunky: Create Orchestration Framework",
+        "category": "JAEGIS",
+        "icon": "$(graph)"
+      },
+      {
+        "command": "JAEGIS.researchTaskManagementBestPractices",
+        "title": "Chunky: Research Task Management",
+        "category": "JAEGIS",
+        "icon": "$(search)"
+      },
+      {
+        "command": "JAEGIS.monitorTaskExecution",
+        "title": "Chunky: Monitor Task Execution",
+        "category": "JAEGIS",
+        "icon": "$(dashboard)"
+      },
+      {
+        "command": "JAEGIS.optimizeResourceAllocation",
+        "title": "Chunky: Optimize Resource Allocation",
+        "category": "JAEGIS",
+        "icon": "$(settings-gear)"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "JAEGIS.quickModeSelect",
+        "key": "ctrl+shift+b",
+        "mac": "cmd+shift+b",
+        "when": "JAEGISEnabled"
+      },
+      {
+        "command": "JAEGIS.scanWorkspace",
+        "key": "ctrl+shift+alt+s",
+        "mac": "cmd+shift+alt+s"
+      },
+      {
+        "command": "JAEGIS.autoSetup",
+        "key": "ctrl+shift+alt+i",
+        "mac": "cmd+shift+alt+i"configuration": {
+      "title": "JAEGIS AI Agent Orchestrator"properties": {
+        "JAEGIS_autoInitialize": {
+          "type": "boolean",
+          "default": true,
+          "description": "Automatically initialize JAEGIS structure in new workspaces"JAEGIS_defaultMode": {
+          "type": "string",
+          "enum": [
+            "documentation",
+            "fullDevelopment",
+            "continueProject",
+            "taskOverview",
+            "debugMode",
+            "continuousExecution",
+            "featureGapAnalysis",
+            "githubIntegration"
+          ],
+          "default": "documentation",
+          "description": "Default mode for new projects"JAEGIS_enableRealTimeMonitoring": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable real-time workspace monitoring for automatic recommendations"JAEGIS_autoActivateRecommendedAgents": {
+          "type": "boolean",
+          "default": true,
+          "description": "Automatically activate recommended AI agents based on project analysis"JAEGIS_debugModeThreshold": {
+          "type": "number",
+          "default": 5,
+          "minimum": 1,
+          "maximum": 20,
+          "description": "Number of critical issues that trigger automatic debug mode suggestion"JAEGIS_progressNotifications": {
+          "type": "boolean",
+          "default": true,
+          "description": "Show progress notifications for long-running workflows"JAEGIS_intelligentRecommendations": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable intelligent mode and agent recommendations based on project analysis"JAEGIS_statusBarIntegration": {
+          "type": "boolean",
+          "default": true,
+          "description": "Show JAEGIS status and progress in VS Code status bar"menus": {
+      "explorer/context": [
+        {
+          "command": "JAEGIS.autoSetup",
+          "when": "explorerResourceIsFolder",
+          "group": "JAEGIS@1"
+        },
+        {
+          "command": "JAEGIS.analyzeFolder",
+          "when": "explorerResourceIsFolder",
+          "group": "JAEGIS@2"
+        },
+        {
+          "command": "JAEGIS.generateDocsForFolder",
+          "when": "explorerResourceIsFolder",
+          "group": "JAEGIS@3"
+        }
+      ],
+      "editor/context": [
+        {
+          "command": "JAEGIS.debugCurrentFile",
+          "when": "editorTextFocus",
+          "group": "JAEGIS@1"
+        },
+        {
+          "command": "JAEGIS.documentCurrentFile",
+          "when": "editorTextFocus",
+          "group": "JAEGIS@2"
+        },
+        {
+          "command": "JAEGIS.debugSelection",
+          "when": "editorHasSelection",
+          "group": "JAEGIS@3"
+        },
+        {
+          "command": "JAEGIS.explainCode",
+          "when": "editorTextFocus",
+          "group": "JAEGIS@4"
+        },
+        {
+          "command": "JAEGIS.generateTests",
+          "when": "editorTextFocus",
+          "group": "JAEGIS@5"
+        }
+      ],
+      "commandPalette": [
+        {
+          "command": "JAEGIS.quickModeSelect",
+          "when": "JAEGISEnabled"
+        },
+        {
+          "command": "JAEGIS.debugCurrentFile",
+          "when": "editorTextFocus"
+        },
+        {
+          "command": "JAEGIS.documentCurrentFile",
+          "when": "editorTextFocus"
+        },
+        {
+          "command": "JAEGIS.debugSelection",
+          "when": "editorHasSelection"
+        },
+        {
+          "command": "JAEGIS.explainCode",
+          "when": "editorTextFocus"
+        },
+        {
+          "command": "JAEGIS.generateTests",
+          "when": "editorTextFocus"
+        },
+        {
+          "command": "JAEGIS.analyzeFolder",
+          "when": "JAEGISEnabled"
+        },
+        {
+          "command": "JAEGIS.generateDocsForFolder",
+          "when": "JAEGISEnabled"
+        },
+        {
+          "command": "JAEGIS.refreshAnalysis",
+          "when": "JAEGISEnabled"
+        },
+        {
+          "command": "JAEGIS.showHelp",
+          "when": "JAEGISEnabled"scripts": {
+    "vscode:prepublish": "npm run package",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "package": "webpack --mode production --devtool hidden-source-map",
+    "compile-web": "webpack --mode development",
+    "watch-web": "webpack --mode development --watch",
+    "package-web": "webpack --mode production --devtool hidden-source-map",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src --ext ts --fix",
+    "lint-check": "eslint src --ext ts",
+    "test": "vscode-test",
+    "test-web": "vscode-test-web --browserType=chromium --extensionDevelopmentPath=. --extensionTestsPath=dist/web/test/suite/index.js",
+    "build": "npm run compile",
+    "clean": "rimraf out dist",
+    "clean-install": "npm run clean && rimraf node_modules package-lock.json && npm cache clean --force && npm install",
+    "fresh-install": "powershell -ExecutionPolicy Bypass -File scripts/installation/clean-install.ps1",
+    "fresh-install-bash": "bash scripts/installation/clean-install.sh",
+    "audit-fix": "npm audit fix --force",
+    "update-deps": "npm update && npm audit",
+    "vsce:package": "@vscode/vsce package",
+    "vsce:publish": "@vscode/vsce publish",
+    "build-integration": "node scripts/build/build-integration.js",
+    "build-integration:verbose": "node scripts/build/build-integration.js --verbose",
+    "build-integration:clean": "node scripts/build/build-integration.js --clean",
+    "build-integration:package": "node scripts/build/build-integration.js --package-only",
+    "test-integration": "node scripts/testing/test-augment-integration.js",
+    "setup": "npm install && npm run compile"devDependencies": {
+    "@types/vscode": "^1.92.0",
+    "@types/node": "^20.15.0",
+    "@typescript-eslint/eslint-plugin": "^7.17.0",
+    "@typescript-eslint/parser": "^7.17.0",
+    "@vscode/test-cli": "^0.0.10",
+    "@vscode/test-electron": "^2.4.1",
+    "@vscode/test-web": "^0.0.56",
+    "@vscode/vsce": "^2.31.1",
+    "assert": "^2.1.0",
+    "eslint": "^8.57.0",
+    "path-browserify": "^1.0.1",
+    "process": "^0.11.10",
+    "rimraf": "^5.0.8",
+    "ts-loader": "^9.5.1",
+    "typescript": "^5.5.4",
+    "webpack": "^5.93.0",
+    "webpack-cli": "^5.1.4"dependencies": {
+    "fs-extra": "^11.2.0",
+    "glob": "^10.4.2",
+    "yaml": "^2.4.5"overrides": {
+    "glob": "^10.4.2",
+    "rimraf": "^5.0.8",
+    "@npmcli/fs": "^3.1.1",
+    "cacache": "^18.0.3",
+    "make-fetch-happen": "^13.0.1",
+    "minipass": "^7.1.2",
+    "tar": "^7.4.0",
+    "semver": "^7.6.2",
+    "lru-cache": "^10.4.3",
+    "minimatch": "^9.0.5",
+    "brace-expansion": "^2.0.1"resolutions": {
+    "glob": "^10.4.2",
+    "rimraf": "^5.0.8",
+    "minipass": "^7.1.2",
+    "tar": "^7.4.0",
+    "semver": "^7.6.2",
+    "lru-cache": "^10.4.3",
+    "minimatch": "^9.0.5"repository": {
+    "type": "git",
+    "url": "https://github.com/JAEGIScode/JAEGIS-METHOD.git"bugs": {
+    "url": "https://github.com/JAEGIScode/JAEGIS-METHOD/issues"
+  },
+  "homepage": "https://github.com/JAEGIScode/JAEGIS-METHOD#readme",
+  "license": "MIT"
+}
