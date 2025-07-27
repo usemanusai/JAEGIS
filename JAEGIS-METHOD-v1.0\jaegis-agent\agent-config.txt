@@ -1,0 +1,725 @@
+==================== START: CONFIGURATION ====================
+# JAEGIS AI Agent Orchestrator - Standardized Configuration
+# Version: 2.0 - Enhanced Coordination & Validation
+
+## Data Resolution Paths
+agent-root: JAEGIS-agent
+personas: JAEGIS-agent/personas
+tasks: JAEGIS-agent/tasks
+templates: JAEGIS-agent/templates
+checklists: JAEGIS-agent/checklists
+data: JAEGIS-agent/data
+
+## Shared Context Schema
+shared-context:
+  project-info: {}
+  current-phase: "initialization"
+  active-agents: []
+  handoff-queue: []
+  validation-results: {}
+  dependency-status: {}
+  research-cache: {}
+
+## Agent Coordination Rules
+coordination:
+  handoff-required: true
+  shared-context-updates: mandatory
+  validation-gates: enabled
+  research-integration: enabled
+  collaborative-mode: true
+
+## Full Team Participation Configuration - 24 Agent System
+full-team-participation:
+  enabled: true
+  default-mode: true
+  total-agents: 24
+  active-agents-full-mode: 20
+  startup-notification: "🤝 Full Team Participation: ACTIVE - All 24 agents available for comprehensive project coverage"
+  participation-tracking: enabled
+  meaningful-contribution-required: true
+  quality-threshold: 7.0
+  integration-optimization: enabled
+  parallel-processing: enabled
+  performance-monitoring: enabled
+  agent-classification-tiers: 4
+  tier-1-orchestrator: 1
+  tier-2-primary: 3
+  tier-3-secondary: 16
+  tier-4-specialized: 4
+
+## Participation Manager Settings
+participation-manager:
+  session-tracking: enabled
+  real-time-monitoring: true
+  contribution-validation: enabled
+  status-updates-interval: 5
+  quality-assessment: enabled
+  integration-scheduling: enabled
+  progress-reporting: enabled
+
+==================== END: CONFIGURATION ====================
+
+==================== START: JAEGIS ====================
+Title: JAEGIS Master Orchestrator
+Name: JAEGIS
+Description: Master AI Agent Orchestrator with enhanced coordination, dependency validation, and web research capabilities
+Persona: personas#JAEGIS
+Tasks:
+  - [Mode Selection](tasks#mode-selection)
+  - [Agent Coordination](tasks#agent-coordination)
+  - [Dependency Validation](tasks#dependency-validation)
+  - [Web Research](tasks#web-research)
+  - [Project Health Check](tasks#health-check)
+Coordination: master
+Priority: 1
+==================== END: JAEGIS ====================
+
+==================== START: pm ====================
+Title: Product Manager
+Name: John
+Description: Enhanced PM with collaborative intelligence and validation capabilities
+Persona: personas#pm
+Tasks:
+  - [Create PRD](tasks#create-prd)
+  - [Requirements Analysis](tasks#requirements-analysis)
+  - [Stakeholder Coordination](tasks#stakeholder-coordination)
+Templates:
+  - [PRD Template](templates#prd-tmpl)
+Checklists:
+  - [PM Checklist](checklists#pm-checklist)
+Coordination: collaborative
+Handoff-To: [architect, design-architect]
+Validation: dependency-check, research-validation
+Priority: 2
+Classification: PRIMARY
+Full-Team-Participation:
+  contribution-types: [business_impact_assessment, stakeholder_perspective, requirements_validation, user_value_analysis, market_feasibility_review]
+  integration-points: [project_analysis, requirements_refinement, collaborative_planning, document_generation, quality_validation]
+  meaningful-contribution-criteria: "Must provide business perspective on at least 2 workflow aspects"
+  quality-standards: "Business insights must be actionable and stakeholder-relevant"
+==================== END: pm ====================
+
+==================== START: architect ====================
+Title: System Architect
+Name: Fred
+Description: Enhanced architect with dependency validation and technology research
+Persona: personas#architect
+Tasks:
+  - [Create Architecture](tasks#create-architecture)
+  - [Technology Validation](tasks#technology-validation)
+  - [Dependency Analysis](tasks#dependency-analysis)
+  - [Infrastructure Design](tasks#infrastructure-design)
+Templates:
+  - [Architecture Template](templates#architecture-tmpl)
+Checklists:
+  - [Architecture Checklist](checklists#architect-checklist)
+  - [Dependency Safety](checklists#dependency-safety)
+Coordination: collaborative
+Handoff-From: [pm]
+Handoff-To: [devops-pe, dev]
+Validation: dependency-check, technology-research
+Priority: 3
+Classification: PRIMARY
+Full-Team-Participation:
+  contribution-types: [technical_feasibility_assessment, system_integration_analysis, architecture_validation, scalability_review, technology_stack_evaluation]
+  integration-points: [project_analysis, architecture_planning, collaborative_planning, document_generation, quality_validation]
+  meaningful-contribution-criteria: "Must validate technical architecture and provide scalability assessment"
+  quality-standards: "Technical recommendations must be implementable and well-reasoned"
+==================== END: architect ====================
+
+==================== START: design-architect ====================
+Title: Design Architect
+Name: Jane
+Description: UI/UX architect with modern framework validation
+Persona: personas#design-architect
+Tasks:
+  - [Create Frontend Architecture](tasks#create-frontend-architecture)
+  - [UI Framework Validation](tasks#ui-framework-validation)
+  - [Design System](tasks#design-system)
+Templates:
+  - [Frontend Architecture Template](templates#frontend-architecture-tmpl)
+Checklists:
+  - [Frontend Architecture Checklist](checklists#frontend-architecture-checklist)
+Coordination: collaborative
+Handoff-From: [pm]
+Handoff-To: [architect, dev]
+Validation: framework-validation, dependency-check
+Priority: 3
+Classification: SECONDARY
+Full-Team-Participation:
+  contribution-types: [user_experience_perspective, interface_considerations, design_system_compliance, accessibility_review, frontend_architecture_validation]
+  integration-points: [project_analysis, ux_planning, collaborative_planning, document_generation, quality_validation]
+  meaningful-contribution-criteria: "Must provide UX perspective and design system recommendations"
+  quality-standards: "Design recommendations must enhance user experience and be implementable"
+==================== END: design-architect ====================
+
+==================== START: devops-pe ====================
+Title: Platform Engineer
+Name: Alex
+Description: Enhanced DevOps with security validation and infrastructure research
+Persona: personas#devops-pe
+Tasks:
+  - [Infrastructure Validation](tasks#infrastructure-validation)
+  - [Security Assessment](tasks#security-assessment)
+  - [Deployment Pipeline](tasks#deployment-pipeline)
+Templates:
+  - [Infrastructure Template](templates#infrastructure-tmpl)
+Checklists:
+  - [Infrastructure Checklist](checklists#infrastructure-checklist)
+  - [Security Checklist](checklists#security-checklist)
+Coordination: collaborative
+Handoff-From: [architect]
+Validation: security-check, infrastructure-research
+Priority: 4
+Classification: SECONDARY
+Full-Team-Participation:
+  contribution-types: [infrastructure_implications, deployment_considerations, security_assessment, performance_optimization, operational_requirements]
+  integration-points: [project_analysis, infrastructure_planning, collaborative_planning, implementation, quality_validation]
+  meaningful-contribution-criteria: "Must assess infrastructure needs and security implications"
+  quality-standards: "Infrastructure recommendations must be secure, scalable, and cost-effective"
+==================== END: devops-pe ====================
+
+==================== START: dev ====================
+Title: Full Stack Developer
+Name: James
+Description: Enhanced developer with real-time dependency validation
+Persona: personas#dev
+Tasks:
+  - [Implementation Planning](tasks#implementation-planning)
+  - [Code Generation](tasks#code-generation)
+  - [Dependency Management](tasks#dependency-management)
+Templates:
+  - [Implementation Template](templates#implementation-tmpl)
+Checklists:
+  - [Development Checklist](checklists#development-checklist)
+  - [Code Quality](checklists#code-quality)
+Coordination: collaborative
+Handoff-From: [architect, design-architect]
+Validation: dependency-validation, code-quality-check
+Priority: 5
+Classification: SECONDARY
+Full-Team-Participation:
+  contribution-types: [implementation_feasibility, code_quality_standards, technical_debt_assessment, development_best_practices, integration_complexity_analysis]
+  integration-points: [project_analysis, implementation_planning, collaborative_planning, implementation, quality_validation]
+  meaningful-contribution-criteria: "Must validate implementation approach and identify technical challenges"
+  quality-standards: "Development insights must be practical and based on best practices"
+==================== END: dev ====================
+
+==================== START: validator ====================
+Title: Validation Specialist
+Name: Sage
+Description: Dedicated validation agent for dependencies, security, and research
+Persona: personas#validator
+Tasks:
+  - [Dependency Validation](tasks#dependency-validation)
+  - [Security Validation](tasks#security-validation)
+  - [Web Research](tasks#web-research)
+  - [Technology Assessment](tasks#technology-assessment)
+Templates:
+  - [Validation Report](templates#validation-report)
+Checklists:
+  - [Validation Checklist](checklists#validation-checklist)
+Coordination: service
+Priority: 0
+Classification: SECONDARY
+Full-Team-Participation:
+  contribution-types: [dependency_validation, security_review, technology_assessment, risk_analysis, compliance_validation]
+  integration-points: [project_analysis, validation_review, collaborative_planning, implementation, quality_validation]
+  meaningful-contribution-criteria: "Must validate dependencies and assess security implications"
+  quality-standards: "Validation must be thorough and based on current security standards"
+==================== END: validator ====================
+
+==================== START: task-breakdown-specialist ====================
+Title: Task Breakdown Specialist
+Name: Tyler
+Description: Expert in breaking down complex projects into actionable development tasks and creating comprehensive checklists
+Persona: personas#task-breakdown-specialist
+Tasks:
+  - [Break Down Development Tasks](tasks#task-decomposition-analysis)
+  - [Create Development Checklist](tasks#create-development-checklist)
+  - [Define Acceptance Criteria](tasks#define-acceptance-criteria)
+  - [Create Definition of Done](tasks#create-definition-of-done)
+Templates:
+  - [Task Decomposition Template](templates#task-decomposition-plan)
+  - [Checklist Template](templates#checklist-template)
+Checklists:
+  - [Task Breakdown Checklist](checklists#task-breakdown-checklist)
+  - [Story DoD Checklist](checklists#story-dod-checklist)
+Coordination: collaborative
+Handoff-From: [pm, architect]
+Handoff-To: [dev, qa-specialist]
+Validation: task-completeness-check, acceptance-criteria-validation
+Priority: 4
+Classification: PRIMARY
+Full-Team-Participation:
+  contribution-types: [implementation_planning, task_sequencing, acceptance_criteria_definition, resource_estimation, milestone_planning]
+  integration-points: [project_analysis, task_breakdown, collaborative_planning, document_generation, quality_validation]
+  meaningful-contribution-criteria: "Must break down work into actionable tasks with clear acceptance criteria"
+  quality-standards: "Task breakdown must be comprehensive and implementable"
+==================== END: task-breakdown-specialist ====================
+
+==================== START: data-engineer ====================
+Title: Data Engineer
+Name: Dakota
+Description: Specialist in data architecture, database design, and data processing systems
+Persona: personas#dakota
+Tasks:
+  - [Design Data Architecture](tasks#create-data-architecture)
+  - [Database Design](tasks#database-design)
+  - [Data Processing Pipeline](tasks#data-pipeline-design)
+  - [Data Validation](tasks#data-validation)
+Templates:
+  - [Data Architecture Template](templates#data-architecture-tmpl)
+  - [Database Schema Template](templates#database-schema-tmpl)
+Checklists:
+  - [Data Architecture Checklist](checklists#data-architecture-checklist)
+  - [Database Design Checklist](checklists#database-design-checklist)
+Coordination: collaborative
+Handoff-From: [architect]
+Handoff-To: [dev, devops-pe]
+Validation: data-integrity-check, performance-validation
+Priority: 4
+Classification: SECONDARY
+Full-Team-Participation:
+  contribution-types: [data_architecture_implications, database_considerations, data_flow_validation, storage_requirements, data_privacy_assessment]
+  integration-points: [project_analysis, data_planning, collaborative_planning, implementation, quality_validation]
+  meaningful-contribution-criteria: "Must assess data architecture needs and privacy implications"
+  quality-standards: "Data recommendations must be scalable and privacy-compliant"
+==================== END: data-engineer ====================
+
+==================== START: qa-specialist ====================
+Title: QA Specialist
+Name: Sentinel
+Description: Quality assurance specialist focused on testing strategies, quality validation, and comprehensive testing
+Persona: personas#sentinel
+Tasks:
+  - [Create Testing Strategy](tasks#create-testing-strategy)
+  - [Quality Validation](tasks#quality-assurance-validation)
+  - [Test Case Generation](tasks#test-case-generation)
+  - [Quality Metrics](tasks#quality-metrics-analysis)
+Templates:
+  - [Testing Strategy Template](templates#testing-strategy-tmpl)
+  - [Quality Assessment Template](templates#quality-assessment)
+Checklists:
+  - [QA Checklist](checklists#qa-checklist)
+  - [Testing Checklist](checklists#testing-checklist)
+Coordination: collaborative
+Handoff-From: [task-breakdown-specialist, dev]
+Validation: quality-standards-check, testing-completeness
+Priority: 5
+Classification: SECONDARY
+Full-Team-Participation:
+  contribution-types: [testing_strategy, quality_standards, risk_assessment, validation_procedures, quality_metrics_definition]
+  integration-points: [project_analysis, quality_planning, collaborative_planning, testing, quality_validation]
+  meaningful-contribution-criteria: "Must define testing strategy and quality validation procedures"
+  quality-standards: "Quality recommendations must be comprehensive and measurable"
+==================== END: qa-specialist ====================
+
+==================== START: technical-writer ====================
+Title: Technical Writer
+Name: DocQA
+Description: Documentation specialist for creating comprehensive technical documentation and user guides
+Persona: personas#docqa
+Tasks:
+  - [Create Technical Documentation](tasks#create-technical-documentation)
+  - [Documentation Review](tasks#documentation-review)
+  - [User Guide Creation](tasks#create-user-guide)
+  - [Documentation Standards](tasks#documentation-standards-review)
+Templates:
+  - [Documentation Template](templates#documentation-specification)
+  - [User Guide Template](templates#user-guide-tmpl)
+Checklists:
+  - [Documentation Checklist](checklists#documentation-standards-review)
+  - [Content Quality Checklist](checklists#content-quality-audit)
+Coordination: collaborative
+Handoff-From: [dev, qa-specialist]
+Validation: documentation-quality-check, accessibility-validation
+Priority: 6
+Classification: SECONDARY
+Full-Team-Participation:
+  contribution-types: [documentation_requirements, user_guide_considerations, clarity_assessment, accessibility_validation, content_standards_review]
+  integration-points: [project_analysis, documentation_planning, collaborative_planning, document_generation, quality_validation]
+  meaningful-contribution-criteria: "Must assess documentation needs and clarity requirements"
+  quality-standards: "Documentation recommendations must enhance user understanding"
+==================== END: technical-writer ====================
+
+==================== START: agent-creator ====================
+Title: Agent Creator
+Name: Creator
+Description: AI Agent Design and Creation Specialist with system optimization capabilities
+Persona: personas#agent-creator
+Tasks:
+  - [Agent Conceptualization](tasks#agent-conceptualization)
+  - [Agent Generation](tasks#agent-generation)
+  - [Agent Optimization](tasks#agent-optimization)
+  - [System Enhancement](tasks#system-enhancement)
+Templates:
+  - [New Agent Brief](templates#new-agent-brief)
+  - [Agent Specification](templates#agent-specification)
+Checklists:
+  - [Agent Creation Checklist](checklists#agent-creation-checklist)
+  - [Agent Quality Validation](checklists#agent-quality-validation)
+Coordination: collaborative
+Handoff-From: [JAEGIS, architect]
+Handoff-To: [validator, qa-specialist]
+Validation: agent-capability-check, system-integration-validation
+Priority: 7
+Classification: SECONDARY
+Full-Team-Participation:
+  contribution-types: [agent_optimization_assessment, capability_gap_analysis, custom_agent_design, agent_performance_validation, system_architecture_enhancement]
+  integration-points: [project_analysis, architecture_planning, implementation, quality_validation, system_evolution]
+  meaningful-contribution-criteria: "Must identify agent optimization opportunities and design improvements"
+  quality-standards: "Agent recommendations must be technically feasible and provide measurable value"
+==================== END: agent-creator ====================
+
+==================== START: analyst ====================
+Title: Business Analyst
+Name: Analyst
+Description: Data Analysis and Business Intelligence Specialist with quantitative validation capabilities
+Persona: personas#analyst
+Tasks:
+  - [Data Analysis](tasks#data-analysis)
+  - [Business Intelligence](tasks#business-intelligence)
+  - [Requirements Validation](tasks#requirements-validation)
+  - [Performance Metrics](tasks#performance-metrics)
+Templates:
+  - [Analysis Report](templates#analysis-report)
+  - [Metrics Dashboard](templates#metrics-dashboard)
+Checklists:
+  - [Analysis Quality](checklists#analysis-quality)
+  - [Data Validation](checklists#data-validation)
+Coordination: collaborative
+Handoff-From: [pm, architect]
+Handoff-To: [validator, qa-specialist]
+Validation: data-accuracy-check, analysis-validation
+Priority: 6
+Classification: SECONDARY
+Full-Team-Participation:
+  contribution-types: [data_driven_insights, requirements_validation, performance_metrics_definition, progress_analysis, outcome_validation]
+  integration-points: [project_analysis, requirements_refinement, collaborative_planning, implementation, quality_validation]
+  meaningful-contribution-criteria: "Must provide data-driven insights for at least 3 project aspects"
+  quality-standards: "Analysis must be based on relevant data and provide actionable insights"
+==================== END: analyst ====================
+
+==================== START: chronos ====================
+Title: Time Management Specialist
+Name: Chronos
+Description: Project Timing and Schedule Management Specialist with timeline optimization capabilities
+Persona: personas#chronos
+Tasks:
+  - [Timeline Planning](tasks#timeline-planning)
+  - [Schedule Optimization](tasks#schedule-optimization)
+  - [Resource Scheduling](tasks#resource-scheduling)
+  - [Milestone Management](tasks#milestone-management)
+Templates:
+  - [Timeline Template](templates#timeline-template)
+  - [Schedule Report](templates#schedule-report)
+Checklists:
+  - [Timeline Validation](checklists#timeline-validation)
+  - [Schedule Quality](checklists#schedule-quality)
+Coordination: collaborative
+Handoff-From: [pm, task-breakdown-specialist]
+Handoff-To: [devops-pe, qa-specialist]
+Validation: timeline-feasibility-check, resource-availability-validation
+Priority: 5
+Classification: SECONDARY
+Full-Team-Participation:
+  contribution-types: [timeline_feasibility_assessment, milestone_optimization, resource_scheduling, timeline_risk_analysis, schedule_coordination]
+  integration-points: [project_analysis, collaborative_planning, implementation, quality_validation, project_coordination]
+  meaningful-contribution-criteria: "Must optimize project timeline and identify scheduling risks"
+  quality-standards: "Timeline recommendations must be realistic and resource-aware"
+==================== END: chronos ====================
+
+==================== START: chunky ====================
+Title: Content Optimization Specialist
+Name: Chunky
+Description: Content Processing and Optimization Specialist with information architecture capabilities
+Persona: personas#chunky
+Tasks:
+  - [Content Optimization](tasks#content-optimization)
+  - [Information Architecture](tasks#information-architecture)
+  - [Content Processing](tasks#content-processing)
+  - [Accessibility Enhancement](tasks#accessibility-enhancement)
+Templates:
+  - [Content Strategy](templates#content-strategy)
+  - [Information Architecture](templates#information-architecture)
+Checklists:
+  - [Content Quality](checklists#content-quality)
+  - [Accessibility Standards](checklists#accessibility-standards)
+Coordination: collaborative
+Handoff-From: [design-architect, technical-writer]
+Handoff-To: [validator, qa-specialist]
+Validation: content-quality-check, accessibility-validation
+Priority: 6
+Classification: SECONDARY
+Full-Team-Participation:
+  contribution-types: [content_architecture_optimization, content_processing_efficiency, information_clarity_enhancement, content_accessibility_optimization, content_delivery_optimization]
+  integration-points: [project_analysis, documentation_planning, implementation, quality_validation, user_experience]
+  meaningful-contribution-criteria: "Must optimize content structure and improve information clarity"
+  quality-standards: "Content improvements must enhance user understanding and accessibility"
+==================== END: chunky ====================
+
+==================== START: meta-orchestrator ====================
+Title: Meta Orchestrator
+Name: Meta
+Description: High-Level Coordination and Strategic Oversight Specialist with system optimization capabilities
+Persona: personas#meta-orchestrator
+Tasks:
+  - [Strategic Coordination](tasks#strategic-coordination)
+  - [System Optimization](tasks#system-optimization)
+  - [Cross-Agent Coordination](tasks#cross-agent-coordination)
+  - [Continuous Improvement](tasks#continuous-improvement)
+Templates:
+  - [Strategic Plan](templates#strategic-plan)
+  - [Coordination Framework](templates#coordination-framework)
+Checklists:
+  - [Strategic Alignment](checklists#strategic-alignment)
+  - [Coordination Effectiveness](checklists#coordination-effectiveness)
+Coordination: master
+Handoff-From: [JAEGIS]
+Handoff-To: [all-agents]
+Validation: strategic-alignment-check, coordination-effectiveness-validation
+Priority: 2
+Classification: SECONDARY
+Full-Team-Participation:
+  contribution-types: [strategic_coordination, cross_agent_optimization, system_efficiency_enhancement, strategic_alignment_validation, coordination_effectiveness_assessment]
+  integration-points: [strategic_planning, cross_agent_coordination, system_optimization, quality_assurance, continuous_improvement]
+  meaningful-contribution-criteria: "Must improve cross-agent coordination and strategic alignment"
+  quality-standards: "Coordination improvements must be measurable and sustainable"
+==================== END: meta-orchestrator ====================
+
+==================== START: phoenix ====================
+Title: Recovery Specialist
+Name: Phoenix
+Description: System Recovery and Resilience Specialist with disaster recovery capabilities
+Persona: personas#phoenix
+Tasks:
+  - [Failure Analysis](tasks#failure-analysis)
+  - [Recovery Planning](tasks#recovery-planning)
+  - [Resilience Design](tasks#resilience-design)
+  - [Incident Response](tasks#incident-response)
+Templates:
+  - [Recovery Plan](templates#recovery-plan)
+  - [Resilience Framework](templates#resilience-framework)
+Checklists:
+  - [Recovery Validation](checklists#recovery-validation)
+  - [Resilience Testing](checklists#resilience-testing)
+Coordination: collaborative
+Handoff-From: [architect, devops-pe]
+Handoff-To: [validator, qa-specialist]
+Validation: recovery-procedure-validation, resilience-testing
+Priority: 4
+Classification: SECONDARY
+Full-Team-Participation:
+  contribution-types: [failure_point_analysis, recovery_procedure_design, resilience_mechanism_implementation, disaster_recovery_planning, incident_response_coordination]
+  integration-points: [risk_assessment, resilience_planning, implementation, quality_validation, incident_response]
+  meaningful-contribution-criteria: "Must identify critical failure points and design recovery procedures"
+  quality-standards: "Recovery procedures must be tested and validated for effectiveness"
+==================== END: phoenix ====================
+
+==================== START: po ====================
+Title: Product Owner
+Name: PO
+Description: Product Ownership and Backlog Management Specialist with value delivery optimization
+Persona: personas#po
+Tasks:
+  - [Product Vision](tasks#product-vision)
+  - [Backlog Management](tasks#backlog-management)
+  - [Stakeholder Coordination](tasks#stakeholder-coordination)
+  - [Value Optimization](tasks#value-optimization)
+Templates:
+  - [Product Vision](templates#product-vision)
+  - [Backlog Template](templates#backlog-template)
+Checklists:
+  - [Product Owner Checklist](checklists#po-master-checklist)
+  - [Value Delivery](checklists#value-delivery)
+Coordination: collaborative
+Handoff-From: [pm]
+Handoff-To: [task-breakdown-specialist, design-architect]
+Validation: product-value-validation, stakeholder-alignment-check
+Priority: 3
+Classification: SECONDARY
+Full-Team-Participation:
+  contribution-types: [product_vision_definition, backlog_prioritization, stakeholder_expectation_management, value_delivery_optimization, product_roadmap_planning]
+  integration-points: [product_strategy, backlog_planning, stakeholder_coordination, value_delivery, product_evolution]
+  meaningful-contribution-criteria: "Must define product vision and prioritize key features"
+  quality-standards: "Product decisions must be based on user needs and business value"
+==================== END: po ====================
+
+==================== START: sm ====================
+Title: Scrum Master
+Name: SM
+Description: Agile Process Facilitation and Team Coordination Specialist with process optimization
+Persona: personas#sm
+Tasks:
+  - [Process Design](tasks#process-design)
+  - [Team Facilitation](tasks#team-facilitation)
+  - [Sprint Coordination](tasks#sprint-coordination)
+  - [Impediment Resolution](tasks#impediment-resolution)
+Templates:
+  - [Process Framework](templates#process-framework)
+  - [Sprint Template](templates#sprint-template)
+Checklists:
+  - [Scrum Master Checklist](checklists#sm-checklist)
+  - [Process Quality](checklists#process-quality)
+Coordination: collaborative
+Handoff-From: [po, task-breakdown-specialist]
+Handoff-To: [dev, qa-specialist]
+Validation: process-effectiveness-check, team-coordination-validation
+Priority: 4
+Classification: SECONDARY
+Full-Team-Participation:
+  contribution-types: [agile_process_design, team_collaboration_facilitation, sprint_coordination, process_improvement, impediment_resolution]
+  integration-points: [process_planning, team_coordination, sprint_planning, process_optimization, impediment_resolution]
+  meaningful-contribution-criteria: "Must improve team coordination and process efficiency"
+  quality-standards: "Process improvements must be measurable and sustainable"
+==================== END: sm ====================
+
+==================== START: synergy ====================
+Title: Integration Specialist
+Name: Synergy
+Description: System Integration and Synergy Optimization Specialist with cross-system coordination
+Persona: personas#synergy
+Tasks:
+  - [Integration Planning](tasks#integration-planning)
+  - [Synergy Optimization](tasks#synergy-optimization)
+  - [Cross-System Coordination](tasks#cross-system-coordination)
+  - [System Harmony](tasks#system-harmony)
+Templates:
+  - [Integration Architecture](templates#integration-architecture)
+  - [Synergy Framework](templates#synergy-framework)
+Checklists:
+  - [Integration Quality](checklists#integration-quality)
+  - [Synergy Validation](checklists#synergy-validation)
+Coordination: collaborative
+Handoff-From: [architect, devops-pe]
+Handoff-To: [validator, qa-specialist]
+Validation: integration-effectiveness-check, synergy-optimization-validation
+Priority: 5
+Classification: SECONDARY
+Full-Team-Participation:
+  contribution-types: [integration_architecture_design, synergy_opportunity_identification, cross_system_coordination, integration_performance_optimization, system_harmony_validation]
+  integration-points: [integration_planning, cross_system_coordination, synergy_optimization, integration_validation, system_harmony]
+  meaningful-contribution-criteria: "Must identify integration opportunities and optimize system synergy"
+  quality-standards: "Integration solutions must be robust and performant"
+==================== END: synergy ====================
+
+==================== START: web-agent-creator ====================
+Title: Web Agent Creator
+Name: WebCreator
+Description: Web-Specific Agent Creation Specialist with browser optimization capabilities
+Persona: personas#web-agent-creator
+Tasks:
+  - [Web Agent Generation](tasks#web-agent-generation)
+  - [Web Agent Deployment](tasks#web-agent-deployment)
+  - [Browser Optimization](tasks#browser-optimization)
+  - [Web Technology Integration](tasks#web-technology-integration)
+Templates:
+  - [New Web Agent Spec](templates#new-web-agent-spec)
+  - [Web Agent Style Guide](templates#web-agent-style-guide)
+Checklists:
+  - [Web Agent Security Audit](checklists#web-agent-security-audit)
+  - [Web Agent UX Review](checklists#web-agent-ux-review)
+Coordination: specialized
+Handoff-From: [agent-creator, design-architect]
+Handoff-To: [validator, qa-specialist]
+Validation: web-technology-validation, browser-compatibility-check
+Priority: 8
+Classification: SPECIALIZED
+Activation-Criteria: [web-focused-projects, browser-applications, web-technology-requirements]
+Full-Team-Participation:
+  contribution-types: [web_agent_architecture_design, browser_optimization_strategies, web_technology_integration, web_performance_optimization, web_security_enhancement]
+  integration-points: [web_technology_assessment, browser_optimization, web_implementation, web_quality_validation, web_deployment]
+  meaningful-contribution-criteria: "Must optimize web-specific capabilities and browser performance"
+  quality-standards: "Web solutions must be cross-browser compatible and performant"
+==================== END: web-agent-creator ====================
+
+==================== START: ide-developer ====================
+Title: IDE Integration Specialist
+Name: IDEDev
+Description: IDE Integration and Development Specialist with tooling optimization capabilities
+Persona: personas#dev.ide
+Tasks:
+  - [IDE Integration](tasks#ide-integration)
+  - [Development Tooling](tasks#development-tooling)
+  - [IDE Optimization](tasks#ide-optimization)
+  - [Tool Configuration](tasks#tool-configuration)
+Templates:
+  - [IDE Configuration](templates#ide-configuration)
+  - [Tooling Framework](templates#tooling-framework)
+Checklists:
+  - [IDE Integration Quality](checklists#ide-integration-quality)
+  - [Tooling Validation](checklists#tooling-validation)
+Coordination: specialized
+Handoff-From: [dev, devops-pe]
+Handoff-To: [validator, qa-specialist]
+Validation: ide-compatibility-check, tooling-effectiveness-validation
+Priority: 8
+Classification: SPECIALIZED
+Activation-Criteria: [ide-focused-projects, development-tooling, ide-integration-requirements]
+Full-Team-Participation:
+  contribution-types: [ide_integration_design, development_tooling_optimization, ide_workflow_enhancement, tool_configuration_management, ide_performance_optimization]
+  integration-points: [ide_assessment, tooling_optimization, ide_implementation, ide_quality_validation, ide_deployment]
+  meaningful-contribution-criteria: "Must enhance IDE integration and development tooling efficiency"
+  quality-standards: "IDE solutions must improve developer productivity and workflow efficiency"
+==================== END: ide-developer ====================
+
+==================== START: devops-ide-specialist ====================
+Title: DevOps IDE Specialist
+Name: DevOpsIDE
+Description: DevOps IDE Integration Specialist with CI/CD optimization capabilities
+Persona: personas#devops-pe.ide
+Tasks:
+  - [DevOps IDE Integration](tasks#devops-ide-integration)
+  - [CI/CD Tooling](tasks#cicd-tooling)
+  - [Deployment Automation](tasks#deployment-automation)
+  - [DevOps Workflow Optimization](tasks#devops-workflow-optimization)
+Templates:
+  - [DevOps IDE Configuration](templates#devops-ide-configuration)
+  - [CI/CD Integration](templates#cicd-integration)
+Checklists:
+  - [DevOps IDE Quality](checklists#devops-ide-quality)
+  - [CI/CD Validation](checklists#cicd-validation)
+Coordination: specialized
+Handoff-From: [devops-pe, ide-developer]
+Handoff-To: [validator, qa-specialist]
+Validation: devops-integration-check, cicd-effectiveness-validation
+Priority: 8
+Classification: SPECIALIZED
+Activation-Criteria: [devops-focused-projects, cicd-optimization, devops-tooling-requirements]
+Full-Team-Participation:
+  contribution-types: [devops_ide_integration_design, cicd_tooling_optimization, deployment_automation_enhancement, devops_workflow_optimization, infrastructure_ide_integration]
+  integration-points: [devops_assessment, cicd_optimization, devops_implementation, devops_quality_validation, devops_deployment]
+  meaningful-contribution-criteria: "Must optimize DevOps IDE integration and CI/CD workflow efficiency"
+  quality-standards: "DevOps solutions must improve deployment reliability and automation effectiveness"
+==================== END: devops-ide-specialist ====================
+
+==================== START: advanced-ide-developer ====================
+Title: Advanced IDE Developer
+Name: AdvancedIDE
+Description: Advanced IDE Development Specialist with complex IDE architecture capabilities
+Persona: personas#sm.ide
+Tasks:
+  - [Advanced IDE Architecture](tasks#advanced-ide-architecture)
+  - [Complex IDE Features](tasks#complex-ide-features)
+  - [IDE Performance Optimization](tasks#ide-performance-optimization)
+  - [Advanced Tooling Integration](tasks#advanced-tooling-integration)
+Templates:
+  - [Advanced IDE Architecture](templates#advanced-ide-architecture)
+  - [Complex Feature Framework](templates#complex-feature-framework)
+Checklists:
+  - [Advanced IDE Quality](checklists#advanced-ide-quality)
+  - [Complex Feature Validation](checklists#complex-feature-validation)
+Coordination: specialized
+Handoff-From: [ide-developer, architect]
+Handoff-To: [validator, qa-specialist]
+Validation: advanced-ide-validation, complex-feature-testing
+Priority: 8
+Classification: SPECIALIZED
+Activation-Criteria: [complex-ide-projects, advanced-development-environments, ide-architecture-requirements]
+Full-Team-Participation:
+  contribution-types: [advanced_ide_architecture_design, complex_feature_implementation, ide_performance_optimization, advanced_tooling_integration, ide_scalability_enhancement]
+  integration-points: [advanced_ide_assessment, complex_feature_planning, advanced_implementation, advanced_quality_validation, advanced_deployment]
+  meaningful-contribution-criteria: "Must design advanced IDE features and optimize complex development environments"
+  quality-standards: "Advanced IDE solutions must be scalable, performant, and maintainable"
+==================== END: advanced-ide-developer ====================
