@@ -1,0 +1,306 @@
+{
+  "version": "1.0",
+  "description": "e.J.A.E.G.I.S. Ownership Ledger - Maps code components to their responsible owners",
+  "last_updated": "2025_01_23T00_00_00Zproject_info": {
+    "name": "Your Project Name",
+    "description": "Project description",
+    "repository": "https://github.com/your-org/your-project"
+  },
+  "ownership_entries": [
+    {
+      "pattern": "src/api/**",
+      "owner_type": "agent",
+      "owner_id": "API-Agent",
+      "contact_method": "ide_notification",
+      "priority": 1,
+      "description": "API endpoints, routes, and request/response handling",
+      "responsibilities": [
+        "API contract maintenance",
+        "Request validation",
+        "Response formatting",
+        "Authentication_and_authorizationnotification_settings": {
+        "impact_threshold": "medium",
+        "include_suggestions": true,
+        "batch_notifications": false
+      }
+    },
+    {
+      "pattern": "src/core/**",
+      "owner_type": "agent",
+      "owner_id": "Core-Architecture-Agent",
+      "contact_method": "ide_notification",
+      "priority": 1,
+      "description": "Core business logic, models, and shared utilities",
+      "responsibilities": [
+        "Data model integrity",
+        "Business logic consistency",
+        "Shared utility functions",
+        "Core_architecture_decisionsnotification_settings": {
+        "impact_threshold": "low",
+        "include_suggestions": true,
+        "batch_notifications": false
+      }
+    },
+    {
+      "pattern": "src/database/**",
+      "owner_type": "agent",
+      "owner_id": "Database-Agent",
+      "contact_method": "ide_notification",
+      "priority": 1,
+      "description": "Database schemas, migrations, and data access layers",
+      "responsibilities": [
+        "Schema evolution",
+        "Migration scripts",
+        "Query optimization",
+        "Data_integritynotification_settings": {
+        "impact_threshold": "low",
+        "include_suggestions": true,
+        "batch_notifications": false
+      }
+    },
+    {
+      "pattern": "src/services/**",
+      "owner_type": "agent",
+      "owner_id": "Service-Layer-Agent",
+      "contact_method": "ide_notification",
+      "priority": 2,
+      "description": "Service layer implementations and business services",
+      "responsibilities": [
+        "Service interface contracts",
+        "Business workflow orchestration",
+        "External service integration",
+        "Service_to_service_communicationnotification_settings": {
+        "impact_threshold": "medium",
+        "include_suggestions": true,
+        "batch_notifications": true
+      }
+    },
+    {
+      "pattern": "src/utils/**",
+      "owner_type": "agent",
+      "owner_id": "Utility-Agent",
+      "contact_method": "ide_notification",
+      "priority": 2,
+      "description": "Shared utilities, helpers, and common functions",
+      "responsibilities": [
+        "Utility function consistency",
+        "Helper method optimization",
+        "Common pattern implementation",
+        "Cross_cutting_concernsnotification_settings": {
+        "impact_threshold": "medium",
+        "include_suggestions": true,
+        "batch_notifications": true
+      }
+    },
+    {
+      "pattern": "tests/**",
+      "owner_type": "agent",
+      "owner_id": "QA-Agent",
+      "contact_method": "ide_notification",
+      "priority": 2,
+      "description": "Test suites, test utilities, and quality assurance",
+      "responsibilities": [
+        "Test coverage maintenance",
+        "Test data management",
+        "Quality metrics tracking",
+        "Test_automationnotification_settings": {
+        "impact_threshold": "high",
+        "include_suggestions": true,
+        "batch_notifications": true
+      }
+    },
+    {
+      "pattern": "docs/**",
+      "owner_type": "agent",
+      "owner_id": "Documentation-Agent",
+      "contact_method": "ide_notification",
+      "priority": 3,
+      "description": "Project documentation, API docs, and guides",
+      "responsibilities": [
+        "Documentation accuracy",
+        "API documentation sync",
+        "User guide maintenance",
+        "Code_example_updatesnotification_settings": {
+        "impact_threshold": "high",
+        "include_suggestions": true,
+        "batch_notifications": true
+      }
+    },
+    {
+      "pattern": "config/**",
+      "owner_type": "human",
+      "owner_id": "devops_team",
+      "contact_method": "slack",
+      "priority": 2,
+      "description": "Configuration files, environment settings, and deployment configs",
+      "responsibilities": [
+        "Environment configuration",
+        "Deployment settings",
+        "Security configurations",
+        "Infrastructure_as_codenotification_settings": {
+        "impact_threshold": "medium",
+        "include_suggestions": true,
+        "batch_notifications": false,
+        "slack_channel": "#devops-alerts"
+      }
+    },
+    {
+      "pattern": "scripts/**",
+      "owner_type": "human",
+      "owner_id": "devops_team",
+      "contact_method": "slack",
+      "priority": 2,
+      "description": "Build scripts, deployment scripts, and automation",
+      "responsibilities": [
+        "Build process maintenance",
+        "Deployment automation",
+        "CI/CD pipeline scripts",
+        "Development_toolingnotification_settings": {
+        "impact_threshold": "medium",
+        "include_suggestions": true,
+        "batch_notifications": true,
+        "slack_channel": "#devops-alerts"
+      }
+    },
+    {
+      "pattern": "frontend/**",
+      "owner_type": "human",
+      "owner_id": "frontend_team",
+      "contact_method": "slack",
+      "priority": 2,
+      "description": "Frontend application code, components, and assets",
+      "responsibilities": [
+        "UI component library",
+        "Frontend application logic",
+        "User experience consistency",
+        "Frontend_build_processnotification_settings": {
+        "impact_threshold": "medium",
+        "include_suggestions": true,
+        "batch_notifications": true,
+        "slack_channel": "#frontend-dev"
+      }
+    },
+    {
+      "pattern": "mobile/**",
+      "owner_type": "human",
+      "owner_id": "mobile_team",
+      "contact_method": "slack",
+      "priority": 2,
+      "description": "Mobile application code and platform-specific implementations",
+      "responsibilities": [
+        "Mobile app functionality",
+        "Platform-specific optimizations",
+        "Mobile UI/UX consistency",
+        "App_store_compliancenotification_settings": {
+        "impact_threshold": "medium",
+        "include_suggestions": true,
+        "batch_notifications": true,
+        "slack_channel": "#mobile-dev"
+      }
+    },
+    {
+      "pattern": "package.json",
+      "owner_type": "human",
+      "owner_id": "tech_lead",
+      "contact_method": "email",
+      "priority": 1,
+      "description": "Package dependencies and project metadata",
+      "responsibilities": [
+        "Dependency management",
+        "Version compatibility",
+        "Security vulnerability monitoring",
+        "Build_tool_configurationnotification_settings": {
+        "impact_threshold": "low",
+        "include_suggestions": true,
+        "batch_notifications": false,
+        "email": "tech-lead@company.com"
+      }
+    },
+    {
+      "pattern": "requirements.txt",
+      "owner_type": "human",
+      "owner_id": "tech_lead",
+      "contact_method": "email",
+      "priority": 1,
+      "description": "Python dependencies and version specifications",
+      "responsibilities": [
+        "Python package management",
+        "Version pinning strategy",
+        "Security updates",
+        "Compatibility_testingnotification_settings": {
+        "impact_threshold": "low",
+        "include_suggestions": true,
+        "batch_notifications": false,
+        "email": "tech-lead@company.com"
+      }
+    },
+    {
+      "pattern": "Dockerfile*",
+      "owner_type": "human",
+      "owner_id": "devops_team",
+      "contact_method": "slack",
+      "priority": 1,
+      "description": "Container definitions and deployment configurations",
+      "responsibilities": [
+        "Container image optimization",
+        "Security hardening",
+        "Multi-stage build efficiency",
+        "Runtime_environment_setupnotification_settings": {
+        "impact_threshold": "low",
+        "include_suggestions": true,
+        "batch_notifications": false,
+        "slack_channel": "#devops-alerts"
+      }
+    },
+    {
+      "pattern": "**",
+      "owner_type": "human",
+      "owner_id": "dev_team_lead",
+      "contact_method": "slack",
+      "priority": 4,
+      "description": "Fallback owner for any unmatched files",
+      "responsibilities": [
+        "General code review",
+        "Architecture oversight",
+        "Team coordination",
+        "Escalation_handlingnotification_settings": {
+        "impact_threshold": "high",
+        "include_suggestions": true,
+        "batch_notifications": true,
+        "slack_channel": "hashdev_team_alertscontact_methods": {
+    "ide_notification": {
+      "description": "In_IDE_popup_notificationsconfiguration": {
+        "notification_file": ".eJaegis/ide_notifications.json",
+        "max_notifications": 10,
+        "auto_clear_after": "24hslack": {
+      "description": "Slack_channel_or_DM_notificationsconfiguration": {
+        "webhook_url": "https://hooks.slack.com/services/YOUR/SLACK/WEBHOOK",
+        "default_channel": "#dev-alerts",
+        "mention_on_criticaltrue_email": {
+      "description": "Email_notificationsconfiguration": {
+        "smtp_server": "smtp.company.com",
+        "smtp_port": 587,
+        "use_tls": true,
+        "from_address": "eJaegisatcompany_comwebhook": {
+      "description": "Custom_webhook_integrationconfiguration": {
+        "endpoint": "https://api.company.com/eJaegis/notifications",
+        "authentication": "bearer_token",
+        "retry_attempts3_global_settings": {
+    "enable_monitoring": true,
+    "monitoring_extensions": [".py", ".js", ".ts", ".java", ".cpp", ".c", ".h", ".go", ".rs", ".rb"],
+    "ignore_patterns": [
+      "node_modules/**",
+      "__pycache__/**",
+      ".git/**",
+      "*.pyc",
+      "*.log",
+      "DS_Storeimpact_analysis": {
+      "enable_llm_analysis": false,
+      "llm_provider": "openai",
+      "semantic_analysis_threshold": "mediumnotification_batching": {
+      "enabled": true,
+      "batch_window": "5m",
+      "max_batch_size": 10
+    }
+  }
+}
