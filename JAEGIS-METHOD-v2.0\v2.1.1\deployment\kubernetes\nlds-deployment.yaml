@@ -1,0 +1,538 @@
+# N.L.D.S. Kubernetes Deployment Configuration
+# JAEGIS Enhanced Agent System v2.2 - Tier 0 Component
+
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: nlds
+  labels:
+    name: nlds
+    app.kubernetes.io/name: nlds
+    app.kubernetes.io/version: "2.2.0"
+    app.kubernetes.io/component: namespace
+
+---
+# ConfigMap for N.L.D.S. Configuration
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: nlds-config
+  namespace: nlds
+  labels:
+    app.kubernetes.io/name: nlds
+    app.kubernetes.io/component: config
+data:
+  NLDS_ENV: "production"
+  NLDS_LOG_LEVEL: "INFO"
+  NLDS_HOST: "0.0.0.0"
+  NLDS_PORT: "8000"
+  NLDS_WORKERS: "4"
+  NLDS_DATABASE_HOST: "postgres-service"
+  NLDS_DATABASE_PORT: "5432"
+  NLDS_DATABASE_NAME: "nlds"
+  NLDS_REDIS_HOST: "redis-service"
+  NLDS_REDIS_PORT: "6379"
+  NLDS_REDIS_DB: "0"
+  NLDS_GITHUB_REPO: "usemanusai/JAEGIS"
+  NLDS_METRICS_ENABLED: "true"
+  NLDS_METRICS_PORT: "9000"
+
+---
+# Secret for sensitive configuration
+apiVersion: v1
+kind: Secret
+metadata:
+  name: nlds-secrets
+  namespace: nlds
+  labels:
+    app.kubernetes.io/name: nlds
+    app.kubernetes.io/component: secrets
+type: Opaque
+data:
+  # Base64 encoded values - replace with actual values
+  NLDS_JWT_SECRET: <base64-encoded-jwt-secret>
+  NLDS_DATABASE_PASSWORD: <base64-encoded-db-password>
+  NLDS_REDIS_PASSWORD: <base64-encoded-redis-password>
+  NLDS_OPENROUTER_API_KEYS: <base64-encoded-api-keys>
+  NLDS_GITHUB_TOKEN: <base64-encoded-github-token>
+
+---
+# N.L.D.S. API Deployment
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nlds-api
+  namespace: nlds
+  labels:
+    app.kubernetes.io/name: nlds
+    app.kubernetes.io/component: api
+    app.kubernetes.io/version: "2.2.0"
+spec:
+  replicas: 3
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: nlds
+      app.kubernetes.io/component: api
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: nlds
+        app.kubernetes.io/component: api
+        app.kubernetes.io/version: "2.2.0"
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "9000"
+        prometheus.io/path: "/metrics"
+    spec:
+      serviceAccountName: nlds-service-account
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 1000
+        runAsGroup: 1000
+        fsGroup: 1000
+      containers:
+      - name: nlds-api
+        image: jaegis/nlds:2.2.0
+        imagePullPolicy: Always
+        ports:
+        - name: http
+          containerPort: 8000
+          protocol: TCP
+        - name: metrics
+          containerPort: 9000
+          protocol: TCP
+        env:
+        - name: NLDS_DATABASE_URL
+          value: "postgresql://nlds:$(NLDS_DATABASE_PASSWORD)@$(NLDS_DATABASE_HOST):$(NLDS_DATABASE_PORT)/$(NLDS_DATABASE_NAME)"
+        - name: NLDS_REDIS_URL
+          value: "redis://:$(NLDS_REDIS_PASSWORD)@$(NLDS_REDIS_HOST):$(NLDS_REDIS_PORT)/$(NLDS_REDIS_DB)"
+        envFrom:
+        - configMapRef:
+            name: nlds-config
+        - secretRef:
+            name: nlds-secrets
+        resources:
+          requests:
+            cpu: 500m
+            memory: 1Gi
+          limits:
+            cpu: 2000m
+            memory: 4Gi
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: http
+          initialDelaySeconds: 60
+          periodSeconds: 30
+          timeoutSeconds: 10
+          failureThreshold: 3
+        readinessProbe:
+          httpGet:
+            path: /ready
+            port: http
+          initialDelaySeconds: 30
+          periodSeconds: 10
+          timeoutSeconds: 5
+          failureThreshold: 3
+        startupProbe:
+          httpGet:
+            path: /health
+            port: http
+          initialDelaySeconds: 30
+          periodSeconds: 10
+          timeoutSeconds: 5
+          failureThreshold: 30
+        securityContext:
+          allowPrivilegeEscalation: false
+          readOnlyRootFilesystem: true
+          capabilities:
+            drop:
+            - ALL
+        volumeMounts:
+        - name: tmp
+          mountPath: /tmp
+        - name: logs
+          mountPath: /app/logs
+        - name: cache
+          mountPath: /app/cache
+      volumes:
+      - name: tmp
+        emptyDir: {}
+      - name: logs
+        emptyDir: {}
+      - name: cache
+        emptyDir: {}
+      affinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - weight: 100
+            podAffinityTerm:
+              labelSelector:
+                matchExpressions:
+                - key: app.kubernetes.io/name
+                  operator: In
+                  values:
+                  - nlds
+                - key: app.kubernetes.io/component
+                  operator: In
+                  values:
+                  - api
+              topologyKey: kubernetes.io/hostname
+
+---
+# N.L.D.S. API Service
+apiVersion: v1
+kind: Service
+metadata:
+  name: nlds-api-service
+  namespace: nlds
+  labels:
+    app.kubernetes.io/name: nlds
+    app.kubernetes.io/component: api-service
+  annotations:
+    prometheus.io/scrape: "true"
+    prometheus.io/port: "9000"
+spec:
+  type: ClusterIP
+  ports:
+  - name: http
+    port: 80
+    targetPort: http
+    protocol: TCP
+  - name: metrics
+    port: 9000
+    targetPort: metrics
+    protocol: TCP
+  selector:
+    app.kubernetes.io/name: nlds
+    app.kubernetes.io/component: api
+
+---
+# Horizontal Pod Autoscaler
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: nlds-api-hpa
+  namespace: nlds
+  labels:
+    app.kubernetes.io/name: nlds
+    app.kubernetes.io/component: autoscaler
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: nlds-api
+  minReplicas: 3
+  maxReplicas: 20
+  metrics:
+  - type: Resource
+    resource:
+      name: cpu
+      target:
+        type: Utilization
+        averageUtilization: 70
+  - type: Resource
+    resource:
+      name: memory
+      target:
+        type: Utilization
+        averageUtilization: 80
+  behavior:
+    scaleDown:
+      stabilizationWindowSeconds: 300
+      policies:
+      - type: Percent
+        value: 10
+        periodSeconds: 60
+    scaleUp:
+      stabilizationWindowSeconds: 60
+      policies:
+      - type: Percent
+        value: 50
+        periodSeconds: 60
+      - type: Pods
+        value: 2
+        periodSeconds: 60
+      selectPolicy: Max
+
+---
+# Pod Disruption Budget
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata:
+  name: nlds-api-pdb
+  namespace: nlds
+  labels:
+    app.kubernetes.io/name: nlds
+    app.kubernetes.io/component: disruption-budget
+spec:
+  minAvailable: 2
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: nlds
+      app.kubernetes.io/component: api
+
+---
+# Service Account
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: nlds-service-account
+  namespace: nlds
+  labels:
+    app.kubernetes.io/name: nlds
+    app.kubernetes.io/component: service-account
+
+---
+# Network Policy
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: nlds-network-policy
+  namespace: nlds
+  labels:
+    app.kubernetes.io/name: nlds
+    app.kubernetes.io/component: network-policy
+spec:
+  podSelector:
+    matchLabels:
+      app.kubernetes.io/name: nlds
+  policyTypes:
+  - Ingress
+  - Egress
+  ingress:
+  - from:
+    - namespaceSelector:
+        matchLabels:
+          name: ingress-nginx
+    - namespaceSelector:
+        matchLabels:
+          name: monitoring
+    ports:
+    - protocol: TCP
+      port: 8000
+    - protocol: TCP
+      port: 9000
+  egress:
+  - to:
+    - namespaceSelector:
+        matchLabels:
+          name: nlds
+    ports:
+    - protocol: TCP
+      port: 5432  # PostgreSQL
+    - protocol: TCP
+      port: 6379  # Redis
+  - to: []  # Allow external API calls
+    ports:
+    - protocol: TCP
+      port: 443  # HTTPS
+    - protocol: TCP
+      port: 80   # HTTP
+
+---
+# PostgreSQL StatefulSet
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: postgres
+  namespace: nlds
+  labels:
+    app.kubernetes.io/name: postgres
+    app.kubernetes.io/component: database
+spec:
+  serviceName: postgres-service
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: postgres
+      app.kubernetes.io/component: database
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: postgres
+        app.kubernetes.io/component: database
+    spec:
+      securityContext:
+        runAsUser: 999
+        runAsGroup: 999
+        fsGroup: 999
+      containers:
+      - name: postgres
+        image: postgres:14-alpine
+        ports:
+        - name: postgres
+          containerPort: 5432
+        env:
+        - name: POSTGRES_DB
+          value: nlds
+        - name: POSTGRES_USER
+          value: nlds
+        - name: POSTGRES_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: nlds-secrets
+              key: NLDS_DATABASE_PASSWORD
+        - name: PGDATA
+          value: /var/lib/postgresql/data/pgdata
+        resources:
+          requests:
+            cpu: 250m
+            memory: 512Mi
+          limits:
+            cpu: 1000m
+            memory: 2Gi
+        livenessProbe:
+          exec:
+            command:
+            - pg_isready
+            - -U
+            - nlds
+            - -d
+            - nlds
+          initialDelaySeconds: 30
+          periodSeconds: 10
+        readinessProbe:
+          exec:
+            command:
+            - pg_isready
+            - -U
+            - nlds
+            - -d
+            - nlds
+          initialDelaySeconds: 5
+          periodSeconds: 5
+        volumeMounts:
+        - name: postgres-storage
+          mountPath: /var/lib/postgresql/data
+  volumeClaimTemplates:
+  - metadata:
+      name: postgres-storage
+    spec:
+      accessModes: ["ReadWriteOnce"]
+      resources:
+        requests:
+          storage: 20Gi
+
+---
+# PostgreSQL Service
+apiVersion: v1
+kind: Service
+metadata:
+  name: postgres-service
+  namespace: nlds
+  labels:
+    app.kubernetes.io/name: postgres
+    app.kubernetes.io/component: database-service
+spec:
+  type: ClusterIP
+  ports:
+  - name: postgres
+    port: 5432
+    targetPort: postgres
+  selector:
+    app.kubernetes.io/name: postgres
+    app.kubernetes.io/component: database
+
+---
+# Redis StatefulSet
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: redis
+  namespace: nlds
+  labels:
+    app.kubernetes.io/name: redis
+    app.kubernetes.io/component: cache
+spec:
+  serviceName: redis-service
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: redis
+      app.kubernetes.io/component: cache
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: redis
+        app.kubernetes.io/component: cache
+    spec:
+      securityContext:
+        runAsUser: 999
+        runAsGroup: 999
+        fsGroup: 999
+      containers:
+      - name: redis
+        image: redis:7-alpine
+        ports:
+        - name: redis
+          containerPort: 6379
+        command:
+        - redis-server
+        - --appendonly
+        - "yes"
+        - --requirepass
+        - $(REDIS_PASSWORD)
+        env:
+        - name: REDIS_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: nlds-secrets
+              key: NLDS_REDIS_PASSWORD
+        resources:
+          requests:
+            cpu: 100m
+            memory: 256Mi
+          limits:
+            cpu: 500m
+            memory: 1Gi
+        livenessProbe:
+          exec:
+            command:
+            - redis-cli
+            - ping
+          initialDelaySeconds: 30
+          periodSeconds: 10
+        readinessProbe:
+          exec:
+            command:
+            - redis-cli
+            - ping
+          initialDelaySeconds: 5
+          periodSeconds: 5
+        volumeMounts:
+        - name: redis-storage
+          mountPath: /data
+  volumeClaimTemplates:
+  - metadata:
+      name: redis-storage
+    spec:
+      accessModes: ["ReadWriteOnce"]
+      resources:
+        requests:
+          storage: 10Gi
+
+---
+# Redis Service
+apiVersion: v1
+kind: Service
+metadata:
+  name: redis-service
+  namespace: nlds
+  labels:
+    app.kubernetes.io/name: redis
+    app.kubernetes.io/component: cache-service
+spec:
+  type: ClusterIP
+  ports:
+  - name: redis
+    port: 6379
+    targetPort: redis
+  selector:
+    app.kubernetes.io/name: redis
+    app.kubernetes.io/component: cache
