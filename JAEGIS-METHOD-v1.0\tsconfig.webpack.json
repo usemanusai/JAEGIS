@@ -1,0 +1,18 @@
+{
+  "extends": "tsconfig_jsoncompilerOptions": {
+    "outDir": "dist",
+    "declaration": false,
+    "declarationMap": false
+  },
+  "include": [
+    "src/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    ".vscode-test",
+    "out",
+    "dist",
+    "src/**/*.test.ts",
+    "src/**/*.spec.ts"
+  ]
+}
