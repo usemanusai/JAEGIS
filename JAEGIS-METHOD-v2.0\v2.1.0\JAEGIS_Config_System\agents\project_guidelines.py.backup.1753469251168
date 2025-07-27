@@ -1,0 +1,637 @@
+"""
+JAEGIS Configuration Management System - Project-Specific Guidelines System
+System for setting up project-specific guidelines and constraints
+"""
+
+import logging
+import uuid
+import json
+from typing import Dict, List, Optional, Any, Set
+from dataclasses import dataclass, field, asdict
+from datetime import datetime
+from enum import Enum
+
+from ..core.config_schema import WorkflowProtocol, ProtocolRule
+from ..core.config_engine import ConfigurationEngine
+from ..core.security import SecurityManager, Permission
+
+logger = logging.getLogger(__name__)
+
+class GuidelineType(Enum):
+    """Types of project guidelines"""
+    CODING_STANDARD = "coding_standard"
+    DOCUMENTATION = "documentation"
+    TESTING = "testing"
+    SECURITY = "security"
+    PERFORMANCE = "performance"
+    ACCESSIBILITY = "accessibility"
+    COMPLIANCE = "compliance"
+    WORKFLOW = "workflow"
+    COMMUNICATION = "communication"
+    DEPLOYMENT = "deployment"
+
+class GuidelineScope(Enum):
+    """Scope of guideline application"""
+    PROJECT = "project"
+    TEAM = "team"
+    DEPARTMENT = "department"
+    ORGANIZATION = "organization"
+
+class ConstraintType(Enum):
+    """Types of constraints"""
+    MANDATORY = "mandatory"
+    RECOMMENDED = "recommended"
+    FORBIDDEN = "forbidden"
+    CONDITIONAL = "conditional"
+
+@dataclass
+class ProjectGuideline:
+    """Individual project guideline"""
+    guideline_id: str
+    title: str
+    description: str
+    guideline_type: GuidelineType
+    scope: GuidelineScope
+    constraint_type: ConstraintType
+    content: str
+    examples: List[str] = field(default_factory=list)
+    exceptions: List[str] = field(default_factory=list)
+    validation_rules: List[str] = field(default_factory=list)
+    tags: List[str] = field(default_factory=list)
+    priority: int = 1  # 1-5, higher is more important
+    enabled: bool = True
+    created_at: datetime = field(default_factory=datetime.now)
+    modified_at: datetime = field(default_factory=datetime.now)
+    
+    def to_dict(self) -> Dict[str, Any]:
+        return {
+            "guideline_id": self.guideline_id,
+            "title": self.title,
+            "description": self.description,
+            "guideline_type": self.guideline_type.value,
+            "scope": self.scope.value,
+            "constraint_type": self.constraint_type.value,
+            "content": self.content,
+            "examples": self.examples,
+            "exceptions": self.exceptions,
+            "validation_rules": self.validation_rules,
+            "tags": self.tags,
+            "priority": self.priority,
+            "enabled": self.enabled,
+            "created_at": self.created_at.isoformat(),
+            "modified_at": self.modified_at.isoformat()
+        }
+    
+    @classmethod
+    def from_dict(cls, data: Dict[str, Any]) -> 'ProjectGuideline':
+        return cls(
+            guideline_id=data["guideline_id"],
+            title=data["title"],
+            description=data["description"],
+            guideline_type=GuidelineType(data["guideline_type"]),
+            scope=GuidelineScope(data["scope"]),
+            constraint_type=ConstraintType(data["constraint_type"]),
+            content=data["content"],
+            examples=data.get("examples", []),
+            exceptions=data.get("exceptions", []),
+            validation_rules=data.get("validation_rules", []),
+            tags=data.get("tags", []),
+            priority=data.get("priority", 1),
+            enabled=data.get("enabled", True),
+            created_at=datetime.fromisoformat(data.get("created_at", datetime.now().isoformat())),
+            modified_at=datetime.fromisoformat(data.get("modified_at", datetime.now().isoformat()))
+        )
+
+@dataclass
+class ProjectConstraint:
+    """Project-specific constraint"""
+    constraint_id: str
+    name: str
+    description: str
+    constraint_type: ConstraintType
+    condition: str  # When this constraint applies
+    action: str     # What action to take
+    severity: str   # "info", "warning", "error", "critical"
+    auto_enforce: bool = False
+    related_guidelines: List[str] = field(default_factory=list)
+    created_at: datetime = field(default_factory=datetime.now)
+    
+    def to_dict(self) -> Dict[str, Any]:
+        return {
+            "constraint_id": self.constraint_id,
+            "name": self.name,
+            "description": self.description,
+            "constraint_type": self.constraint_type.value,
+            "condition": self.condition,
+            "action": self.action,
+            "severity": self.severity,
+            "auto_enforce": self.auto_enforce,
+            "related_guidelines": self.related_guidelines,
+            "created_at": self.created_at.isoformat()
+        }
+
+@dataclass
+class ProjectProfile:
+    """Complete project profile with guidelines and constraints"""
+    profile_id: str
+    name: str
+    description: str
+    project_type: str
+    team_size: int
+    complexity_level: str  # "low", "medium", "high"
+    guidelines: List[str] = field(default_factory=list)  # Guideline IDs
+    constraints: List[str] = field(default_factory=list)  # Constraint IDs
+    custom_settings: Dict[str, Any] = field(default_factory=dict)
+    active: bool = True
+    created_at: datetime = field(default_factory=datetime.now)
+    
+    def to_dict(self) -> Dict[str, Any]:
+        return {
+            "profile_id": self.profile_id,
+            "name": self.name,
+            "description": self.description,
+            "project_type": self.project_type,
+            "team_size": self.team_size,
+            "complexity_level": self.complexity_level,
+            "guidelines": self.guidelines,
+            "constraints": self.constraints,
+            "custom_settings": self.custom_settings,
+            "active": self.active,
+            "created_at": self.created_at.isoformat()
+        }
+
+class ProjectGuidelinesSystem:
+    """System for managing project-specific guidelines and constraints"""
+    
+    def __init__(self, config_engine: ConfigurationEngine, security_manager: SecurityManager):
+        self.config_engine = config_engine
+        self.security_manager = security_manager
+        
+        # Storage
+        self.guidelines: Dict[str, ProjectGuideline] = {}
+        self.constraints: Dict[str, ProjectConstraint] = {}
+        self.project_profiles: Dict[str, ProjectProfile] = {}
+        
+        # Templates and presets
+        self.guideline_templates = self._initialize_guideline_templates()
+        self.project_type_presets = self._initialize_project_presets()
+        
+        # Validation and enforcement
+        self.validation_history: List[Dict[str, Any]] = []
+        
+        # Initialize default guidelines
+        self._initialize_default_guidelines()
+        
+        logger.info("Project Guidelines System initialized")
+    
+    def _initialize_guideline_templates(self) -> Dict[str, Dict[str, Any]]:
+        """Initialize guideline templates""return_code_style": {
+                "title": "Code Style Guidelines",
+                "description": "Coding style and formatting standards",
+                "guideline_type": GuidelineType.CODING_STANDARD,
+                "content_template": "Follow {style_guide} coding standards with {indentation} indentation and {line_length} character line limit.",
+                "validation_rules": ["check_indentation", "check_line_length", "check_naming_conventionsdocumentation_standard": {
+                "title": "Documentation Standards",
+                "description": "Documentation requirements and standards",
+                "guideline_type": GuidelineType.DOCUMENTATION,
+                "content_template": "All {scope} must include comprehensive documentation with {detail_level} detail level.",
+                "validation_rules": ["check_docstring_presence", "check_documentation_completenesstesting_requirements": {
+                "title": "Testing Requirements",
+                "description": "Testing standards and coverage requirements",
+                "guideline_type": GuidelineType.TESTING,
+                "content_template": "Maintain {coverage_percentage}% test coverage with {test_types} testing.",
+                "validation_rules": ["check_test_coverage", "check_test_qualitysecurity_standards": {
+                "title": "Security Standards",
+                "description": "Security requirements and best practices",
+                "guideline_type": GuidelineType.SECURITY,
+                "content_template": "Follow {security_framework} security standards with {compliance_level} compliance.",
+                "validation_rules": ["check_security_vulnerabilities", "check_compliance"]
+            }
+        }
+    
+    def _initialize_project_presets(self) -> Dict[str, Dict[str, Any]]:
+        """Initialize project type presets""return_web_application": {
+                "name": "Web Application",
+                "default_guidelines": ["code_style", "documentation_standard", "testing_requirements", "security_standardscomplexity_settings": {
+                    "low": {"test_coverage": 70, "documentation_detail": "basicmedium": {"test_coverage": 80, "documentation_detail": "comprehensivehigh": {"test_coverage": 90, "documentation_detail": "extensiveapi_service": {
+                "name": "API Service",
+                "default_guidelines": ["code_style", "documentation_standard", "testing_requirements", "security_standardscomplexity_settings": {
+                    "low": {"test_coverage": 75, "documentation_detail": "comprehensivemedium": {"test_coverage": 85, "documentation_detail": "extensivehigh": {"test_coverage": 95, "documentation_detail": "exhaustiveenterprise_system": {
+                "name": "Enterprise System",
+                "default_guidelines": ["code_style", "documentation_standard", "testing_requirements", "security_standards", "compliancecomplexity_settings": {
+                    "low": {"test_coverage": 85, "documentation_detail": "comprehensivemedium": {"test_coverage": 90, "documentation_detail": "extensivehigh": {"test_coverage": 95, "documentation_detail": "exhaustive"}
+                }
+            }
+        }
+    
+    def _initialize_default_guidelines(self):
+        """Initialize default guidelines"""
+        default_guidelines = [
+            {
+                "guideline_id": "code_style_python",
+                "title": "Python Code Style",
+                "description": "PEP 8 compliant Python coding standards",
+                "guideline_type": GuidelineType.CODING_STANDARD,
+                "scope": GuidelineScope.PROJECT,
+                "constraint_type": ConstraintType.MANDATORY,
+                "content": "Follow PEP 8 coding standards with 4-space indentation and 88 character line limit.",
+                "examples": [
+                    "Use snake_case for variable names",
+                    "Use UPPER_CASE for constants",
+                    "Use CamelCase for class names"
+                ],
+                "validation_rules": ["check_pep8_compliance"],
+                "tags": ["python", "style", "pep8"]
+            },
+            {
+                "guideline_id": "documentation_functions",
+                "title": "Function Documentation",
+                "description": "All functions must have comprehensive docstrings",
+                "guideline_type": GuidelineType.DOCUMENTATION,
+                "scope": GuidelineScope.PROJECT,
+                "constraint_type": ConstraintType.MANDATORY,
+                "content": "All public functions must include docstrings with description, parameters, return values, and examples.",
+                "examples": [
+                    "Include parameter types and descriptions",
+                    "Document return value type and meaning",
+                    "Provide usage examples for complex functions"
+                ],
+                "validation_rules": ["check_function_docstrings"],
+                "tags": ["documentation", "functions"]
+            },
+            {
+                "guideline_id": "test_coverage_minimum",
+                "title": "Minimum Test Coverage",
+                "description": "Maintain minimum test coverage requirements",
+                "guideline_type": GuidelineType.TESTING,
+                "scope": GuidelineScope.PROJECT,
+                "constraint_type": ConstraintType.MANDATORY,
+                "content": "Maintain at least 80% test coverage for all production code.",
+                "examples": [
+                    "Write unit tests for all public methods",
+                    "Include integration tests for critical workflows",
+                    "Add edge case testing for complex logic"
+                ],
+                "validation_rules": ["check_test_coverage_minimum"],
+                "tags": ["testing", "coverage"]
+            },
+            {
+                "guideline_id": "security_no_hardcoded_secrets",
+                "title": "No Hardcoded Secrets",
+                "description": "Prohibit hardcoded secrets in source code",
+                "guideline_type": GuidelineType.SECURITY,
+                "scope": GuidelineScope.ORGANIZATION,
+                "constraint_type": ConstraintType.FORBIDDEN,
+                "content": "Never include passwords, API keys, or other secrets directly in source code.",
+                "examples": [
+                    "Use environment variables for secrets",
+                    "Use secure configuration management",
+                    "Implement proper secret rotation"
+                ],
+                "validation_rules": ["check_hardcoded_secrets"],
+                "tags": ["security", "secrets"]
+            }
+        ]
+        
+        for guideline_data in default_guidelines:
+            guideline = ProjectGuideline(
+                guideline_id=guideline_data["guideline_id"],
+                title=guideline_data["title"],
+                description=guideline_data["description"],
+                guideline_type=guideline_data["guideline_type"],
+                scope=guideline_data["scope"],
+                constraint_type=guideline_data["constraint_type"],
+                content=guideline_data["content"],
+                examples=guideline_data["examples"],
+                validation_rules=guideline_data["validation_rules"],
+                tags=guideline_data["tags"]
+            )
+            self.guidelines[guideline.guideline_id] = guideline
+    
+    def create_guideline(self, session_id: str, guideline_data: Dict[str, Any]) -> Dict[str, Any]:
+        """Create a new project guideline"""
+        # Check permissions
+        if not self.security_manager.require_permission(session_id, Permission.MANAGE_PROTOCOLS):
+            return {"success": False, "error": "Insufficient permissions"}
+        
+        try:
+            guideline_id = guideline_data.get("guideline_id", str(uuid.uuid4()))
+            
+            # Validate required fields
+            required_fields = ["title", "description", "guideline_type", "scope", "constraint_type", "content"]
+            for field in required_fields:
+                if field not in guideline_data:
+                    return {"success": False, "error": f"Missing required field: {field}"}
+            
+            guideline = ProjectGuideline(
+                guideline_id=guideline_id,
+                title=guideline_data["title"],
+                description=guideline_data["description"],
+                guideline_type=GuidelineType(guideline_data["guideline_type"]),
+                scope=GuidelineScope(guideline_data["scope"]),
+                constraint_type=ConstraintType(guideline_data["constraint_type"]),
+                content=guideline_data["content"],
+                examples=guideline_data.get("examples", []),
+                exceptions=guideline_data.get("exceptions", []),
+                validation_rules=guideline_data.get("validation_rules", []),
+                tags=guideline_data.get("tags", []),
+                priority=guideline_data.get("priority", 1)
+            )
+            
+            self.guidelines[guideline_id] = guideline
+            
+            return {
+                "success": True,
+                "guideline_id": guideline_id,
+                "message": f"Guideline '{guideline.title}' created successfully"
+            }
+            
+        except Exception as e:
+            logger.error(f"Error creating guideline: {e}")
+            return {"success": False, "error": str(e)}
+    
+    def create_project_profile(self, session_id: str, profile_data: Dict[str, Any]) -> Dict[str, Any]:
+        """Create a new project profile"""
+        # Check permissions
+        if not self.security_manager.require_permission(session_id, Permission.MANAGE_PROTOCOLS):
+            return {"success": False, "error": "Insufficient permissions"}
+        
+        try:
+            profile_id = profile_data.get("profile_id", str(uuid.uuid4()))
+            
+            # Use preset if specified
+            project_type = profile_data.get("project_type", "custom")
+            preset = self.project_type_presets.get(project_type, {})
+            
+            # Create profile
+            profile = ProjectProfile(
+                profile_id=profile_id,
+                name=profile_data["name"],
+                description=profile_data.get("description", ""),
+                project_type=project_type,
+                team_size=profile_data.get("team_size", 1),
+                complexity_level=profile_data.get("complexity_level", "medium"),
+                guidelines=profile_data.get("guidelines", preset.get("default_guidelines", [])),
+                constraints=profile_data.get("constraints", []),
+                custom_settings=profile_data.get("custom_settings", {})
+            )
+            
+            # Apply complexity-based settings
+            if project_type in self.project_type_presets:
+                complexity_settings = preset.get("complexity_settings", {}).get(profile.complexity_level, {})
+                profile.custom_settings.update(complexity_settings)
+            
+            self.project_profiles[profile_id] = profile
+            
+            return {
+                "success": True,
+                "profile_id": profile_id,
+                "message": f"Project profile '{profile.name}' created successfully"
+            }
+            
+        except Exception as e:
+            logger.error(f"Error creating project profile: {e}")
+            return {"success": False, "error": str(e)}
+    
+    def apply_project_profile(self, session_id: str, profile_id: str) -> Dict[str, Any]:
+        """Apply a project profile to current configuration"""
+        # Check permissions
+        if not self.security_manager.require_permission(session_id, Permission.WRITE_CONFIG):
+            return {"success": False, "error": "Insufficient permissions"}
+        
+        if profile_id not in self.project_profiles:
+            return {"success": False, "error": "Project profile not found"}
+        
+        try:
+            profile = self.project_profiles[profile_id]
+            
+            # Create workflow protocol from profile
+            protocol_data = {
+                "name": f"{profile.name} Protocol",
+                "description": f"Auto-generated protocol for {profile.name}",
+                "project_types": [profile.project_type],
+                "rules": []
+            }
+            
+            # Convert guidelines to protocol rules
+            for guideline_id in profile.guidelines:
+                if guideline_id in self.guidelines:
+                    guideline = self.guidelines[guideline_id]
+                    
+                    rule_data = {
+                        "name": guideline.title,
+                        "description": guideline.description,
+                        "condition": f"project_type == '{profile.project_type}'",
+                        "action": f"enforce_guideline('{guideline_id}')",
+                        "priority": guideline.priority
+                    }
+                    protocol_data["rules"].append(rule_data)
+            
+            # Apply the protocol (this would integrate with the protocol manager)
+            # For now, just record the application
+            application_record = {
+                "timestamp": datetime.now().isoformat(),
+                "profile_id": profile_id,
+                "profile_name": profile.name,
+                "user_id": self.security_manager.validate_session(session_id).user_id,
+                "guidelines_applied": len(profile.guidelines),
+                "constraints_applied": len(profile.constraints)
+            }
+            
+            self.validation_history.append(application_record)
+            
+            return {
+                "success": True,
+                "message": f"Applied project profile '{profile.name}'",
+                "guidelines_applied": len(profile.guidelines),
+                "constraints_applied": len(profile.constraints)
+            }
+            
+        except Exception as e:
+            logger.error(f"Error applying project profile: {e}")
+            return {"success": False, "error": str(e)}
+    
+    def validate_against_guidelines(self, content: str, file_path: str, 
+                                  profile_id: Optional[str] = None) -> Dict[str, Any]:
+        """Validate content against applicable guidelines"""
+        violations = []
+        
+        # Determine which guidelines to apply
+        if profile_id and profile_id in self.project_profiles:
+            profile = self.project_profiles[profile_id]
+            applicable_guidelines = [self.guidelines[gid] for gid in profile.guidelines 
+                                   if gid in self.guidelines]
+        else:
+            # Apply all enabled guidelines
+            applicable_guidelines = [g for g in self.guidelines.values() if g.enabled]
+        
+        # Apply each guideline
+        for guideline in applicable_guidelines:
+            guideline_violations = self._apply_guideline_validation(guideline, content, file_path)
+            violations.extend(guideline_violations)
+        
+        return {
+            "success": True,
+            "violations": violations,
+            "violation_count": len(violations),
+            "guidelines_checked": len(applicable_guidelines)
+        }
+    
+    def _apply_guideline_validation(self, guideline: ProjectGuideline, 
+                                  content: str, file_path: str) -> List[Dict[str, Any]]:
+        """Apply a single guideline validation"""
+        violations = []
+        
+        # This is a simplified implementation
+        # In production, you'd have more sophisticated validation engines
+        
+        for rule in guideline.validation_rules:
+            if rule == "check_pep8_compliance":
+                # Simple PEP 8 checks
+                lines = content.split('\n')
+                for i, line in enumerate(lines, 1):
+                    if len(line) > 88:
+                        violations.append({
+                            "guideline_id": guideline.guideline_id,
+                            "rule": rule,
+                            "file_path": file_path,
+                            "line_number": i,
+                            "message": f"Line exceeds 88 characters ({len(line)} chars)",
+                            "severity": "warning"
+                        })
+            
+            elif rule == "check_function_docstrings":
+                # Check for function docstrings
+                import re
+                func_pattern = r'def\s+(\w+)\s*\([^)]*\):'
+                matches = re.finditer(func_pattern, content)
+                
+                for match in matches:
+                    func_name = match.group(1)
+                    if not func_name.startswith('_'):  # Public function
+                        # Simple check: look for docstring after function
+                        func_end = match.end()
+                        next_content = content[func_end:func_end+200]
+                        if '"""' not in next_content and "'''" not in next_content:
+                            line_num = content[:match.start()].count('\n') + 1
+                            violations.append({
+                                "guideline_id": guideline.guideline_id,
+                                "rule": rule,
+                                "file_path": file_path,
+                                "line_number": line_num,
+                                "message": f"Public function '{func_name}' missing docstring",
+                                "severity": "error"
+                            })
+        
+        return violations
+    
+    def get_guidelines(self, session_id: str, filters: Optional[Dict[str, Any]] = None) -> Dict[str, Any]:
+        """Get guidelines with optional filtering"""
+        # Check permissions
+        if not self.security_manager.require_permission(session_id, Permission.READ_CONFIG):
+            return {"success": False, "error": "Insufficient permissions"}
+        
+        guidelines = list(self.guidelines.values())
+        
+        # Apply filters
+        if filters:
+            if "guideline_type" in filters:
+                guideline_type = GuidelineType(filters["guideline_type"])
+                guidelines = [g for g in guidelines if g.guideline_type == guideline_type]
+            
+            if "scope" in filters:
+                scope = GuidelineScope(filters["scope"])
+                guidelines = [g for g in guidelines if g.scope == scope]
+            
+            if "constraint_type" in filters:
+                constraint_type = ConstraintType(filters["constraint_type"])
+                guidelines = [g for g in guidelines if g.constraint_type == constraint_type]
+            
+            if "tags" in filters:
+                required_tags = filters["tags"]
+                if isinstance(required_tags, str):
+                    required_tags = [required_tags]
+                guidelines = [g for g in guidelines if any(tag in g.tags for tag in required_tags)]
+        
+        return {
+            "success": True,
+            "guidelines": [g.to_dict() for g in guidelines],
+            "total_count": len(guidelines)
+        }
+    
+    def get_project_profiles(self, session_id: str) -> Dict[str, Any]:
+        """Get all project profiles"""
+        # Check permissions
+        if not self.security_manager.require_permission(session_id, Permission.READ_CONFIG):
+            return {"success": False, "error": "Insufficient permissions"}
+        
+        profiles = []
+        for profile in self.project_profiles.values():
+            profile_dict = profile.to_dict()
+            profile_dict["guideline_count"] = len(profile.guidelines)
+            profile_dict["constraint_count"] = len(profile.constraints)
+            profiles.append(profile_dict)
+        
+        return {
+            "success": True,
+            "profiles": profiles,
+            "total_count": len(profiles)
+        }
+    
+    def get_guideline_templates(self) -> Dict[str, Any]:
+        """Get available guideline templates"""
+        return {
+            "success": True,
+            "templates": self.guideline_templates,
+            "project_presets": self.project_type_presets
+        }
+    
+    def create_guideline_from_template(self, session_id: str, template_id: str, 
+                                     customizations: Dict[str, Any]) -> Dict[str, Any]:
+        """Create a guideline from a template"""
+        # Check permissions
+        if not self.security_manager.require_permission(session_id, Permission.MANAGE_PROTOCOLS):
+            return {"success": False, "error": "Insufficient permissions"}
+        
+        if template_id not in self.guideline_templates:
+            return {"success": False, "error": "Template not found"}
+        
+        template = self.guideline_templates[template_id]
+        
+        # Create guideline data from template
+        guideline_data = {
+            "title": customizations.get("title", template["title"]),
+            "description": customizations.get("description", template["description"]),
+            "guideline_type": template["guideline_type"].value,
+            "scope": customizations.get("scope", "project"),
+            "constraint_type": customizations.get("constraint_type", "recommended"),
+            "content": template["content_template"].format(**customizations.get("parameters", {})),
+            "validation_rules": template.get("validation_rules", []),
+            "tags": customizations.get("tags", [template_id])
+        }
+        
+        return self.create_guideline(session_id, guideline_data)
+    
+    def get_system_statistics(self) -> Dict[str, Any]:
+        """Get system statistics"""
+        # Count by type
+        type_counts = {}
+        for guideline in self.guidelines.values():
+            gtype = guideline.guideline_type.value
+            type_counts[gtype] = type_counts.get(gtype, 0) + 1
+        
+        # Count by scope
+        scope_counts = {}
+        for guideline in self.guidelines.values():
+            scope = guideline.scope.value
+            scope_counts[scope] = scope_counts.get(scope, 0) + 1
+        
+        return {
+            "total_guidelines": len(self.guidelines),
+            "total_constraints": len(self.constraints),
+            "total_profiles": len(self.project_profiles),
+            "guideline_types": type_counts,
+            "guideline_scopes": scope_counts,
+            "available_templates": len(self.guideline_templates),
+            "validation_history": len(self.validation_history)
+        }
