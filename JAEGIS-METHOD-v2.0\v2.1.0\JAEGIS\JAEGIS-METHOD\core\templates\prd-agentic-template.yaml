@@ -1,0 +1,302 @@
+template_id: "jaegis_prd_template_v2"
+template_name: "JAEGIS Product Requirements Document"
+template_type: "prd"
+template_description: "Interactive PRD template with embedded agentic instructions for collaborative document creation"
+version: "2.0.0"
+
+global_context:
+  document_type: "PRD"
+  collaboration_mode: "human_ai_partnership"
+  methodology: "JAEGIS"
+  elicitation_enabled: true
+
+sections:
+  - section_id: "executive_summary"
+    section_name: "Executive Summary"
+    section_description: "High-level overview of the product and its strategic importance"
+    prerequisites: []
+    completion_criteria:
+      - "problem_clearly_defined"
+      - "solution_articulated"
+      - "value_proposition_clear"
+      - "success_metrics_identified"
+    
+    agentic_instructions:
+      - instruction_id: "exec_problem_exploration"
+        instruction_type: "question"
+        instruction_text: "Let's start by deeply understanding the problem space. What specific pain point or opportunity are we addressing? I'd like to explore this from multiple angles."
+        elicitation_techniques:
+          - "stakeholder_perspective_taking"
+          - "root_cause_analysis"
+          - "what_if_analysis"
+        expected_interaction: "User describes the core problem with depth and context"
+        context_conditions:
+          user_expertise:
+            novice: "I'll guide you through identifying and articulating the problem step by step"
+            expert: "Let's dive deep into the problem space and explore underlying causes"
+        personalization_rules:
+          domain_specific:
+            technical: "Focus on technical challenges and system limitations"
+            business: "Emphasize market opportunities and business impact"
+        validation_criteria:
+          - "specific_problem_identified"
+          - "stakeholder_impact_described"
+          - "problem_scope_defined"
+
+      - instruction_id: "exec_solution_brainstorm"
+        instruction_type: "brainstorm"
+        instruction_text: "Now let's collaboratively explore your solution approach. What makes your solution unique? Let's brainstorm the key differentiators and innovative aspects."
+        elicitation_techniques:
+          - "alternative_generation"
+          - "analogical_thinking"
+          - "competitive_analysis"
+          - "yes_and_building"
+        expected_interaction: "Collaborative exploration of solution uniqueness and competitive advantages"
+        validation_criteria:
+          - "unique_value_proposition"
+          - "competitive_differentiation"
+          - "innovation_elements_identified"
+
+      - instruction_id: "exec_success_metrics"
+        instruction_type: "analyze"
+        instruction_text: "Let's define what success looks like. How will we measure the impact of this product? I'll help you think through both quantitative and qualitative metrics."
+        elicitation_techniques:
+          - "multiple_perspective_simulation"
+          - "impact_analysis"
+          - "stakeholder_perspective_taking"
+        expected_interaction: "User defines measurable success criteria with AI guidance"
+        validation_criteria:
+          - "quantitative_metrics_defined"
+          - "qualitative_indicators_identified"
+          - "measurement_methods_specified"
+
+  - section_id: "user_personas"
+    section_name: "User Personas and Stakeholders"
+    section_description: "Detailed analysis of target users and key stakeholders"
+    prerequisites: ["executive_summary"]
+    completion_criteria:
+      - "primary_personas_defined"
+      - "user_needs_articulated"
+      - "stakeholder_map_complete"
+    
+    agentic_instructions:
+      - instruction_id: "persona_identification"
+        instruction_type: "brainstorm"
+        instruction_text: "Let's bring your users to life! Who are the people who will use this product? Let's create detailed personas that capture their needs, motivations, and challenges."
+        elicitation_techniques:
+          - "persona_development"
+          - "empathy_mapping"
+          - "stakeholder_perspective_taking"
+        expected_interaction: "Collaborative creation of detailed user personas"
+        validation_criteria:
+          - "demographic_information_complete"
+          - "goals_and_motivations_clear"
+          - "pain_points_identified"
+
+      - instruction_id: "user_journey_mapping"
+        instruction_type: "analyze"
+        instruction_text: "Now let's map out how these users will interact with your product. What's their journey from first awareness to becoming a power user?"
+        elicitation_techniques:
+          - "process_mapping"
+          - "user_journey_analysis"
+          - "touchpoint_identification"
+        expected_interaction: "User describes customer journey with AI guidance on touchpoints"
+        validation_criteria:
+          - "journey_stages_defined"
+          - "touchpoints_identified"
+          - "pain_points_mapped"
+
+  - section_id: "functional_requirements"
+    section_name: "Functional Requirements"
+    section_description: "Detailed specification of product functionality and features"
+    prerequisites: ["user_personas"]
+    completion_criteria:
+      - "core_features_defined"
+      - "user_stories_complete"
+      - "acceptance_criteria_clear"
+    
+    agentic_instructions:
+      - instruction_id: "feature_prioritization"
+        instruction_type: "analyze"
+        instruction_text: "Let's systematically identify and prioritize the features your product needs. I'll help you think through must-haves, nice-to-haves, and future possibilities."
+        elicitation_techniques:
+          - "hierarchical_decomposition"
+          - "priority_matrix_evaluation"
+          - "moscow_prioritization"
+        expected_interaction: "Collaborative feature identification and prioritization"
+        validation_criteria:
+          - "features_categorized_by_priority"
+          - "rationale_provided_for_priorities"
+          - "dependencies_identified"
+
+      - instruction_id: "user_story_creation"
+        instruction_type: "brainstorm"
+        instruction_text: "Now let's translate these features into user stories. For each key feature, let's craft stories that capture the user's perspective and desired outcome."
+        elicitation_techniques:
+          - "user_story_mapping"
+          - "acceptance_criteria_development"
+          - "scenario_planning"
+        expected_interaction: "Collaborative user story creation with acceptance criteria"
+        validation_criteria:
+          - "user_stories_follow_standard_format"
+          - "acceptance_criteria_specific_and_testable"
+          - "edge_cases_considered"
+
+  - section_id: "technical_requirements"
+    section_name: "Technical Requirements"
+    section_description: "Technical specifications, constraints, and architecture considerations"
+    prerequisites: ["functional_requirements"]
+    completion_criteria:
+      - "technical_constraints_identified"
+      - "performance_requirements_defined"
+      - "integration_requirements_specified"
+    
+    agentic_instructions:
+      - instruction_id: "technical_constraints"
+        instruction_type: "analyze"
+        instruction_text: "Let's explore the technical landscape. What are the technical constraints, requirements, and considerations that will shape how we build this product?"
+        elicitation_techniques:
+          - "constraint_analysis"
+          - "technical_risk_assessment"
+          - "scalability_analysis"
+        expected_interaction: "User describes technical requirements with AI guidance on considerations"
+        validation_criteria:
+          - "performance_requirements_quantified"
+          - "scalability_requirements_defined"
+          - "security_requirements_specified"
+
+      - instruction_id: "integration_analysis"
+        instruction_type: "question"
+        instruction_text: "What systems, APIs, or platforms does your product need to integrate with? Let's map out the integration landscape and identify potential challenges."
+        elicitation_techniques:
+          - "system_mapping"
+          - "integration_analysis"
+          - "dependency_mapping"
+        expected_interaction: "User identifies integration requirements with complexity assessment"
+        validation_criteria:
+          - "integration_points_identified"
+          - "data_flow_requirements_specified"
+          - "integration_complexity_assessed"
+
+  - section_id: "success_metrics"
+    section_name: "Success Metrics and KPIs"
+    section_description: "Measurable indicators of product success and performance"
+    prerequisites: ["functional_requirements"]
+    completion_criteria:
+      - "kpis_defined_and_measurable"
+      - "measurement_methods_specified"
+      - "success_thresholds_established"
+    
+    agentic_instructions:
+      - instruction_id: "kpi_identification"
+        instruction_type: "brainstorm"
+        instruction_text: "Let's define how we'll measure success. What metrics will tell us that this product is achieving its goals? I'll help you think through leading and lagging indicators."
+        elicitation_techniques:
+          - "metrics_brainstorming"
+          - "leading_lagging_analysis"
+          - "stakeholder_value_mapping"
+        expected_interaction: "Collaborative identification of meaningful KPIs"
+        validation_criteria:
+          - "metrics_aligned_with_objectives"
+          - "metrics_measurable_and_specific"
+          - "baseline_and_targets_defined"
+
+      - instruction_id: "measurement_strategy"
+        instruction_type: "analyze"
+        instruction_text: "Now let's figure out how we'll actually measure these KPIs. What tools, processes, and cadences will we use to track progress?"
+        elicitation_techniques:
+          - "measurement_planning"
+          - "tool_evaluation"
+          - "process_design"
+        expected_interaction: "User defines measurement approach with AI guidance on best practices"
+        validation_criteria:
+          - "measurement_tools_identified"
+          - "reporting_cadence_defined"
+          - "responsibility_assigned"
+
+  - section_id: "risks_and_assumptions"
+    section_name: "Risks and Assumptions"
+    section_description: "Identification and mitigation of project risks and key assumptions"
+    prerequisites: ["technical_requirements"]
+    completion_criteria:
+      - "key_risks_identified"
+      - "mitigation_strategies_defined"
+      - "assumptions_documented"
+    
+    agentic_instructions:
+      - instruction_id: "risk_identification"
+        instruction_type: "analyze"
+        instruction_text: "Let's proactively identify potential risks. What could go wrong with this product, and how can we prepare for or prevent these issues?"
+        elicitation_techniques:
+          - "risk_assessment_analysis"
+          - "failure_mode_analysis"
+          - "scenario_planning"
+        expected_interaction: "Systematic risk identification with probability and impact assessment"
+        validation_criteria:
+          - "risks_categorized_by_type"
+          - "probability_and_impact_assessed"
+          - "mitigation_strategies_defined"
+
+      - instruction_id: "assumption_validation"
+        instruction_type: "question"
+        instruction_text: "What assumptions are we making about users, market, technology, or resources? Let's identify these assumptions and think about how to validate them."
+        elicitation_techniques:
+          - "assumption_identification"
+          - "validation_planning"
+          - "hypothesis_formation"
+        expected_interaction: "User identifies key assumptions with validation approaches"
+        validation_criteria:
+          - "assumptions_explicitly_stated"
+          - "validation_methods_identified"
+          - "timeline_for_validation_defined"
+
+interaction_flow:
+  opening_sequence:
+    - step: 1
+      action: "welcome_and_context"
+      agent_behavior: "Warm welcome, explain collaborative approach, set expectations"
+    - step: 2
+      action: "assess_user_expertise"
+      agent_behavior: "Determine user's experience level and domain knowledge"
+    - step: 3
+      action: "customize_experience"
+      agent_behavior: "Adapt template complexity and guidance level"
+
+  section_progression:
+    - step: 1
+      action: "introduce_section"
+      agent_behavior: "Explain section purpose and how it fits into overall PRD"
+    - step: 2
+      action: "execute_instructions"
+      agent_behavior: "Guide through agentic instructions with elicitation techniques"
+    - step: 3
+      action: "validate_and_refine"
+      agent_behavior: "Review responses, suggest improvements, ensure quality"
+    - step: 4
+      action: "transition_preparation"
+      agent_behavior: "Summarize section outcomes, prepare for next section"
+
+  completion_sequence:
+    - step: 1
+      action: "comprehensive_review"
+      agent_behavior: "Review entire PRD for completeness and consistency"
+    - step: 2
+      action: "quality_assessment"
+      agent_behavior: "Assess overall quality and suggest final improvements"
+    - step: 3
+      action: "next_steps_planning"
+      agent_behavior: "Recommend next steps for PRD implementation and validation"
+
+quality_standards:
+  completeness_threshold: 0.8
+  clarity_threshold: 0.7
+  specificity_threshold: 0.8
+  stakeholder_alignment_threshold: 0.9
+  overall_quality_threshold: 0.8
+
+personalization_settings:
+  expertise_adaptation: true
+  domain_customization: true
+  interaction_style_matching: true
+  progress_based_guidance: true
+  cultural_sensitivity: true
