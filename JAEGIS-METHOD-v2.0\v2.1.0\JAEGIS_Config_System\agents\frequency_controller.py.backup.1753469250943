@@ -1,0 +1,558 @@
+"""
+JAEGIS Configuration Management System - Frequency Controller Agent
+Dedicated agent for managing operational parameters and frequency controls
+"""
+
+import asyncio
+import logging
+from typing import Dict, List, Optional, Any, Callable
+from dataclasses import dataclass, field
+from datetime import datetime
+import json
+
+from ..core.config_schema import (
+    FrequencyParameters, ConfigurationMode, AgentTier, 
+    FREQUENCY_PARAMETER_DEFINITIONS, PRESET_CONFIGURATIONS
+)
+from ..core.config_engine import ConfigurationEngine, ConfigurationChangeEvent
+from ..core.agent_communication import (
+    AgentCommunicationHub, AgentMessage, MessageType, MessagePriority,
+    AgentInfo, ConfigurationBroadcaster
+)
+from ..core.security import SecurityManager, Permission
+
+logger = logging.getLogger(__name__)
+
+@dataclass
+class ParameterImpact:
+    """Impact analysis for parameter changes"""
+    parameter_name: str
+    current_value: int
+    proposed_value: int
+    impact_level: str  # "low", "medium", "high"
+    estimated_effects: List[str]
+    performance_change: float  # Percentage change in performance
+    quality_change: float  # Percentage change in quality
+    speed_change: float  # Percentage change in speed
+
+@dataclass
+class FrequencyProfile:
+    """Frequency configuration profile"""
+    profile_id: str
+    name: str
+    description: str
+    parameters: FrequencyParameters
+    use_cases: List[str]
+    created_at: datetime = field(default_factory=datetime.now)
+    usage_count: int = 0
+
+class FrequencyControllerAgent:
+    """Agent responsible for managing frequency parameters and operational controls"""
+    
+    def __init__(self, config_engine: ConfigurationEngine, 
+                 communication_hub: AgentCommunicationHub,
+                 security_manager: SecurityManager):
+        self.agent_id = "frequency_controller"
+        self.agent_name = "Frequency_Controller_Agenttool_2546": {
+                "name": "Speed Mode",
+                "description": "Optimized for fast responses and quick turnaround",
+                "icon": "⚡",
+                "tool_9799": {
+                "name": "Quality Mode",
+                "description": "Optimized for highest quality output and thorough validation",
+                "icon": "💎",
+                "parameterstool_2485": {
+                "name": "Balanced Mode",
+                "description": "Balanced approach between speed and quality",
+                "icon": "⚖️",
+                "parameters": PRESET_CONFIGURATIONS[ConfigurationMode.BALANCED_MODE]
+            }
+        }
+        
+        # Register with communication hub
+        agent_info = AgentInfo(
+            agent_id=self.agent_id,
+            agent_name=self.agent_name,
+            agent_type="configuration_controller",
+            tier="tier_1_orchestrator",
+            capabilities=[
+                "frequency_management",
+                "parameter_optimization",
+                "impact_analysis",
+                "profile_management"
+            ]
+        )
+        self.communication_hub.register_agent(agent_info)
+        
+        # Register configuration change listener
+        self.config_engine.add_change_listener(self._on_configuration_change)
+        
+        logger.info("Frequency Controller Agent initialized")
+    
+    def _initialize_default_profiles(self):
+        """Initialize default frequency profiles"""
+        # Speed Mode Profile
+        speed_params = FrequencyParameters()
+        for param, value in PRESET_CONFIGURATIONS[ConfigurationMode.SPEED_MODE].items():
+            if param == "agent_utilization":
+                speed_params.agent_utilization = value
+            else:
+                setattr(speed_params, param, value)
+        
+        self.frequency_profiles["speed_mode"] = FrequencyProfile(
+            profile_id="speed_mode",
+            name="Speed Mode",
+            description="Optimized for fast responses and quick turnaround",
+            parameters=speed_params,
+            use_cases=["Rapid prototyping", "Quick iterations", "Time-critical projects"]
+        )
+        
+        # Quality Mode Profile
+        quality_params = FrequencyParameters()
+        for param, value in PRESET_CONFIGURATIONS[ConfigurationMode.QUALITY_MODE].items():
+            if param == "agent_utilization":
+                quality_params.agent_utilization = value
+            else:
+                setattr(quality_params, param, value)
+        
+        self.frequency_profiles["quality_mode"] = FrequencyProfile(
+            profile_id="quality_mode",
+            name="Quality Mode",
+            description="Optimized for highest quality output and thorough validation",
+            parameters=quality_params,
+            use_cases=["Production systems", "Critical applications", "High-stakes projects"]
+        )
+        
+        # Balanced Mode Profile
+        balanced_params = FrequencyParameters()
+        for param, value in PRESET_CONFIGURATIONS[ConfigurationMode.BALANCED_MODE].items():
+            if param == "agent_utilization":
+                balanced_params.agent_utilization = value
+            else:
+                setattr(balanced_params, param, value)
+        
+        self.frequency_profiles["balanced_mode"] = FrequencyProfile(
+            profile_id="balanced_mode",
+            name="Balanced Mode",
+            description="Balanced approach between speed and quality",
+            parameters=balanced_params,
+            use_cases=["General development", "Most projects", "Default configuration"]
+        )
+    
+    async def update_frequency_parameter(self, session_id: str, parameter_name: str, value: int) -> Dict[str, Any]:
+        """Update a frequency parameter with validation and impact analysis"""
+        # Check permissions
+        if not self.security_manager.require_permission(session_id, Permission.WRITE_CONFIG):
+            return {"success": False, "error": "Insufficient permissions"}
+        
+        # Validate parameter
+        if parameter_name not in FREQUENCY_PARAMETER_DEFINITIONS:
+            return {"success": False, "error": f"Unknown parameter: {parameter_name}"}
+        
+        param_def = FREQUENCY_PARAMETER_DEFINITIONS[parameter_name]
+        if not param_def.validate_value(value):
+            return {"success": False, "error": f"Invalid value for {parameter_name}: {value}"}
+        
+        # Get current value
+        current_config = self.config_engine.get_current_config()
+        current_value = getattr(current_config.frequency_parameters, parameter_name)
+        
+        # Perform impact analysis
+        impact = self._analyze_parameter_impact(parameter_name, current_value, value)
+        
+        # Update the parameter
+        success = self.config_engine.update_frequency_parameter(parameter_name, value)
+        
+        if success:
+            # Record in history
+            self._record_parameter_change(parameter_name, current_value, value, session_id)
+            
+            # Broadcast change to agents
+            await self.broadcaster.broadcast_frequency_change(parameter_name, value, current_value)
+            
+            return {
+                "success": True,
+                "parameter": parameter_name,
+                "old_value": current_value,
+                "new_value": value,
+                "impact": impact.to_dict() if hasattr(impact, 'to_dict') else impact.__dict__
+            }
+        else:
+            return {"success": False, "error": "Failed to update parameter"}
+    
+    async def update_agent_utilization(self, session_id: str, tier: str, value: int) -> Dict[str, Any]:
+        """Update agent utilization for a specific tier"""
+        # Check permissions
+        if not self.security_manager.require_permission(session_id, Permission.WRITE_CONFIG):
+            return {"success": False, "error": "Insufficient permissions"}
+        
+        # Validate tier
+        try:
+            agent_tier = AgentTier(tier)
+        except ValueError:
+            return {"success": False, "error": f"Invalid agent tier: {tier}"}
+        
+        # Validate value
+        if not (0 <= value <= 100):
+            return {"success": False, "error": f"Value must be between 0 and 100: {value}"}
+        
+        # Get current value
+        current_config = self.config_engine.get_current_config()
+        current_value = current_config.frequency_parameters.agent_utilization.get(agent_tier, 0)
+        
+        # Update the utilization
+        success = self.config_engine.update_agent_utilization(tier, value)
+        
+        if success:
+            # Record in history
+            self._record_parameter_change(f"agent_utilization.{tier}", current_value, value, session_id)
+            
+            # Broadcast change to agents
+            await self.broadcaster.broadcast_frequency_change(f"agent_utilization.{tier}", value, current_value)
+            
+            return {
+                "success": True,
+                "tier": tier,
+                "old_value": current_value,
+                "new_value": value
+            }
+        else:
+            return {"success": False, "error": "Failed to update agent utilization"}
+    
+    async def apply_frequency_profile(self, session_id: str, profile_id: str) -> Dict[str, Any]:
+        """Apply a predefined frequency profile"""
+        # Check permissions
+        if not self.security_manager.require_permission(session_id, Permission.WRITE_CONFIG):
+            return {"success": False, "error": "Insufficient permissions"}
+        
+        # Get profile
+        profile = self.frequency_profiles.get(profile_id)
+        if not profile:
+            return {"success": False, "error": f"Profile not found: {profile_id}"}
+        
+        # Get current configuration for comparison
+        current_config = self.config_engine.get_current_config()
+        old_params = current_config.frequency_parameters
+        
+        # Apply profile parameters
+        changes = []
+        
+        # Update frequency parameters
+        for param_name in ["research_intensity", "task_decomposition", "validation_thoroughness", "documentation_detail"]:
+            new_value = getattr(profile.parameters, param_name)
+            old_value = getattr(old_params, param_name)
+            
+            if new_value != old_value:
+                success = self.config_engine.update_frequency_parameter(param_name, new_value)
+                if success:
+                    changes.append({
+                        "parameter": param_name,
+                        "old_value": old_value,
+                        "new_value": new_value
+                    })
+                    
+                    # Broadcast change
+                    await self.broadcaster.broadcast_frequency_change(param_name, new_value, old_value)
+        
+        # Update agent utilization
+        for tier, new_value in profile.parameters.agent_utilization.items():
+            old_value = old_params.agent_utilization.get(tier, 0)
+            
+            if new_value != old_value:
+                success = self.config_engine.update_agent_utilization(tier.value, new_value)
+                if success:
+                    changes.append({
+                        "parameter": f"agent_utilization.{tier.value}",
+                        "old_value": old_value,
+                        "new_value": new_value
+                    })
+                    
+                    # Broadcast change
+                    await self.broadcaster.broadcast_frequency_change(f"agent_utilization.{tier.value}", new_value, old_value)
+        
+        # Update profile usage count
+        profile.usage_count += 1
+        
+        # Record the profile application
+        user = self.security_manager.validate_session(session_id)
+        self._record_parameter_change(
+            "profile_applied", 
+            "none", 
+            profile_id, 
+            session_id,
+            {"profile_name": profile.name, "changes_count": len(changes)}
+        )
+        
+        return {
+            "success": True,
+            "profile": profile.name,
+            "changes": changes,
+            "total_changes": len(changes)
+        }
+    
+    def _analyze_parameter_impact(self, parameter_name: str, current_value: int, proposed_value: int) -> ParameterImpact:
+        """Analyze the impact of changing a parameter"""
+        change_magnitude = abs(proposed_value - current_value)
+        change_direction = 1 if proposed_value > current_value else -1
+        
+        # Determine impact level
+        if change_magnitude < 10:
+            impact_level = "low"
+        elif change_magnitude < 30:
+            impact_level = "medium"
+        else:
+            impact_level = "high"
+        
+        # Parameter-specific impact analysis
+        estimated_effects = []
+        performance_change = 0.0
+        quality_change = 0.0
+        speed_change = 0.0
+        
+        if parameter_name == "research_intensity":
+            if change_direction > 0:
+                estimated_effects.extend([
+                    "More thorough research and information gathering",
+                    "Increased response time for initial queries",
+                    "Higher quality research outputs"
+                ])
+                performance_change = change_magnitude * 0.5
+                quality_change = change_magnitude * 0.8
+                speed_change = -change_magnitude * 0.3
+            else:
+                estimated_effects.extend([
+                    "Faster initial responses",
+                    "Less comprehensive research",
+                    "Potential reduction in research quality"
+                ])
+                performance_change = -change_magnitude * 0.3
+                quality_change = -change_magnitude * 0.6
+                speed_change = change_magnitude * 0.5
+        
+        elif parameter_name == "task_decomposition":
+            if change_direction > 0:
+                estimated_effects.extend([
+                    "More detailed task breakdowns",
+                    "Better project organization",
+                    "Increased planning overhead"
+                ])
+                performance_change = change_magnitude * 0.4
+                quality_change = change_magnitude * 0.6
+                speed_change = -change_magnitude * 0.2
+            else:
+                estimated_effects.extend([
+                    "Simpler task structures",
+                    "Faster project initiation",
+                    "Potentially less detailed planning"
+                ])
+                performance_change = -change_magnitude * 0.2
+                quality_change = -change_magnitude * 0.4
+                speed_change = change_magnitude * 0.3
+        
+        elif parameter_name == "validation_thoroughness":
+            if change_direction > 0:
+                estimated_effects.extend([
+                    "More comprehensive quality checks",
+                    "Higher output quality",
+                    "Increased processing time"
+                ])
+                performance_change = change_magnitude * 0.6
+                quality_change = change_magnitude * 0.9
+                speed_change = -change_magnitude * 0.4
+            else:
+                estimated_effects.extend([
+                    "Faster processing",
+                    "Reduced quality assurance",
+                    "Potential quality issues"
+                ])
+                performance_change = -change_magnitude * 0.4
+                quality_change = -change_magnitude * 0.8
+                speed_change = change_magnitude * 0.6
+        
+        elif parameter_name == "documentation_detail":
+            if change_direction > 0:
+                estimated_effects.extend([
+                    "More comprehensive documentation",
+                    "Better project handoff materials",
+                    "Increased documentation time"
+                ])
+                performance_change = change_magnitude * 0.3
+                quality_change = change_magnitude * 0.5
+                speed_change = -change_magnitude * 0.2
+            else:
+                estimated_effects.extend([
+                    "Faster documentation generation",
+                    "More concise documentation",
+                    "Potentially less detailed guides"
+                ])
+                performance_change = -change_magnitude * 0.2
+                quality_change = -change_magnitude * 0.3
+                speed_change = change_magnitude * 0.4
+        
+        return ParameterImpact(
+            parameter_name=parameter_name,
+            current_value=current_value,
+            proposed_value=proposed_value,
+            impact_level=impact_level,
+            estimated_effects=estimated_effects,
+            performance_change=performance_change,
+            quality_change=quality_change,
+            speed_change=speed_change
+        )
+    
+    def get_parameter_impact_prediction(self, parameter_name: str, proposed_value: int) -> Dict[str, Any]:
+        """Get impact prediction for a parameter change"""
+        current_config = self.config_engine.get_current_config()
+        current_value = getattr(current_config.frequency_parameters, parameter_name, 0)
+        
+        impact = self._analyze_parameter_impact(parameter_name, current_value, proposed_value)
+        
+        return {
+            "parameter": parameter_name,
+            "current_value": current_value,
+            "proposed_value": proposed_value,
+            "impact_level": impact.impact_level,
+            "estimated_effects": impact.estimated_effects,
+            "performance_change": f"{impact.performance_change:+.1f}%",
+            "quality_change": f"{impact.quality_change:+.1f}%",
+            "speed_change": f"{impact.speed_change:+.1f}%"
+        }
+    
+    def get_frequency_profiles(self) -> List[Dict[str, Any]]:
+        """Get all available frequency profiles"""
+        return [
+            {
+                "profile_id": profile.profile_id,
+                "name": profile.name,
+                "description": profile.description,
+                "parameters": profile.parameters.to_dict(),
+                "use_cases": profile.use_cases,
+                "usage_count": profile.usage_count
+            }
+            for profile in self.frequency_profiles.values()
+        ]
+
+    def get_preset_modes(self) -> Dict[str, Any]:
+        """Get all available preset modes with detailed information"""
+        return {
+            "modes": self.preset_modes,
+            "current_mode": self._detect_current_mode(),
+            "total_modes": len(self.preset_modes)
+        }
+
+    def _detect_current_mode(self) -> str:
+        """Detect which preset mode is currently active based on parameters"""
+        current_config = self.config_engine.get_current_config()
+        current_params = current_config.frequency_parameters
+
+        # Compare current parameters with each preset
+        for mode_id, mode_data in self.preset_modes.items():
+            preset_params = mode_data["parameters"]
+            matches = 0
+            total_params = 0
+
+            # Check frequency parameters
+            for param_name in ["research_intensity", "task_decomposition", "validation_thoroughness", "documentation_detail"]:
+                if param_name in preset_params:
+                    current_value = getattr(current_params, param_name)
+                    preset_value = preset_params[param_name]
+                    if abs(current_value - preset_value) <= 5:  # Allow 5% tolerance
+                        matches += 1
+                    total_params += 1
+
+            # Check agent utilization
+            if "agent_utilization" in preset_params:
+                for tier, preset_util in preset_params["agent_utilization"].items():
+                    current_util = current_params.agent_utilization.get(tier, 0)
+                    if abs(current_util - preset_util) <= 10:  # Allow 10% tolerance
+                        matches += 1
+                    total_params += 1
+
+            # If 80% or more parameters match, consider it this mode
+            if total_params > 0 and (matches / total_params) >= 0.8:
+                return mode_id
+
+        return "custom"
+    
+    def get_current_frequency_state(self) -> Dict[str, Any]:
+        """Get current frequency parameter state"""
+        current_config = self.config_engine.get_current_config()
+        
+        return {
+            "frequency_parameters": current_config.frequency_parameters.to_dict(),
+            "configuration_mode": current_config.mode.value,
+            "tool_4863": {
+                name: {
+                    "display_name": param_def.display_name,
+                    "description": param_def.description,
+                    "default_value": param_def.default_value,
+                    "impact_description": param_def.impact_description,
+                    "category": param_def.category
+                }
+                for name, param_def in FREQUENCY_PARAMETER_DEFINITIONS.items()
+            }
+        }
+    
+    def _record_parameter_change(self, parameter_name: str, old_value: Any, new_value: Any, 
+                                session_id: str, additional_data: Dict[str, Any] = None):
+        """Record parameter change in history"""
+        user = self.security_manager.validate_session(session_id)
+        
+        change_record = {
+            "timestamp": datetime.now().isoformat(),
+            "parameter": parameter_name,
+            "old_value": old_value,
+            "new_value": new_value,
+            "user_id": user.user_id if user else "unknown",
+            "username": user.username if user else "unknown",
+            "session_id": session_id
+        }
+        
+        if additional_data:
+            change_record.update(additional_data)
+        
+        if parameter_name not in self.parameter_history:
+            self.parameter_history[parameter_name] = []
+        
+        self.parameter_history[parameter_name].append(change_record)
+        
+        # Keep only last 100 changes per parameter
+        if len(self.parameter_history[parameter_name]) > 100:
+            self.parameter_history[parameter_name] = self.parameter_history[parameter_name][-100:]
+    
+    def get_parameter_history(self, parameter_name: Optional[str] = None, limit: int = 50) -> List[Dict[str, Any]]:
+        """Get parameter change history"""
+        if parameter_name:
+            return self.parameter_history.get(parameter_name, [])[-limit:]
+        else:
+            # Return combined history from all parameters
+            all_changes = []
+            for param_changes in self.parameter_history.values():
+                all_changes.extend(param_changes)
+            
+            # Sort by timestamp and return most recent
+            all_changes.sort(key=lambda x: x["timestamp"], reverse=True)
+            return all_changes[:limit]
+    
+    async def _on_configuration_change(self, event: ConfigurationChangeEvent):
+        """Handle configuration change events"""
+        logger.info(f"Configuration change detected: {event.parameter_name}")
+        
+        # Update any cached data or perform additional processing
+        if event.parameter_name.startswith("frequency"):
+            # Frequency parameter changed
+            pass
+    
+    def get_agent_statistics(self) -> Dict[str, Any]:
+        """Get agent statistics and performance metrics"""
+        total_changes = sum(len(changes) for changes in self.parameter_history.values())
+        
+        return {
+            "agent_id": self.agent_id,
+            "agent_name": self.agent_name,
+            "total_parameter_changes": total_changes,
+            "tracked_parameters": len(self.parameter_history),
+            "available_profiles": len(self.frequency_profiles),
+            "most_changed_parameter": max(self.parameter_history.keys(), 
+                                        key=lambda k: len(self.parameter_history[k])) if self.parameter_history else None
+        }
