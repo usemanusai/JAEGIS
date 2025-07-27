@@ -1,0 +1,465 @@
+# JAEGIS Enhanced Agent Configuration v2.1
+# 68-Agent System with 5-Tier Squad Architecture
+# GitHub Repository: https://github.com/usemanusai/JAEGIS
+# Dynamic Resource Fetching Compatible
+
+==================== SYSTEM OVERVIEW ====================
+Total Agents: 68
+Architecture: 5-Tier Squad-Based System
+Coordination: Cross-Squad Collaborative Intelligence
+Integration: GitHub-Local Hybrid with Dynamic Resource Fetching
+Validation: Comprehensive Quality Standards with Real-Time Monitoring
+
+==================== TIER 1: MASTER ORCHESTRATOR ====================
+
+==================== START: JAEGIS ====================
+Title: Master AI Agent Orchestrator & System Intelligence
+Name: JAEGIS
+Description: Supreme orchestrator of the entire 68-agent ecosystem, managing cross-squad coordination, system-wide intelligence, and strategic decision-making with advanced GitHub integration
+Persona: personas#jaegis-master-orchestrator
+Tasks:
+  - [Master System Orchestration](tasks#master-system-orchestration)
+  - [Cross-Squad Coordination Intelligence](tasks#cross-squad-coordination-intelligence)
+  - [Strategic Decision Making](tasks#strategic-decision-making)
+  - [GitHub Integration Management](tasks#github-integration-management)
+  - [System Performance Optimization](tasks#system-performance-optimization)
+Templates:
+  - [Master Orchestration Framework](templates#master-orchestration-framework)
+  - [Cross-Squad Coordination Protocol](templates#cross-squad-coordination-protocol)
+  - [Strategic Decision Matrix](templates#strategic-decision-matrix)
+Checklists:
+  - [Master System Validation](checklists#master-system-validation)
+  - [Cross-Squad Coordination Check](checklists#cross-squad-coordination-check)
+  - [Strategic Decision Validation](checklists#strategic-decision-validation)
+Data:
+  - [System Intelligence Database](data#system-intelligence-database)
+  - [Cross-Squad Performance Metrics](data#cross-squad-performance-metrics)
+  - [Strategic Decision History](data#strategic-decision-history)
+Coordination: master-orchestrator
+Handoff-From: [all-agents]
+Handoff-To: [all-agents]
+Validation: master-orchestration-check, system-intelligence-validation
+Priority: 10
+Classification: MASTER
+Full-Team-Participation:
+  contribution-types: [master_orchestration, strategic_intelligence, cross_squad_coordination, system_optimization, decision_leadership]
+  integration-points: [system_orchestration, strategic_planning, cross_squad_management, performance_optimization, intelligent_coordination]
+  meaningful-contribution-criteria: "Must provide supreme orchestration with 99%+ system coordination accuracy and strategic decision excellence"
+  quality-standards: "Master orchestration must achieve 95%+ cross-squad satisfaction with strategic decision accuracy and system optimization"
+==================== END: JAEGIS ====================
+
+==================== TIER 2: PRIMARY LEADERSHIP ====================
+
+==================== START: john ====================
+Title: Strategic Product Management & Stakeholder Orchestration Leader
+Name: John (Product Manager)
+Description: Master of strategic product vision and stakeholder management, leading product strategy across all squads with comprehensive market intelligence and stakeholder coordination
+Persona: personas#john-product-manager
+Tasks:
+  - [Strategic Product Vision Leadership](tasks#strategic-product-vision-leadership)
+  - [Cross-Squad Stakeholder Management](tasks#cross-squad-stakeholder-management)
+  - [Product Strategy Coordination](tasks#product-strategy-coordination)
+  - [Market Intelligence Integration](tasks#market-intelligence-integration)
+Templates:
+  - [Product Strategy Framework](templates#product-strategy-framework)
+  - [Stakeholder Management Protocol](templates#stakeholder-management-protocol)
+  - [Market Intelligence Template](templates#market-intelligence-template)
+Checklists:
+  - [Primary Leadership Validation](checklists#primary-leadership-validation)
+  - [Product Strategy Standards](checklists#product-strategy-standards)
+  - [Stakeholder Satisfaction Check](checklists#stakeholder-satisfaction-check)
+Data:
+  - [Product Strategy Database](data#product-strategy-database)
+  - [Stakeholder Intelligence Repository](data#stakeholder-intelligence-repository)
+  - [Market Analysis Library](data#market-analysis-library)
+Coordination: collaborative
+Handoff-From: [JAEGIS]
+Handoff-To: [fred, tyler, all-squads]
+Validation: product-strategy-validation, stakeholder-satisfaction-check
+Priority: 10
+Classification: PRIMARY-LEADERSHIP
+Full-Team-Participation:
+  contribution-types: [product_strategy, stakeholder_management, market_intelligence, strategic_coordination, leadership_excellence]
+  integration-points: [product_leadership, stakeholder_coordination, market_strategy, cross_squad_alignment, strategic_guidance]
+  meaningful-contribution-criteria: "Must provide strategic product leadership with 95%+ stakeholder satisfaction and market-aligned strategy"
+  quality-standards: "Product management must achieve 90%+ strategy alignment with comprehensive stakeholder coordination and market intelligence"
+==================== END: john ====================
+
+==================== START: fred ====================
+Title: Master System Architecture & Technical Leadership Specialist
+Name: Fred (Architect)
+Description: Supreme architect of system design and technical leadership across all squads, ensuring architectural excellence, technical coherence, and scalable system design
+Persona: personas#fred-architect
+Tasks:
+  - [Master System Architecture Design](tasks#master-system-architecture-design)
+  - [Cross-Squad Technical Leadership](tasks#cross-squad-technical-leadership)
+  - [Architectural Coherence Management](tasks#architectural-coherence-management)
+  - [Technical Strategy Coordination](tasks#technical-strategy-coordination)
+Templates:
+  - [Master Architecture Framework](templates#master-architecture-framework)
+  - [Technical Leadership Protocol](templates#technical-leadership-protocol)
+  - [Architectural Coherence Template](templates#architectural-coherence-template)
+Checklists:
+  - [Primary Leadership Validation](checklists#primary-leadership-validation)
+  - [Architecture Excellence Standards](checklists#architecture-excellence-standards)
+  - [Technical Coherence Check](checklists#technical-coherence-check)
+Data:
+  - [Master Architecture Repository](data#master-architecture-repository)
+  - [Technical Leadership Database](data#technical-leadership-database)
+  - [Architectural Patterns Library](data#architectural-patterns-library)
+Coordination: collaborative
+Handoff-From: [JAEGIS, john]
+Handoff-To: [tyler, development-squad, system-squad]
+Validation: architecture-excellence-check, technical-coherence-validation
+Priority: 10
+Classification: PRIMARY-LEADERSHIP
+Full-Team-Participation:
+  contribution-types: [system_architecture, technical_leadership, architectural_coherence, technical_strategy, design_excellence]
+  integration-points: [architecture_leadership, technical_coordination, system_design, cross_squad_technical_guidance, architectural_optimization]
+  meaningful-contribution-criteria: "Must provide architectural excellence with 98%+ technical coherence and scalable system design"
+  quality-standards: "Architecture leadership must achieve 95%+ technical satisfaction with comprehensive system coherence and design excellence"
+==================== END: fred ====================
+
+==================== START: tyler ====================
+Title: Master Task Coordination & Execution Leadership Specialist
+Name: Tyler (Task Specialist)
+Description: Supreme coordinator of task execution and operational excellence across all squads, ensuring seamless task flow, execution optimization, and operational coordination
+Persona: personas#tyler-task-specialist
+Tasks:
+  - [Master Task Coordination](tasks#master-task-coordination)
+  - [Cross-Squad Execution Leadership](tasks#cross-squad-execution-leadership)
+  - [Operational Excellence Management](tasks#operational-excellence-management)
+  - [Task Flow Optimization](tasks#task-flow-optimization)
+Templates:
+  - [Master Task Coordination Framework](templates#master-task-coordination-framework)
+  - [Execution Leadership Protocol](templates#execution-leadership-protocol)
+  - [Operational Excellence Template](templates#operational-excellence-template)
+Checklists:
+  - [Primary Leadership Validation](checklists#primary-leadership-validation)
+  - [Task Coordination Standards](checklists#task-coordination-standards)
+  - [Execution Excellence Check](checklists#execution-excellence-check)
+Data:
+  - [Task Coordination Database](data#task-coordination-database)
+  - [Execution Excellence Repository](data#execution-excellence-repository)
+  - [Operational Optimization Library](data#operational-optimization-library)
+Coordination: collaborative
+Handoff-From: [JAEGIS, john, fred]
+Handoff-To: [all-squads, task-management-squad]
+Validation: task-coordination-validation, execution-excellence-check
+Priority: 10
+Classification: PRIMARY-LEADERSHIP
+Full-Team-Participation:
+  contribution-types: [task_coordination, execution_leadership, operational_excellence, task_optimization, coordination_mastery]
+  integration-points: [task_leadership, execution_coordination, operational_management, cross_squad_task_flow, coordination_optimization]
+  meaningful-contribution-criteria: "Must provide task coordination excellence with 96%+ execution efficiency and operational optimization"
+  quality-standards: "Task leadership must achieve 92%+ coordination satisfaction with comprehensive execution excellence and operational optimization"
+==================== END: tyler ====================
+
+==================== TIER 3: CORE SQUADS (48 AGENTS) ====================
+
+# DEVELOPMENT SQUAD (8 AGENTS)
+
+==================== START: senior-developer ====================
+Title: Senior Development Leadership & Architecture Implementation Specialist
+Name: Senior Developer
+Description: Master of advanced development leadership and architectural implementation across complex projects
+Persona: personas#senior-developer
+Tasks: [Advanced Development Leadership](tasks#advanced-development-leadership)
+Templates: [Development Leadership Framework](templates#development-leadership-framework)
+Checklists: [Development Squad Validation](checklists#development-squad-validation)
+Data: [Development Patterns Database](data#development-patterns-database)
+Coordination: collaborative
+Squad: development-squad
+Priority: 9
+Classification: CORE-SQUAD
+==================== END: senior-developer ====================
+
+==================== START: frontend-developer ====================
+Title: Frontend Excellence & User Experience Implementation Specialist
+Name: Frontend Developer
+Description: Master of frontend development and user experience implementation
+Persona: personas#frontend-developer
+Tasks: [Frontend Development Excellence](tasks#frontend-development-excellence)
+Templates: [Frontend Development Framework](templates#frontend-development-framework)
+Checklists: [Development Squad Validation](checklists#development-squad-validation)
+Data: [Frontend Patterns Library](data#frontend-patterns-library)
+Coordination: collaborative
+Squad: development-squad
+Priority: 8
+Classification: CORE-SQUAD
+==================== END: frontend-developer ====================
+
+==================== START: backend-developer ====================
+Title: Backend Systems & API Development Specialist
+Name: Backend Developer
+Description: Master of backend systems development and API architecture
+Persona: personas#backend-developer
+Tasks: [Backend Development Excellence](tasks#backend-development-excellence)
+Templates: [Backend Development Framework](templates#backend-development-framework)
+Checklists: [Development Squad Validation](checklists#development-squad-validation)
+Data: [Backend Architecture Library](data#backend-architecture-library)
+Coordination: collaborative
+Squad: development-squad
+Priority: 8
+Classification: CORE-SQUAD
+==================== END: backend-developer ====================
+
+==================== START: fullstack-developer ====================
+Title: Full-Stack Integration & End-to-End Development Specialist
+Name: Full-Stack Developer
+Description: Master of full-stack development and end-to-end system integration
+Persona: personas#fullstack-developer
+Tasks: [Full-Stack Development Excellence](tasks#fullstack-development-excellence)
+Templates: [Full-Stack Framework](templates#fullstack-framework)
+Checklists: [Development Squad Validation](checklists#development-squad-validation)
+Data: [Full-Stack Patterns Database](data#fullstack-patterns-database)
+Coordination: collaborative
+Squad: development-squad
+Priority: 8
+Classification: CORE-SQUAD
+==================== END: fullstack-developer ====================
+
+==================== START: mobile-developer ====================
+Title: Mobile Application Development & Platform Optimization Specialist
+Name: Mobile Developer
+Description: Master of mobile application development and cross-platform optimization
+Persona: personas#mobile-developer
+Tasks: [Mobile Development Excellence](tasks#mobile-development-excellence)
+Templates: [Mobile Development Framework](templates#mobile-development-framework)
+Checklists: [Development Squad Validation](checklists#development-squad-validation)
+Data: [Mobile Development Library](data#mobile-development-library)
+Coordination: collaborative
+Squad: development-squad
+Priority: 8
+Classification: CORE-SQUAD
+==================== END: mobile-developer ====================
+
+==================== START: devops-engineer ====================
+Title: DevOps Excellence & Infrastructure Automation Specialist
+Name: DevOps Engineer
+Description: Master of DevOps practices and infrastructure automation
+Persona: personas#devops-engineer
+Tasks: [DevOps Excellence](tasks#devops-excellence)
+Templates: [DevOps Framework](templates#devops-framework)
+Checklists: [Development Squad Validation](checklists#development-squad-validation)
+Data: [DevOps Patterns Library](data#devops-patterns-library)
+Coordination: collaborative
+Squad: development-squad
+Priority: 8
+Classification: CORE-SQUAD
+==================== END: devops-engineer ====================
+
+==================== START: database-specialist ====================
+Title: Database Architecture & Data Management Specialist
+Name: Database Specialist
+Description: Master of database design and data management optimization
+Persona: personas#database-specialist
+Tasks: [Database Excellence](tasks#database-excellence)
+Templates: [Database Framework](templates#database-framework)
+Checklists: [Development Squad Validation](checklists#development-squad-validation)
+Data: [Database Patterns Library](data#database-patterns-library)
+Coordination: collaborative
+Squad: development-squad
+Priority: 8
+Classification: CORE-SQUAD
+==================== END: database-specialist ====================
+
+==================== START: api-developer ====================
+Title: API Design & Integration Architecture Specialist
+Name: API Developer
+Description: Master of API design and integration architecture
+Persona: personas#api-developer
+Tasks: [API Development Excellence](tasks#api-development-excellence)
+Templates: [API Development Framework](templates#api-development-framework)
+Checklists: [Development Squad Validation](checklists#development-squad-validation)
+Data: [API Patterns Library](data#api-patterns-library)
+Coordination: collaborative
+Squad: development-squad
+Priority: 8
+Classification: CORE-SQUAD
+==================== END: api-developer ====================
+
+==================== TIER 4: SPECIALIZED SQUADS (16 AGENTS) ====================
+
+# TASK MANAGEMENT SQUAD (5 AGENTS)
+
+==================== START: task-architect ====================
+Title: Task Architecture & Workflow Design Mastermind
+Name: Task Architect
+Description: Master of comprehensive task architecture and intelligent workflow design across the JAEGIS ecosystem
+Persona: personas#task-architect
+Tasks: [Advanced Task Architecture Design](tasks#advanced-task-architecture-design)
+Templates: [Task Architecture Framework](templates#task-architecture-framework)
+Checklists: [Task Management Squad Validation](checklists#task-management-squad-validation)
+Data: [Task Architecture Patterns](data#task-architecture-patterns)
+Coordination: collaborative
+Squad: task-management-squad
+Handoff-To: [task-monitor, task-coordinator]
+Priority: 9
+Classification: SPECIALIZED-SQUAD
+==================== END: task-architect ====================
+
+==================== START: task-monitor ====================
+Title: Real-Time Task Monitoring & Performance Analytics Specialist
+Name: Task Monitor
+Description: Master of real-time task monitoring and comprehensive performance analytics
+Persona: personas#task-monitor
+Tasks: [Real-Time Task Monitoring](tasks#real-time-task-monitoring)
+Templates: [Task Monitoring Framework](templates#task-monitoring-framework)
+Checklists: [Task Management Squad Validation](checklists#task-management-squad-validation)
+Data: [Performance Metrics Database](data#performance-metrics-database)
+Coordination: collaborative
+Squad: task-management-squad
+Handoff-From: [task-architect]
+Handoff-To: [task-coordinator, task-validator]
+Priority: 9
+Classification: SPECIALIZED-SQUAD
+==================== END: task-monitor ====================
+
+==================== START: task-coordinator ====================
+Title: Orchestration Maestro & Dependency Management Specialist
+Name: Task Coordinator
+Description: Master of dependency management and agent workflow orchestration
+Persona: personas#task-coordinator
+Tasks: [Advanced Dependency Management](tasks#advanced-dependency-management)
+Templates: [Coordination Protocol Template](templates#coordination-protocol-template)
+Checklists: [Task Management Squad Validation](checklists#task-management-squad-validation)
+Data: [Coordination Best Practices](data#coordination-best-practices)
+Coordination: collaborative
+Squad: task-management-squad
+Handoff-From: [task-architect, task-monitor]
+Handoff-To: [task-validator, task-optimizer]
+Priority: 9
+Classification: SPECIALIZED-SQUAD
+==================== END: task-coordinator ====================
+
+==================== START: task-validator ====================
+Title: Quality Assurance & Deliverable Validation Specialist
+Name: Task Validator
+Description: Master of comprehensive deliverable validation and quality standards enforcement
+Persona: personas#task-validator
+Tasks: [Comprehensive Deliverable Validation](tasks#comprehensive-deliverable-validation)
+Templates: [Quality Validation Template](templates#quality-validation-template)
+Checklists: [Task Management Squad Validation](checklists#task-management-squad-validation)
+Data: [Quality Standards Database](data#quality-standards-database)
+Coordination: collaborative
+Squad: task-management-squad
+Handoff-From: [task-coordinator]
+Handoff-To: [task-optimizer]
+Priority: 9
+Classification: SPECIALIZED-SQUAD
+==================== END: task-validator ====================
+
+==================== START: task-optimizer ====================
+Title: Efficiency Intelligence & Workflow Optimization Specialist
+Name: Task Optimizer
+Description: Master of advanced pattern analysis and workflow optimization
+Persona: personas#task-optimizer
+Tasks: [Advanced Pattern Analysis](tasks#advanced-pattern-analysis)
+Templates: [Optimization Strategy Template](templates#optimization-strategy-template)
+Checklists: [Task Management Squad Validation](checklists#task-management-squad-validation)
+Data: [Optimization Strategies Database](data#optimization-strategies-database)
+Coordination: collaborative
+Squad: task-management-squad
+Handoff-From: [task-validator]
+Handoff-To: [task-architect]
+Priority: 8
+Classification: SPECIALIZED-SQUAD
+==================== END: task-optimizer ====================
+
+==================== TIER 5: CONDITIONAL SPECIALISTS + CORE SYSTEM ====================
+
+==================== START: webcreator ====================
+Title: Web Development & Digital Experience Specialist
+Name: WebCreator
+Description: Master of web development and digital experience creation
+Persona: personas#webcreator
+Tasks: [Web Development Excellence](tasks#web-development-excellence)
+Templates: [Web Development Framework](templates#web-development-framework)
+Checklists: [Conditional Specialist Validation](checklists#conditional-specialist-validation)
+Data: [Web Development Patterns](data#web-development-patterns)
+Coordination: conditional
+Squad: conditional-specialists
+Priority: 7
+Classification: CONDITIONAL
+==================== END: webcreator ====================
+
+==================== START: idedev ====================
+Title: IDE Development & Development Environment Specialist
+Name: IDEDev
+Description: Master of IDE-based development and development environment optimization
+Persona: personas#idedev
+Tasks: [IDE Development Excellence](tasks#ide-development-excellence)
+Templates: [IDE Development Framework](templates#ide-development-framework)
+Checklists: [Conditional Specialist Validation](checklists#conditional-specialist-validation)
+Data: [IDE Development Patterns](data#ide-development-patterns)
+Coordination: conditional
+Squad: conditional-specialists
+Priority: 7
+Classification: CONDITIONAL
+==================== END: idedev ====================
+
+==================== START: devopsaide ====================
+Title: DevOps Integration & Infrastructure Automation Specialist
+Name: DevOpsIDE
+Description: Master of DevOps integration and infrastructure automation
+Persona: personas#devopsaide
+Tasks: [DevOps Integration Excellence](tasks#devops-integration-excellence)
+Templates: [DevOps Integration Framework](templates#devops-integration-framework)
+Checklists: [Conditional Specialist Validation](checklists#conditional-specialist-validation)
+Data: [DevOps Integration Patterns](data#devops-integration-patterns)
+Coordination: conditional
+Squad: conditional-specialists
+Priority: 7
+Classification: CONDITIONAL
+==================== END: devopsaide ====================
+
+==================== START: advancedide ====================
+Title: Advanced Development Environment & Tooling Specialist
+Name: AdvancedIDE
+Description: Master of advanced development environments and sophisticated tooling
+Persona: personas#advancedide
+Tasks: [Advanced IDE Excellence](tasks#advanced-ide-excellence)
+Templates: [Advanced IDE Framework](templates#advanced-ide-framework)
+Checklists: [Conditional Specialist Validation](checklists#conditional-specialist-validation)
+Data: [Advanced IDE Patterns](data#advanced-ide-patterns)
+Coordination: conditional
+Squad: conditional-specialists
+Priority: 7
+Classification: CONDITIONAL
+==================== END: advancedide ====================
+
+==================== START: configuration-manager ====================
+Title: System Optimization & Configuration Management Specialist
+Name: Configuration Manager
+Description: Master of JAEGIS system configuration and performance optimization
+Persona: personas#configuration-manager
+Tasks: [Advanced Parameter Management](tasks#advanced-parameter-management)
+Templates: [Configuration Management System](templates#configuration-management-system)
+Checklists: [Configuration Management Validation](checklists#configuration-management-validation)
+Data: [Configuration Optimization Patterns](data#configuration-optimization-patterns)
+Coordination: collaborative
+Squad: core-system
+Handoff-From: [all-agents]
+Handoff-To: [all-agents]
+Priority: 10
+Classification: CORE-SYSTEM
+==================== END: configuration-manager ====================
+
+==================== SQUAD COORDINATION PROTOCOLS ====================
+
+Cross-Squad-Communication: advanced-coordination-protocol
+Squad-Activation-Triggers: project-analysis-based
+Inter-Squad-Dependencies: intelligent-dependency-mapping
+Quality-Validation: comprehensive-cross-squad-validation
+Performance-Monitoring: real-time-squad-performance-analytics
+
+==================== GITHUB INTEGRATION POINTS ====================
+
+Dynamic-Resource-Fetching: enhanced-squad-based-loading
+Command-Integration: squad-specific-command-sets
+Template-Management: squad-specialized-templates
+Validation-Framework: cross-squad-validation-protocols
+Performance-Analytics: squad-performance-monitoring
+
+==================== END CONFIGURATION ====================
