@@ -1,0 +1,90 @@
+{
+  "timestamp": "2025-07-27T10:22:44.132208",
+  "upload_stats": {
+    "total_files": 0,
+    "uploaded_files": 0,
+    "failed_files": 0,
+    "skipped_files": 0,
+    "total_size_mb": 0.0,
+    "start_time": 1753604564.0779858,
+    "phases_completed": 0
+  },
+  "phase_results": [
+    {
+      "phase_id": "phase_4",
+      "total_files": 0,
+      "uploaded_files": 0,
+      "failed_files": 0,
+      "skipped_files": 0,
+      "start_time": 1753604564.0805736,
+      "current_file": "",
+      "errors": []
+    },
+    {
+      "phase_id": "phase_5",
+      "total_files": 0,
+      "uploaded_files": 0,
+      "failed_files": 0,
+      "skipped_files": 0,
+      "start_time": 1753604564.0943518,
+      "current_file": "",
+      "errors": []
+    },
+    {
+      "phase_id": "phase_6",
+      "total_files": 0,
+      "uploaded_files": 0,
+      "failed_files": 0,
+      "skipped_files": 0,
+      "start_time": 1753604564.1025891,
+      "current_file": "",
+      "errors": []
+    },
+    {
+      "phase_id": "phase_7",
+      "total_files": 0,
+      "uploaded_files": 0,
+      "failed_files": 0,
+      "skipped_files": 0,
+      "start_time": 1753604564.1096551,
+      "current_file": "",
+      "errors": []
+    },
+    {
+      "phase_id": "phase_8",
+      "total_files": 0,
+      "uploaded_files": 0,
+      "failed_files": 0,
+      "skipped_files": 0,
+      "start_time": 1753604564.1152506,
+      "current_file": "",
+      "errors": []
+    },
+    {
+      "phase_id": "phase_9",
+      "total_files": 0,
+      "uploaded_files": 0,
+      "failed_files": 0,
+      "skipped_files": 0,
+      "start_time": 1753604564.1257215,
+      "current_file": "",
+      "errors": []
+    },
+    {
+      "phase_id": "phase_10",
+      "total_files": 0,
+      "uploaded_files": 0,
+      "failed_files": 0,
+      "skipped_files": 0,
+      "start_time": 1753604564.1315355,
+      "current_file": "",
+      "errors": []
+    }
+  ],
+  "docqa_stats": {
+    "active": true,
+    "processed_files": 0,
+    "documentation_files_count": 0,
+    "optimization_level": "maximum"
+  }
+}
