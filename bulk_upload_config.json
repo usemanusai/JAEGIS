@@ -1,0 +1,92 @@
+{
+  "github_settings": {
+    "owner": "usemanusai",
+    "repo": "JAEGIS",
+    "branch": "main"
+  },
+  "upload_settings": {
+    "batch_size": 100,
+    "max_concurrent": 3,
+    "rate_limit_delay": 0.5,
+    "max_retries": 3,
+    "max_file_size_mb": 100
+  },
+  "optimization": {
+    "enable_docqa_agent": true,
+    "enable_compression": true,
+    "enable_smart_batching": true,
+    "skip_binary_files": true
+  },
+  "workspace_info": {
+    "total_files": 96724,
+    "total_size_mb": 517.9820642471313,
+    "estimated_upload_time_hours": 27.405555555555555
+  },
+  "phases": [
+    {
+      "phase_id": "phase_4",
+      "name": "Core System Foundation",
+      "directories": [
+        "core/brain_protocol",
+        "core/garas",
+        "core/iuas",
+        "core/nlds",
+        "core/protocols"
+      ],
+      "priority": "CRITICAL"
+    },
+    {
+      "phase_id": "phase_5",
+      "name": "N.L.D.S. Complete System",
+      "directories": [
+        "nlds"
+      ],
+      "priority": "CRITICAL"
+    },
+    {
+      "phase_id": "phase_6",
+      "name": "Enhanced JAEGIS Systems",
+      "directories": [
+        "JAEGIS",
+        "JAEGIS_Config_System",
+        "JAEGIS_Enhanced_System",
+        "eJAEGIS"
+      ],
+      "priority": "HIGH"
+    },
+    {
+      "phase_id": "phase_7",
+      "name": "P.I.T.C.E.S. & Cognitive Pipeline",
+      "directories": [
+        "pitces",
+        "cognitive_pipeline"
+      ],
+      "priority": "HIGH"
+    },
+    {
+      "phase_id": "phase_8",
+      "name": "Deployment & Infrastructure",
+      "directories": [
+        "deployment"
+      ],
+      "priority": "MEDIUM"
+    },
+    {
+      "phase_id": "phase_9",
+      "name": "Documentation & Testing",
+      "directories": [
+        "docs",
+        "tests"
+      ],
+      "priority": "MEDIUM"
+    },
+    {
+      "phase_id": "phase_10",
+      "name": "Examples & Demonstrations",
+      "directories": [
+        "examples"
+      ],
+      "priority": "LOW"
+    }
+  ]
+}
