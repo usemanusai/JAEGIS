@@ -1,0 +1,37 @@
+# P.I.T.C.E.S. Framework Dependencies
+# JAEGIS Enhanced Agent System v2.2 - Tier 0 Component Integration
+
+# Core Dependencies
+pydantic>=2.0.0,<3.0.0          # Data validation and settings management
+networkx>=3.0,<4.0              # Graph algorithms for dependency management
+psutil>=5.9.0,<6.0.0            # System and process utilities
+
+# Optional Dependencies for Enhanced Features
+pytest>=7.0.0,<8.0.0            # Testing framework
+pytest-cov>=4.0.0,<5.0.0        # Coverage reporting
+pytest-asyncio>=0.21.0,<1.0.0   # Async testing support
+
+# Development Dependencies (Optional)
+black>=23.0.0,<24.0.0           # Code formatting
+flake8>=6.0.0,<7.0.0            # Linting
+mypy>=1.0.0,<2.0.0              # Type checking
+isort>=5.12.0,<6.0.0            # Import sorting
+
+# Documentation Dependencies (Optional)
+sphinx>=6.0.0,<7.0.0            # Documentation generation
+sphinx-rtd-theme>=1.2.0,<2.0.0  # Read the Docs theme
+
+# Performance Monitoring (Optional)
+memory-profiler>=0.60.0,<1.0.0  # Memory usage profiling
+
+# JAEGIS Integration Dependencies
+requests>=2.28.0,<3.0.0         # HTTP requests for GitHub integration
+aiohttp>=3.8.0,<4.0.0           # Async HTTP client
+pyyaml>=6.0,<7.0                # YAML configuration support
+
+# Visualization Dependencies (Optional)
+matplotlib>=3.6.0,<4.0.0        # Plotting and visualization
+plotly>=5.15.0,<6.0.0            # Interactive plots
+
+# Security Dependencies
+cryptography>=40.0.0,<42.0.0    # Cryptographic operations
