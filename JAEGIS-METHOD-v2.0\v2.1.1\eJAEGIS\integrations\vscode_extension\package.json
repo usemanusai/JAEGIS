@@ -1,0 +1,143 @@
+{
+  "name": "eJaegis-vscode",
+  "displayName": "e.J.A.E.G.I.S. Agent",
+  "description": "Enhanced Multi-agent Architecture & Dependency Specialist for VS Code",
+  "version": "1.0.0",
+  "publisher": "JAEGIS_methodengines": {
+    "vscode": "^1.74.0"
+  },
+  "categories": [
+    "Other",
+    "Linters",
+    "Debuggers"
+  ],
+  "keywords": [
+    "dependency-analysis",
+    "architecture",
+    "monitoring",
+    "JAEGIS-method",
+    "code-analysis"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "out_extension_jscontributes": {
+    "commands": [
+      {
+        "command": "eJaegis.initialize",
+        "title": "Initialize e.J.A.E.G.I.S.",
+        "category": "e.J.A.E.G.I.S."
+      },
+      {
+        "command": "eJaegis.startMonitoring",
+        "title": "Start Monitoring",
+        "category": "e.J.A.E.G.I.S."
+      },
+      {
+        "command": "eJaegis.stopMonitoring",
+        "title": "Stop Monitoring",
+        "category": "e.J.A.E.G.I.S."
+      },
+      {
+        "command": "eJaegis.showStatus",
+        "title": "Show Status",
+        "category": "e.J.A.E.G.I.S."
+      },
+      {
+        "command": "eJaegis.analyzeFile",
+        "title": "Analyze Current File",
+        "category": "e.J.A.E.G.I.S."
+      },
+      {
+        "command": "eJaegis.showDependencies",
+        "title": "Show Dependencies",
+        "category": "e.J.A.E.G.I.S."
+      },
+      {
+        "command": "eJaegis.configureOwnership",
+        "title": "Configure Ownership",
+        "category": "e_J_A_E_G_I_S_menus": {
+      "explorer/context": [
+        {
+          "command": "eJaegis.analyzeFile",
+          "when": "resourceExtname =~ /\\.(py|js|ts|java|cpp|c|h|go|rs|rb)$/",
+          "group": "eJaegis"
+        }
+      ],
+      "editor/context": [
+        {
+          "command": "eJaegis.analyzeFile",
+          "when": "resourceExtname =~ /\\.(py|js|ts|java|cpp|c|h|go|rs|rb)$/",
+          "group": "eJaegisconfiguration": {
+      "title": "e_J_A_E_G_I_S_Agentproperties": {
+        "eJaegis_enableNotifications": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable_e_J_A_E_G_I_S_notificationseJaegis_notificationLevel": {
+          "type": "string",
+          "enum": ["low", "medium", "high", "critical"],
+          "default": "medium",
+          "description": "Minimum_impact_level_for_notificationseJaegis_autoStart": {
+          "type": "boolean",
+          "default": true,
+          "description": "tool_7107": {
+          "type": "boolean",
+          "default": true,
+          "description": "Show_inline_decorations_for_dependencieseJaegis_neo4jUri": {
+          "type": "string",
+          "default": "bolt://localhost:7687",
+          "description": "Neo4j_database_URI_for_knowledge_grapheJaegis_pythonPath": {
+          "type": "string",
+          "default": "python",
+          "description": "Path_to_Python_executable_for_e_J_A_E_G_I_S_agentviews": {
+      "explorer": [
+        {
+          "id": "eJaegisDependencies",
+          "name": "e.J.A.E.G.I.S. Dependencies",
+          "when": "eJaegis.isActive"
+        },
+        {
+          "id": "eJaegisNotifications",
+          "name": "e.J.A.E.G.I.S. Notifications",
+          "when": "eJaegis_isActiveviewsContainers": {
+      "activitybar": [
+        {
+          "id": "eJaegis",
+          "title": "e.J.A.E.G.I.S. Agent",
+          "icon": "$(graph)"
+        }
+      ]
+    },
+    "statusBarItems": [
+      {
+        "id": "eJaegis.status",
+        "alignment": "left",
+        "priority100_scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src --ext ts",
+    "test": "node ./out/test/runTest.js",
+    "package": "vsce_packagedevDependencies": {
+    "@types/vscode": "^1.74.0",
+    "@types/node": "16.x",
+    "@typescript-eslint/eslint-plugin": "^5.45.0",
+    "@typescript-eslint/parser": "^5.45.0",
+    "eslint": "^8.28.0",
+    "typescript": "^4.9.4",
+    "@vscode/test-electron": "^2.2.0",
+    "vsce": "2_15_0dependencies": {
+    "ws": "^8.13.0",
+    "node-fetch": "3_3_0repository": {
+    "type": "git",
+    "url": "https_github_com_JAEGIS_method_eJaegis_vscode_extension_gitbugs": {
+    "url": "https://github.com/JAEGIS-method/eJaegis-vscode-extension/issues"
+  },
+  "homepage": "https://JAEGIS-method.com/docs/eJaegis/vscode",
+  "license": "MIT",
+  "icon": "images_eJaegis_icon_pnggalleryBanner": {
+    "color": "#1e1e1e",
+    "theme": "dark"
+  }
+}
