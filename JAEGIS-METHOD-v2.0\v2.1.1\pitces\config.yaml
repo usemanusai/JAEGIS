@@ -1,0 +1,309 @@
+# P.I.T.C.E.S. Framework Configuration
+# JAEGIS Enhanced Agent System v2.2 - Tier 0 Component Integration
+
+# Framework Metadata
+framework:
+  name: "P.I.T.C.E.S."
+  full_name: "Parallel Integrated Task Contexting Engine System"
+  version: "1.0.0"
+  jaegis_integration: "v2.2"
+  tier_0_component: "N.L.D.S."
+
+# Workflow Selection Configuration
+workflow_selection:
+  # Thresholds for workflow mode selection
+  thresholds:
+    task_count_threshold: 50
+    clarity_threshold: 95.0
+    complexity_threshold: 5
+    sequential_risk_levels: ["LOW"]
+  
+  # Decision weights for hybrid scoring
+  weights:
+    task_count: 0.3
+    requirements_clarity: 0.25
+    architectural_complexity: 0.25
+    risk_level: 0.2
+  
+  # Validation settings
+  validation:
+    strict_mode: true
+    log_decisions: true
+    require_all_fields: true
+
+# Performance Configuration
+performance:
+  # Resource limits
+  limits:
+    max_memory_mb: 512
+    startup_timeout_seconds: 3
+    max_execution_time_minutes: 60
+    max_concurrent_workflows: 10
+  
+  # Monitoring settings
+  monitoring:
+    enabled: true
+    metrics_collection: true
+    performance_profiling: false
+    memory_tracking: true
+    cpu_monitoring: true
+  
+  # Optimization settings
+  optimization:
+    enable_caching: true
+    batch_processing: true
+    lazy_loading: true
+    memory_optimization: true
+
+# Triage System Configuration
+triage:
+  # Queue management
+  queues:
+    max_queue_size: 1000
+    overflow_strategy: "reject"  # reject, queue, escalate
+    cleanup_interval_minutes: 30
+  
+  # SLA targets (in seconds)
+  sla_targets:
+    CRITICAL: 300    # 5 minutes
+    HIGH: 3600       # 1 hour
+    MEDIUM: 86400    # 24 hours
+    LOW: 604800      # 1 week
+  
+  # Escalation settings
+  escalation:
+    enabled: true
+    auto_escalate_on_sla_violation: true
+    escalation_cooldown_minutes: 5
+    max_escalation_levels: 3
+  
+  # Classification rules
+  classification:
+    security_keywords: ["security", "vulnerability", "breach", "exploit", "malware"]
+    critical_keywords: ["system down", "outage", "crash", "failure", "broken"]
+    performance_keywords: ["slow", "timeout", "performance", "optimization"]
+    enable_auto_classification: true
+
+# Preemption Manager Configuration
+preemption:
+  # Preemption policies
+  policies:
+    max_preemption_depth: 3
+    preemption_cooldown_minutes: 5
+    allow_critical_preemption: false
+    enable_context_compression: true
+  
+  # State management
+  state_management:
+    context_storage_path: "./pitces_context"
+    enable_encryption: false
+    compression_enabled: true
+    backup_contexts: true
+    cleanup_old_contexts_days: 30
+  
+  # Dependency management
+  dependency_management:
+    enable_dag_validation: true
+    detect_deadlocks: true
+    max_dependency_depth: 10
+    circular_dependency_detection: true
+
+# Gap Analysis Squad Configuration
+gap_analysis:
+  # Analysis domains and weights
+  domains:
+    functional_completeness:
+      weight: 0.20
+      min_score_threshold: 80.0
+      critical_threshold: 60.0
+    security_integrity:
+      weight: 0.25
+      min_score_threshold: 90.0
+      critical_threshold: 70.0
+    performance_scalability:
+      weight: 0.15
+      min_score_threshold: 85.0
+      critical_threshold: 65.0
+    integration_interoperability:
+      weight: 0.15
+      min_score_threshold: 85.0
+      critical_threshold: 70.0
+    compliance_governance:
+      weight: 0.10
+      min_score_threshold: 95.0
+      critical_threshold: 80.0
+    logical_strategic_alignment:
+      weight: 0.10
+      min_score_threshold: 80.0
+      critical_threshold: 60.0
+    documentation_maintainability:
+      weight: 0.05
+      min_score_threshold: 75.0
+      critical_threshold: 50.0
+  
+  # Analysis settings
+  analysis:
+    enable_detailed_analysis: true
+    generate_recommendations: true
+    prioritize_security: true
+    auto_generate_reports: true
+    include_trend_analysis: false
+  
+  # Compliance frameworks
+  compliance:
+    frameworks: ["SOC2", "GDPR", "HIPAA", "PCI-DSS"]
+    enable_compliance_checking: true
+    generate_compliance_reports: true
+  
+  # Performance targets
+  performance_targets:
+    response_time_ms: 500
+    throughput_rps: 1000
+    availability_percent: 99.9
+    error_rate_percent: 1.0
+
+# Context Engine Configuration
+context_engine:
+  # Storage settings
+  storage:
+    storage_path: "./pitces_context"
+    file_format: "json"
+    enable_compression: true
+    enable_encryption: false
+    backup_enabled: true
+  
+  # Performance settings
+  performance:
+    cache_size_mb: 64
+    enable_lazy_loading: true
+    batch_operations: true
+    async_operations: true
+  
+  # Cleanup settings
+  cleanup:
+    auto_cleanup_enabled: true
+    max_age_days: 30
+    cleanup_interval_hours: 24
+    keep_recent_count: 100
+
+# Logging Configuration
+logging:
+  # Log levels
+  levels:
+    root: "INFO"
+    pitces: "INFO"
+    workflow: "INFO"
+    triage: "INFO"
+    gap_analysis: "INFO"
+    preemption: "DEBUG"
+  
+  # Log formatting
+  formatting:
+    enable_colors: true
+    include_timestamps: true
+    include_thread_info: false
+    include_process_info: false
+  
+  # Log outputs
+  outputs:
+    console: true
+    file: true
+    file_path: "./logs/pitces.log"
+    max_file_size_mb: 10
+    backup_count: 5
+
+# JAEGIS Integration Configuration
+jaegis_integration:
+  # N.L.D.S. Tier 0 Component
+  nlds:
+    enabled: true
+    confidence_threshold: 0.85
+    processing_timeout_seconds: 30
+    enable_amasiap_protocol: true
+    multi_dimensional_analysis: true
+  
+  # GitHub Integration
+  github:
+    enabled: true
+    repository: "usemanusai/JAEGIS"
+    sync_enabled: true
+    auto_update: true
+    fetch_interval_minutes: 60
+    resource_paths:
+      - "core/agent-config.txt"
+      - "commands/"
+      - "templates/"
+      - "config/"
+  
+  # Agent System Integration
+  agent_system:
+    enabled: true
+    total_agents: 128
+    tier_structure:
+      tier_1: 1   # JAEGIS Orchestrator
+      tier_2: 3   # John, Fred, Tyler
+      tier_3: 16  # Specialized agents
+      tier_4: 4   # Conditional agents
+      tier_5: 20  # IUAS maintenance squad
+      tier_6: 40  # GARAS analysis squad
+    coordination_enabled: true
+
+# Security Configuration
+security:
+  # Authentication
+  authentication:
+    enable_api_keys: true
+    enable_jwt_tokens: true
+    token_expiry_hours: 24
+    require_authentication: false
+  
+  # Data protection
+  data_protection:
+    enable_pii_detection: true
+    enable_data_masking: true
+    encryption_at_rest: false
+    encryption_in_transit: true
+  
+  # Access control
+  access_control:
+    enable_rbac: true
+    default_permissions: ["read"]
+    admin_permissions: ["read", "write", "admin"]
+    audit_access: true
+
+# Feature Flags
+features:
+  # Experimental features
+  experimental:
+    enable_ai_optimization: false
+    enable_predictive_analytics: false
+    enable_auto_scaling: false
+  
+  # Beta features
+  beta:
+    enable_advanced_metrics: true
+    enable_workflow_visualization: true
+    enable_real_time_collaboration: false
+  
+  # Stable features
+  stable:
+    enable_gap_analysis: true
+    enable_triage_system: true
+    enable_preemption: true
+    enable_performance_monitoring: true
+
+# Development Configuration
+development:
+  # Debug settings
+  debug:
+    enable_debug_mode: false
+    verbose_logging: false
+    enable_profiling: false
+    save_debug_data: false
+  
+  # Testing settings
+  testing:
+    enable_test_mode: false
+    mock_external_services: false
+    use_test_data: false
+    skip_slow_tests: false
