@@ -1,0 +1,311 @@
+{
+  "jaegis_system": {
+    "version": "2.2",
+    "phase": "5",
+    "architecture": "7-tier",
+    "total_agents": "128+",
+    "nlds_integration": true,
+    "automatic_mode_selection": true,
+    "github_integration": true,
+    "amasiap_protocol": true
+  },
+  "nlds_system": {
+    "name": "Natural Language Detection System",
+    "tier": "0",
+    "role": "Primary Human-AI Interface Layer",
+    "automatic_mode_selection": true,
+    "confidence_threshold": 0.85,
+    "response_time_target": "500ms",
+    "processing_capacity": "1000+ requests/minute",
+    "three_dimensional_analysis": {
+      "logical_analysis": "Task complexity, technical requirements, resource needs",
+      "emotional_analysis": "User sentiment, urgency level, collaboration preferences",
+      "creative_analysis": "Innovation requirements, solution pathways, problem-solving approach"
+    },
+    "mode_selection_criteria": {
+      "mode_1_keywords": ["document", "write", "create docs", "documentation"],
+      "mode_2_keywords": ["develop", "build", "implement", "code", "standard project"],
+      "mode_3_keywords": ["complex", "advanced", "squad", "coordination", "enterprise"],
+      "mode_4_keywords": ["AI", "machine learning", "OpenRouter", "Redis", "autonomous"],
+      "mode_5_keywords": ["create agent", "new squad", "gap analysis", "system expansion"]
+    },
+    "natural_language_commands": {
+      "help_requests": ["show me available commands", "what can you help me with", "help"],
+      "agent_switching": ["switch to {agent}", "talk to {agent}", "activate {agent}"],
+      "status_requests": ["check system status", "how are things", "system health"],
+      "github_sync": ["refresh GitHub resources", "update from GitHub", "sync"],
+      "mode_requests": ["go back to mode selection", "change mode", "select different mode"]
+    },
+    "fallback_conditions": [
+      "confidence_below_threshold",
+      "ambiguous_input",
+      "multiple_mode_matches",
+      "system_uncertainty"
+    ]
+  },
+  "github_integration": {
+    "base_repository": "https://github.com/usemanusai/JAEGIS",
+    "primary_guideline_url": "https://github.com/usemanusai/JAEGIS/GOLD.md",
+    "resource_endpoints": {
+      "commands": "https://raw.githubusercontent.com/usemanusai/JAEGIS/main/commands/commands.md",
+      "agent_config": "https://raw.githubusercontent.com/usemanusai/JAEGIS/main/core/agent-config.txt",
+      "enhanced_config": "https://raw.githubusercontent.com/usemanusai/JAEGIS/main/core/enhanced-agent-config.txt",
+      "ai_config": "https://raw.githubusercontent.com/usemanusai/JAEGIS/main/config/ai-config.json",
+      "initialization": "https://raw.githubusercontent.com/usemanusai/JAEGIS/main/JAEGIS-agent/initialization-protocol.md",
+      "documentation": "https://github.com/usemanusai/JAEGIS/blob/main/docs/AI-SYSTEM.md",
+      "templates": "https://raw.githubusercontent.com/usemanusai/JAEGIS/main/templates/"
+    },
+    "fetch_timeout": 5,
+    "cache_duration": 3600,
+    "max_retries": 3,
+    "user_agent": "JAEGIS-GitHub-Integration/1.0",
+    "max_content_size": 10485760,
+    "supported_extensions": [".md", ".txt", ".json", ".yaml", ".yml", ".py", ".js"]
+  },
+  "amasiap_protocol": {
+    "protocol_name": "Always Modify And Send Input Automatically Protocol",
+    "version": "1.0",
+    "research_queries_per_request": 18,
+    "max_task_phases": 8,
+    "max_sub_tasks_per_phase": 6,
+    "research_timeout": 30,
+    "current_date": "July 27, 2025",
+    "enhancement_templates": {
+      "research_framework": [
+        "current state analysis",
+        "best practices research",
+        "implementation strategies",
+        "technology stack evaluation",
+        "performance optimization",
+        "security considerations",
+        "scalability planning",
+        "integration requirements"
+      ],
+      "task_categories": [
+        "Research & Analysis",
+        "Design & Architecture",
+        "Implementation & Development",
+        "Testing & Validation",
+        "Documentation & Deployment",
+        "Monitoring & Optimization"
+      ]
+    }
+  },
+  "agent_architecture": {
+    "tier_0": {
+      "name": "Natural Language Detection System (N.L.D.S.)",
+      "agents": "1+",
+      "description": "Primary Human-AI Interface Layer",
+      "components": [
+        "N.L.D.S. Core Engine",
+        "Mode Selection AI",
+        "Command Translation Engine",
+        "Intent Recognition System",
+        "Confidence Scoring Algorithm",
+        "Fallback Coordination"
+      ],
+      "performance_targets": {
+        "response_time": "<500ms",
+        "confidence_accuracy": "≥85%",
+        "processing_capacity": "1000+ req/min",
+        "multi_language_support": "Primary English, expandable"
+      }
+    },
+    "tier_1": {
+      "name": "Master Orchestrator",
+      "agents": 1,
+      "description": "Central coordination and system management with N.L.D.S. integration",
+      "agents_list": ["JAEGIS Master Orchestrator"],
+      "nlds_integration": true,
+      "github_integration": true
+    },
+    "tier_2": {
+      "name": "Primary Leadership",
+      "agents": 3,
+      "description": "Core leadership and coordination",
+      "agents_list": ["John (Product Manager)", "Fred (Architect)", "Tyler (Task Specialist)"]
+    },
+    "tier_3": {
+      "name": "Core Squads",
+      "agents": 48,
+      "description": "Specialized operational squads",
+      "squads": {
+        "Development Squad": 8,
+        "Quality Squad": 8,
+        "Business Squad": 8,
+        "Process Squad": 8,
+        "Content Squad": 8,
+        "System Squad": 8
+      }
+    },
+    "tier_4": {
+      "name": "Specialized Squads",
+      "agents": 16,
+      "description": "Advanced specialized operations",
+      "squads": {
+        "Task Management Squad": 5,
+        "Agent Builder Squad": 4,
+        "System Coherence Squad": 3,
+        "Temporal Intelligence Squad": 4
+      }
+    },
+    "tier_5": {
+      "name": "Conditional Specialists",
+      "agents": 5,
+      "description": "Conditional activation specialists",
+      "agents_list": ["WebCreator", "IDEDev", "DevOpsIDE", "AdvancedIDE", "Configuration Manager"]
+    },
+    "tier_6": {
+      "name": "Maintenance & Enhancement Squads",
+      "agents": 60,
+      "description": "System maintenance and evolution",
+      "squads": {
+        "IUAS": {
+          "name": "Internal Updates Agent Squad",
+          "agents": 20,
+          "sub_squads": {
+            "System Monitors": 5,
+            "Update Coordinators": 5,
+            "Change Implementers": 5,
+            "Documentation Specialists": 5
+          }
+        },
+        "GARAS": {
+          "name": "Gaps Analysis and Resolution Agent Squad",
+          "agents": 40,
+          "sub_squads": {
+            "Gap Detection Squad": 10,
+            "Research & Analysis Squad": 10,
+            "Simulation & Testing Squad": 10,
+            "Implementation & Learning Squad": 10
+          }
+        }
+      }
+    }
+  },
+  "mode_selection": {
+    "automatic_selection": true,
+    "nlds_powered": true,
+    "confidence_threshold": 0.85,
+    "fallback_to_manual": true,
+    "modes": {
+      "1": {
+        "name": "Documentation Mode (GitHub-Enhanced)",
+        "description": "Generate 3 documents with GitHub integration",
+        "auto_trigger": "Documentation requests, writing tasks, content creation",
+        "nlds_keywords": ["document", "write", "create docs", "documentation"],
+        "agents": ["John", "Fred", "Tyler"],
+        "github_integration": true
+      },
+      "2": {
+        "name": "Standard Development Mode (24-Agent System)",
+        "description": "Traditional 4-tier development orchestration",
+        "auto_trigger": "Standard development, implementation, coding tasks",
+        "nlds_keywords": ["develop", "build", "implement", "code", "standard project"],
+        "architecture": "4-tier",
+        "agents": 24,
+        "github_integration": true
+      },
+      "3": {
+        "name": "Enhanced Development Mode (68-Agent System)",
+        "description": "Full squad-based development orchestration",
+        "auto_trigger": "Complex projects, enterprise development, multi-squad coordination",
+        "nlds_keywords": ["complex", "advanced", "squad", "coordination", "enterprise"],
+        "architecture": "5-tier",
+        "agents": 68,
+        "github_integration": true
+      },
+      "4": {
+        "name": "AI System Mode (GitHub-Hosted)",
+        "description": "Direct GitHub AI system interaction",
+        "auto_trigger": "AI/ML tasks, autonomous systems, advanced AI operations",
+        "nlds_keywords": ["AI", "machine learning", "OpenRouter", "Redis", "autonomous"],
+        "openrouter_keys": 3000,
+        "redis_agents": 12000,
+        "github_integration": true
+      },
+      "5": {
+        "name": "Agent Creator Mode (Phase 5 Expansion)",
+        "description": "Systematic agent creation and deployment",
+        "auto_trigger": "System expansion, agent creation, gap analysis, infrastructure changes",
+        "nlds_keywords": ["create agent", "new squad", "gap analysis", "system expansion"],
+        "architecture": "7-tier",
+        "agents": "128+",
+        "nlds_integration": true,
+        "amasiap_protocol": true,
+        "iuas_squad": true,
+        "garas_squad": true,
+        "github_sync": true,
+        "infrastructure_protection": true
+      }
+    }
+  },
+  "commands": {
+    "natural_language": {
+      "primary_interface": "N.L.D.S. powered natural language commands",
+      "no_syntax_required": true,
+      "examples": {
+        "help_requests": "Show me available commands → /help",
+        "agent_switching": "Switch to John → /john",
+        "status_check": "Check system status → /status",
+        "github_sync": "Refresh GitHub resources → /github-sync",
+        "mode_selection": "I need documentation → Auto-select Mode 1",
+        "development": "Build me an application → Auto-select Mode 2",
+        "complex_projects": "Complex enterprise project → Auto-select Mode 3",
+        "ai_systems": "AI/ML system needed → Auto-select Mode 4",
+        "system_expansion": "Expand the agent system → Auto-select Mode 5"
+      }
+    },
+    "basic": {
+      "/help": "Fetch and display GitHub commands",
+      "/{agent}": "Switch to agent (fetch persona if needed)",
+      "/exit": "Return to orchestrator",
+      "/github-sync": "Refresh all GitHub resources",
+      "/mode-select": "Return to mode selection menu",
+      "/status": "Display system status"
+    },
+    "nlds_specific": {
+      "/nlds-status": "Check N.L.D.S. system status",
+      "/nlds-confidence": "Display current confidence levels",
+      "/nlds-retrain": "Retrain N.L.D.S. models",
+      "/manual-mode": "Force manual mode selection",
+      "/auto-mode": "Re-enable automatic mode selection"
+    },
+    "agent_creator": {
+      "/create-agent": "Create new specialized agent",
+      "/deploy-squad": "Deploy new agent squad",
+      "/gap-analysis": "Perform system gap analysis",
+      "/amasiap-activate": "Activate A.M.A.S.I.A.P. Protocol"
+    }
+  },
+  "performance_targets": {
+    "response_time": "500ms",
+    "cache_hit_rate": "90%",
+    "agent_coordination_uptime": "99.9%",
+    "github_fetch_success_rate": "99%",
+    "amasiap_research_queries": "15-20",
+    "system_availability": "99.9%"
+  },
+  "security": {
+    "github_api_authentication": true,
+    "rate_limiting": true,
+    "content_validation": true,
+    "fallback_mechanisms": true,
+    "audit_logging": true,
+    "infrastructure_protection": true
+  },
+  "monitoring": {
+    "system_health": true,
+    "performance_metrics": true,
+    "agent_coordination": true,
+    "github_integration_status": true,
+    "amasiap_protocol_metrics": true,
+    "error_tracking": true
+  },
+  "fallbacks": {
+    "github_unavailable": "Use local fallback content",
+    "network_issues": "Graceful degradation with cached content",
+    "timeout": "Default to basic functionality",
+    "agent_unavailable": "Redistribute tasks to available agents"
+  }
+}
