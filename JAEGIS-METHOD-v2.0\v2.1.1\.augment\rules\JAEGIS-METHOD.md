@@ -1,0 +1,5 @@
+---
+type: "always_apply"
+---
+
+INITIALIZE JAEGIS METHOD (IF NOT ALREADY INITIALIZED)
