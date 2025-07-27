@@ -1,0 +1,319 @@
+metadata:
+  pack_id: "unity_2d_game_development"
+  pack_name: "Unity 2D Game Development Pack"
+  version: "1.0.0"
+  description: "Specialized JAEGIS expansion pack for Unity 2D game development with game-specific agents, templates, and workflows"
+  author: "JAEGIS Community - Pinky D"
+  license: "MIT"
+  homepage: "https://jaegis-method.com/packs/unity-2d"
+  repository: "https://github.com/jaegis-method/unity-2d-pack"
+  keywords:
+    - "unity"
+    - "game-development"
+    - "2d-games"
+    - "gamedev"
+    - "indie-games"
+  created_date: "2025-01-23"
+  updated_date: "2025-01-23"
+
+dependencies:
+  core_version: "1.0.0"
+  required_packs: []
+  optional_packs:
+    - "creative_automation_pack"
+    - "asset_pipeline_pack"
+  python_packages:
+    - "UnityPy>=1.9.0"
+    - "Pillow>=8.0.0"
+  system_requirements:
+    unity_version: ">=2022.3 LTS"
+    platforms:
+      - "Windows"
+      - "macOS"
+      - "Linux"
+    disk_space: "500MB"
+
+capabilities:
+  provided_agents:
+    - "game_design_specialist"
+    - "unity_project_architect"
+    - "2d_asset_coordinator"
+    - "game_mechanics_validator"
+    - "unity_build_manager"
+  provided_templates:
+    - "game_design_document"
+    - "unity_project_architecture"
+    - "2d_asset_specification"
+    - "game_testing_plan"
+    - "unity_deployment_config"
+  provided_workflows:
+    - "game_concept_to_prototype"
+    - "asset_creation_pipeline"
+    - "unity_build_and_deploy"
+    - "game_testing_workflow"
+  provided_integrations:
+    - "unity_editor_api"
+    - "asset_store_integration"
+    - "version_control_unity"
+    - "analytics_integration"
+  provided_data_sources:
+    - "unity_project_templates"
+    - "2d_asset_libraries"
+    - "game_mechanics_patterns"
+    - "unity_best_practices"
+  extension_points:
+    - "custom_game_genres"
+    - "additional_platforms"
+    - "third_party_tools"
+
+configuration:
+  settings_schema:
+    type: "object"
+    properties:
+      unity_installation_path:
+        type: "string"
+        description: "Path to Unity installation"
+        default: "/Applications/Unity/Hub/Editor"
+      default_project_template:
+        type: "string"
+        description: "Default Unity project template"
+        default: "2D Core"
+        enum: ["2D Core", "2D URP", "2D Mobile"]
+      asset_naming_convention:
+        type: "string"
+        description: "Asset naming convention"
+        default: "PascalCase"
+        enum: ["PascalCase", "camelCase", "snake_case"]
+      target_platforms:
+        type: "array"
+        description: "Target deployment platforms"
+        items:
+          type: "string"
+          enum: ["PC", "Mac", "Linux", "iOS", "Android", "WebGL"]
+        default: ["PC", "Mac"]
+      performance_profile:
+        type: "string"
+        description: "Performance optimization profile"
+        default: "balanced"
+        enum: ["performance", "balanced", "quality"]
+      version_control_system:
+        type: "string"
+        description: "Version control system"
+        default: "git"
+        enum: ["git", "perforce", "plastic_scm"]
+    required:
+      - "unity_installation_path"
+      - "target_platforms"
+
+  default_settings:
+    unity_installation_path: "/Applications/Unity/Hub/Editor"
+    default_project_template: "2D Core"
+    asset_naming_convention: "PascalCase"
+    target_platforms: ["PC", "Mac"]
+    performance_profile: "balanced"
+    version_control_system: "git"
+    enable_analytics: true
+    auto_save_interval: 300
+    backup_frequency: "daily"
+
+  validation_rules:
+    - "unity_installation_path_exists"
+    - "target_platforms_not_empty"
+    - "valid_naming_convention"
+    - "compatible_unity_version"
+
+  environment_variables:
+    - "UNITY_PATH"
+    - "UNITY_LICENSE"
+    - "UNITY_PROJECT_PATH"
+
+# Pack-specific workflow modifications
+workflow_modifications:
+  brainstorming_phase:
+    additional_steps:
+      - "game_genre_exploration"
+      - "target_audience_analysis"
+      - "platform_considerations"
+      - "monetization_strategy"
+    specialized_techniques:
+      - "game_mechanic_brainstorming"
+      - "player_journey_mapping"
+      - "competitive_analysis"
+    duration_adjustment: "+15 minutes"
+
+  modeling_phase:
+    template_override: "game_design_document"
+    additional_sections:
+      - "core_game_loop"
+      - "progression_systems"
+      - "art_style_guide"
+      - "audio_requirements"
+    validation_criteria:
+      - "playable_core_loop_defined"
+      - "art_style_consistent"
+      - "technical_feasibility_confirmed"
+
+  architecture_phase:
+    template_override: "unity_project_architecture"
+    additional_considerations:
+      - "unity_specific_patterns"
+      - "performance_optimization"
+      - "platform_specific_requirements"
+      - "asset_organization_structure"
+    specialized_agents:
+      - "unity_project_architect"
+      - "2d_asset_coordinator"
+
+  development_phase:
+    additional_steps:
+      - "unity_project_setup"
+      - "asset_pipeline_configuration"
+      - "build_pipeline_setup"
+      - "testing_framework_integration"
+    specialized_workflows:
+      - "asset_creation_pipeline"
+      - "unity_build_and_deploy"
+
+# Integration specifications
+integrations:
+  unity_editor_api:
+    description: "Direct integration with Unity Editor for project manipulation"
+    endpoints:
+      - "create_project"
+      - "import_assets"
+      - "configure_build_settings"
+      - "run_tests"
+    authentication: "unity_license"
+    rate_limits:
+      requests_per_minute: 60
+
+  asset_store_integration:
+    description: "Integration with Unity Asset Store for asset discovery and import"
+    endpoints:
+      - "search_assets"
+      - "get_asset_details"
+      - "download_asset"
+    authentication: "unity_account"
+    rate_limits:
+      requests_per_minute: 30
+
+  version_control_unity:
+    description: "Unity-optimized version control integration"
+    supported_systems:
+      - "git_lfs"
+      - "perforce"
+      - "plastic_scm"
+    features:
+      - "unity_meta_file_handling"
+      - "large_asset_management"
+      - "merge_conflict_resolution"
+
+# Quality assurance specifications
+quality_assurance:
+  automated_tests:
+    - "unity_project_compilation"
+    - "asset_import_validation"
+    - "build_pipeline_verification"
+    - "performance_benchmarking"
+
+  code_quality:
+    - "unity_coding_standards"
+    - "performance_profiling"
+    - "memory_usage_analysis"
+    - "platform_compatibility_check"
+
+  documentation_requirements:
+    - "game_design_document_completeness"
+    - "technical_architecture_clarity"
+    - "asset_pipeline_documentation"
+    - "deployment_guide_accuracy"
+
+# Community and support
+community:
+  support_channels:
+    - "discord_unity_2d_channel"
+    - "github_issues"
+    - "community_forum"
+  
+  contribution_guidelines:
+    - "follow_unity_best_practices"
+    - "include_example_projects"
+    - "provide_comprehensive_tests"
+    - "maintain_documentation"
+
+  example_projects:
+    - name: "Platformer Starter"
+      description: "Basic 2D platformer with JAEGIS-generated architecture"
+      path: "examples/platformer-starter"
+    - name: "Puzzle Game Template"
+      description: "Match-3 style puzzle game framework"
+      path: "examples/puzzle-game"
+    - name: "RPG Character System"
+      description: "2D RPG character and inventory system"
+      path: "examples/rpg-character"
+
+# Performance and optimization
+performance:
+  optimization_profiles:
+    mobile:
+      texture_compression: "ASTC"
+      audio_compression: "Vorbis"
+      script_optimization: "IL2CPP"
+      
+    desktop:
+      texture_compression: "DXT"
+      audio_compression: "PCM"
+      script_optimization: "Mono"
+      
+    web:
+      texture_compression: "DXT"
+      audio_compression: "Vorbis"
+      script_optimization: "WebAssembly"
+
+  monitoring:
+    performance_metrics:
+      - "frame_rate"
+      - "memory_usage"
+      - "draw_calls"
+      - "texture_memory"
+    
+    profiling_tools:
+      - "unity_profiler"
+      - "memory_profiler"
+      - "frame_debugger"
+
+# Localization support
+localization:
+  supported_languages:
+    - "en-US"
+    - "es-ES"
+    - "fr-FR"
+    - "de-DE"
+    - "ja-JP"
+    - "ko-KR"
+    - "zh-CN"
+
+  localization_workflow:
+    - "text_extraction"
+    - "translation_management"
+    - "asset_localization"
+    - "testing_localized_builds"
+
+# Analytics and telemetry
+analytics:
+  supported_platforms:
+    - "unity_analytics"
+    - "google_analytics"
+    - "custom_analytics"
+
+  tracked_events:
+    - "game_start"
+    - "level_complete"
+    - "player_death"
+    - "item_purchase"
+    - "tutorial_complete"
+
+  privacy_compliance:
+    - "gdpr_compliant"
+    - "coppa_compliant"
+    - "user_consent_management"
