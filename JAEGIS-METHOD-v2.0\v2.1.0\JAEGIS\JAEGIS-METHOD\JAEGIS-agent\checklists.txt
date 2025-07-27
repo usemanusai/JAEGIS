@@ -1,0 +1,222 @@
+==================== START: pm-checklist ====================
+# Product Manager Validation Checklist
+
+## Requirements Validation
+- [ ] All functional requirements are clearly defined and measurable
+- [ ] Non-functional requirements include performance, security, and scalability
+- [ ] Requirements are validated for technical feasibility
+- [ ] User needs are backed by research or evidence
+- [ ] Success metrics are specific and measurable
+
+## Market Research Integration
+- [ ] Competitive analysis completed and integrated
+- [ ] Target user personas validated through research
+- [ ] Market positioning is clear and differentiated
+- [ ] User journey is mapped and validated
+- [ ] Value proposition is research-backed
+
+## Technical Feasibility
+- [ ] Technology stack is validated for current versions
+- [ ] Dependencies are checked for security and compatibility
+- [ ] Performance requirements are realistic and achievable
+- [ ] Scalability needs are addressed in requirements
+- [ ] Security requirements meet current standards
+
+## Documentation Quality
+- [ ] PRD follows standardized template format
+- [ ] All sections are complete and comprehensive
+- [ ] Handoff materials are prepared for technical teams
+- [ ] Validation reports are included
+- [ ] Research citations are provided where applicable
+
+## Collaboration & Handoff
+- [ ] Shared context is updated with PRD insights
+- [ ] Handoff materials prepared for System Architect
+- [ ] Handoff materials prepared for Design Architect (if UI components)
+- [ ] Validation gates are documented
+- [ ] Next steps are clearly defined
+==================== END: pm-checklist ====================
+
+==================== START: architect-checklist ====================
+# System Architect Validation Checklist
+
+## Architecture Design
+- [ ] System architecture addresses all PRD requirements
+- [ ] Architecture patterns are current and well-established
+- [ ] Component relationships are clearly defined
+- [ ] Data flow is documented and validated
+- [ ] Integration points are specified and secure
+
+## Technology Validation
+- [ ] All frameworks are current stable versions
+- [ ] Dependencies pass security vulnerability checks
+- [ ] Technology stack is compatible and well-supported
+- [ ] Migration paths are available for future updates
+- [ ] Community support is active and reliable
+
+## Security Integration
+- [ ] Security patterns are integrated from design phase
+- [ ] Authentication and authorization strategies are defined
+- [ ] Data protection measures are specified
+- [ ] Network security is addressed
+- [ ] Compliance requirements are integrated
+
+## Performance & Scalability
+- [ ] Performance requirements are addressed in architecture
+- [ ] Scalability patterns are integrated
+- [ ] Caching strategies are defined where appropriate
+- [ ] Database design supports performance requirements
+- [ ] Monitoring and observability are planned
+
+## Documentation & Standards
+- [ ] Architecture documentation is comprehensive
+- [ ] Diagrams are clear and follow standards
+- [ ] Implementation guidance is provided
+- [ ] Code organization standards are defined
+- [ ] Testing strategies are specified
+
+## Validation & Research
+- [ ] All technologies researched for current best practices
+- [ ] Dependency validation completed with web research
+- [ ] Security assessment completed
+- [ ] Performance validation completed
+- [ ] Alternative solutions evaluated
+
+## Collaboration & Handoff
+- [ ] Shared context updated with architectural decisions
+- [ ] Handoff materials prepared for DevOps team
+- [ ] Handoff materials prepared for Development team
+- [ ] Validation reports included in handoff
+- [ ] Implementation roadmap is clear
+==================== END: architect-checklist ====================
+
+==================== START: dependency-safety ====================
+# Dependency Safety Validation Checklist
+
+## Package Version Validation
+- [ ] All packages are current stable versions (not outdated)
+- [ ] Package versions are compatible with each other
+- [ ] No deprecated packages are used
+- [ ] Migration paths exist for all dependencies
+- [ ] Package maintainers are active and reliable
+
+## Security Assessment
+- [ ] No known security vulnerabilities in dependencies
+- [ ] Security patches are available and current
+- [ ] Dependency licenses are compatible with project
+- [ ] Supply chain security is validated
+- [ ] Vulnerability monitoring is in place
+
+## Compatibility Validation
+- [ ] Framework versions are compatible
+- [ ] Node.js/runtime versions are supported
+- [ ] Operating system compatibility verified
+- [ ] Browser compatibility confirmed (for frontend)
+- [ ] Mobile platform compatibility (if applicable)
+
+## System Requirements
+- [ ] All system tools are available and accessible
+- [ ] PATH requirements are documented and verified
+- [ ] Installation procedures are validated
+- [ ] Alternative installation methods researched
+- [ ] System dependencies are documented
+
+## Research Validation
+- [ ] Current best practices researched and integrated
+- [ ] Community recommendations validated
+- [ ] Performance benchmarks reviewed
+- [ ] Alternative solutions evaluated
+- [ ] Future roadmap considerations included
+
+## Documentation
+- [ ] All dependencies documented with versions
+- [ ] Installation instructions provided
+- [ ] Troubleshooting guidance included
+- [ ] Update procedures documented
+- [ ] Rollback procedures defined
+==================== END: dependency-safety ====================
+
+==================== START: validation-checklist ====================
+# Comprehensive Validation Checklist
+
+## Pre-Generation Validation
+- [ ] Requirements are clear and validated
+- [ ] Technology research completed
+- [ ] Current best practices identified
+- [ ] Security standards researched
+- [ ] Performance benchmarks established
+
+## Real-Time Validation
+- [ ] Dependencies validated during generation
+- [ ] Security checks performed continuously
+- [ ] Compatibility verified in real-time
+- [ ] Best practices applied consistently
+- [ ] Quality gates enforced
+
+## Post-Generation Validation
+- [ ] All outputs meet quality standards
+- [ ] Dependencies are current and secure
+- [ ] Documentation is comprehensive
+- [ ] Handoff materials are complete
+- [ ] Validation reports generated
+
+## Cross-Agent Validation
+- [ ] Shared context is maintained
+- [ ] Agent outputs are consistent
+- [ ] Handoffs are complete and validated
+- [ ] Collaborative intelligence is maintained
+- [ ] Quality standards are enforced
+
+## Research Integration
+- [ ] Web research findings integrated
+- [ ] Current standards applied
+- [ ] Alternative solutions considered
+- [ ] Best practices implemented
+- [ ] Future considerations included
+
+## Final Quality Assurance
+- [ ] All validation gates passed
+- [ ] Documentation is complete
+- [ ] Implementation guidance provided
+- [ ] Monitoring and maintenance planned
+- [ ] Success criteria defined
+==================== END: validation-checklist ====================
+
+==================== START: coordination-checklist ====================
+# Agent Coordination Validation Checklist
+
+## Shared Context Management
+- [ ] Project context initialized and maintained
+- [ ] Agent status tracked and updated
+- [ ] Decision history preserved
+- [ ] Knowledge base updated continuously
+- [ ] Context consistency verified across agents
+
+## Handoff Validation
+- [ ] Pre-handoff validation completed
+- [ ] Context transfer successful
+- [ ] Next agent properly initialized
+- [ ] Handoff materials comprehensive
+- [ ] Post-handoff validation confirmed
+
+## Collaborative Intelligence
+- [ ] Agents maintain shared awareness
+- [ ] Cross-agent validation performed
+- [ ] Consistent standards applied
+- [ ] Quality gates enforced
+- [ ] Team coordination maintained
+
+## Validation Integration
+- [ ] Dependency validation active
+- [ ] Security assessment ongoing
+- [ ] Research integration continuous
+- [ ] Quality assurance maintained
+- [ ] Best practices enforced
+
+## Quality Assurance
+- [ ] All outputs validated for quality
+- [ ] Standards compliance verified
+- [ ] Documentation completeness confirmed
+- [ ] Implementation readiness validated
+- [ ] Success criteria met
+==================== END: coordination-checklist ====================
