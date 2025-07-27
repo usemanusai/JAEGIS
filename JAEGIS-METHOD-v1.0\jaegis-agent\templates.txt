@@ -1,0 +1,340 @@
+==================== START: prd-tmpl ====================
+# {{Project Name}} - Product Requirements Document (PRD)
+*Generated with JAEGIS Enhanced Validation System*
+
+[[LLM: This template includes validation checkpoints and research integration. Follow all validation protocols.]]
+
+## Executive Summary
+[[LLM: Provide 2-3 paragraph executive summary based on research and validation]]
+
+## Goals and Background Context
+
+### Goals
+[[LLM: Research-backed goals with market validation]]
+- **Primary Goal**: {{Primary validated goal}}
+- **Secondary Goals**: {{Research-backed secondary goals}}
+- **Success Metrics**: {{Measurable, validated success criteria}}
+
+### Background Context
+[[LLM: Include market research and competitive analysis]]
+{{Research-backed background context with citations}}
+
+## Validated Requirements
+
+### Functional Requirements
+[[LLM: Each requirement must be validated for technical feasibility]]
+- **FR1**: {{Validated functional requirement with feasibility check}}
+- **FR2**: {{Research-backed functional requirement}}
+- **FR3**: {{User-validated functional requirement}}
+
+### Non-Functional Requirements
+[[LLM: Include performance, security, and scalability requirements with research backing]]
+- **NFR1**: {{Performance requirement with benchmarks}}
+- **NFR2**: {{Security requirement with current standards}}
+- **NFR3**: {{Scalability requirement with validation}}
+
+## Technology Validation Report
+[[LLM: Include validation results from dependency checking]]
+
+### Validated Technology Stack
+- **Frontend**: {{Validated framework with current version}}
+- **Backend**: {{Validated technology with security assessment}}
+- **Database**: {{Validated database with performance research}}
+- **Infrastructure**: {{Validated deployment platform}}
+
+### Dependency Validation
+[[LLM: Include results from web research and validation]]
+```
+Validation Status: ✅ All dependencies validated
+Last Updated: {{Current date}}
+Security Status: ✅ No known vulnerabilities
+Compatibility: ✅ All frameworks compatible
+```
+
+## User Experience Research
+[[LLM: Include user research and market validation]]
+
+### Target User Validation
+{{Research-backed user personas and needs}}
+
+### Competitive Analysis
+{{Market research and competitive positioning}}
+
+## Implementation Roadmap
+[[LLM: Validated implementation phases with realistic timelines]]
+
+### Phase 1: Foundation
+{{Validated core features with dependency confirmation}}
+
+### Phase 2: Enhancement
+{{Research-backed feature enhancements}}
+
+### Phase 3: Optimization
+{{Performance and scalability improvements}}
+
+## Risk Assessment & Mitigation
+[[LLM: Include technical and market risks with mitigation strategies]]
+
+### Technical Risks
+- **Risk**: {{Identified technical risk}}
+- **Mitigation**: {{Research-backed mitigation strategy}}
+
+### Market Risks
+- **Risk**: {{Market or user adoption risk}}
+- **Mitigation**: {{Validated mitigation approach}}
+
+## Handoff Information
+[[LLM: Prepare comprehensive handoff context for technical teams]]
+
+### For System Architect
+- Validated technical requirements
+- Technology research findings
+- Performance and scalability needs
+- Security and compliance requirements
+
+### For Design Architect
+- User research findings
+- UX requirements and validation
+- Design system needs
+- Accessibility requirements
+
+## Validation Checklist
+[[LLM: Ensure all validation gates are met]]
+- ✅ All requirements validated for feasibility
+- ✅ Technology stack researched and validated
+- ✅ Dependencies checked for current versions
+- ✅ Security requirements integrated
+- ✅ User needs validated through research
+- ✅ Market positioning confirmed
+- ✅ Handoff materials prepared
+==================== END: prd-tmpl ====================
+
+==================== START: architecture-tmpl ====================
+# {{Project Name}} - System Architecture Document
+*Generated with JAEGIS Enhanced Validation & Research*
+
+[[LLM: This template requires validation of all technologies and dependencies]]
+
+## Architecture Overview
+[[LLM: High-level architecture with validated components]]
+
+### System Context
+{{Validated system context with research backing}}
+
+### Architecture Principles
+- **Scalability**: {{Research-backed scalability approach}}
+- **Security**: {{Current security standards integration}}
+- **Performance**: {{Validated performance requirements}}
+- **Maintainability**: {{Best practices for code maintainability}}
+
+## Validated Technology Stack
+
+### Frontend Architecture
+[[LLM: All frontend technologies must be validated for current versions]]
+- **Framework**: {{Validated framework}} v{{Current stable version}}
+- **State Management**: {{Validated state solution}}
+- **UI Components**: {{Validated component library}}
+- **Build Tools**: {{Current build toolchain}}
+
+**Validation Report**:
+```
+Framework Status: ✅ Latest stable version
+Security Status: ✅ No known vulnerabilities  
+Community Support: ✅ Active development
+Migration Path: ✅ Clear upgrade path
+```
+
+### Backend Architecture
+[[LLM: Backend technologies with security and performance validation]]
+- **Runtime**: {{Validated runtime}} v{{Current LTS version}}
+- **Framework**: {{Validated backend framework}}
+- **Database**: {{Validated database solution}}
+- **Caching**: {{Validated caching strategy}}
+
+**Validation Report**:
+```
+Runtime Status: ✅ Current LTS version
+Security Patches: ✅ Up to date
+Performance: ✅ Meets requirements
+Scalability: ✅ Horizontal scaling supported
+```
+
+### Infrastructure Architecture
+[[LLM: Infrastructure with security and compliance validation]]
+- **Cloud Platform**: {{Validated cloud provider}}
+- **Container Platform**: {{Validated containerization}}
+- **CI/CD Pipeline**: {{Validated deployment pipeline}}
+- **Monitoring**: {{Validated observability stack}}
+
+## Security Architecture
+[[LLM: Integrate current security best practices and compliance]]
+
+### Security Patterns
+- **Authentication**: {{Current authentication standards}}
+- **Authorization**: {{Validated authorization patterns}}
+- **Data Protection**: {{Current data protection standards}}
+- **Network Security**: {{Validated network security}}
+
+### Compliance Integration
+{{Current compliance requirements and implementation}}
+
+## Performance Architecture
+[[LLM: Performance requirements with validated solutions]]
+
+### Performance Requirements
+- **Response Time**: {{Validated response time targets}}
+- **Throughput**: {{Research-backed throughput requirements}}
+- **Scalability**: {{Validated scaling approach}}
+- **Availability**: {{SLA requirements with validation}}
+
+### Optimization Strategies
+{{Current performance optimization techniques}}
+
+## Data Architecture
+[[LLM: Data architecture with validated patterns]]
+
+### Data Flow
+{{Validated data flow patterns with security}}
+
+### Storage Strategy
+{{Research-backed storage solutions}}
+
+## Deployment Architecture
+[[LLM: Modern deployment patterns with validation]]
+
+### Deployment Strategy
+{{Validated deployment approach}}
+
+### Environment Configuration
+{{Validated environment setup}}
+
+## Monitoring & Observability
+[[LLM: Current observability best practices]]
+
+### Monitoring Stack
+{{Validated monitoring solutions}}
+
+### Alerting Strategy
+{{Research-backed alerting patterns}}
+
+## Implementation Guidance
+[[LLM: Prepare detailed guidance for development team]]
+
+### Development Standards
+{{Current development best practices}}
+
+### Code Organization
+{{Validated project structure}}
+
+### Testing Strategy
+{{Current testing methodologies}}
+
+## Validation Summary
+[[LLM: Comprehensive validation report]]
+```
+Architecture Validation: ✅ Complete
+Technology Research: ✅ All current versions
+Security Assessment: ✅ Best practices integrated
+Performance Validation: ✅ Requirements met
+Dependency Check: ✅ All dependencies secure
+Implementation Readiness: ✅ Ready for development
+```
+
+## Handoff Information
+[[LLM: Prepare comprehensive handoff for development teams]]
+
+### For DevOps Team
+- Infrastructure requirements and validation
+- Security configuration requirements
+- Monitoring and alerting setup
+- Deployment pipeline specifications
+
+### For Development Team
+- Technology stack with validated versions
+- Architecture patterns and standards
+- Security implementation requirements
+- Performance optimization guidelines
+==================== END: architecture-tmpl ====================
+
+==================== START: validation-report ====================
+# Validation Report - {{Project Name}}
+*JAEGIS Enhanced Validation System*
+
+## Validation Summary
+**Date**: {{Current date}}
+**Validation Status**: {{Overall status}}
+**Critical Issues**: {{Number of critical issues}}
+**Recommendations**: {{Number of recommendations}}
+
+## Dependency Validation
+
+### Package Validation Results
+[[LLM: Include results from web research on current package versions]]
+```
+Package Name          | Requested | Current  | Status | Security
+---------------------|-----------|----------|--------|----------
+{{package-name}}     | {{version}}| {{current}}| ✅/❌   | ✅/❌
+```
+
+### Framework Compatibility
+[[LLM: Cross-framework compatibility validation]]
+- **Primary Framework**: {{Status and compatibility}}
+- **Supporting Libraries**: {{Compatibility matrix}}
+- **Version Conflicts**: {{Any identified conflicts}}
+
+## Security Validation
+
+### Vulnerability Assessment
+[[LLM: Security vulnerability research and assessment]]
+- **Known Vulnerabilities**: {{Count and severity}}
+- **Security Patches**: {{Available patches}}
+- **Mitigation Strategies**: {{Recommended mitigations}}
+
+### Compliance Check
+- **Security Standards**: {{Compliance status}}
+- **Data Protection**: {{GDPR/privacy compliance}}
+- **Industry Standards**: {{Relevant compliance}}
+
+## Technology Research Summary
+
+### Current Best Practices
+[[LLM: Research findings on current best practices]]
+{{Research-backed recommendations}}
+
+### Alternative Solutions
+[[LLM: Alternative technologies and approaches]]
+{{Researched alternatives with pros/cons}}
+
+## Recommendations
+
+### Critical Actions Required
+[[LLM: High-priority recommendations]]
+1. {{Critical recommendation with research backing}}
+2. {{Security or compatibility fix}}
+
+### Optimization Opportunities
+[[LLM: Performance and maintainability improvements]]
+1. {{Research-backed optimization}}
+2. {{Best practice implementation}}
+
+## Implementation Guidance
+
+### Immediate Steps
+[[LLM: Actionable next steps with validation]]
+1. {{Validated implementation step}}
+2. {{Dependency installation with current versions}}
+
+### Quality Gates
+- ✅ All dependencies validated
+- ✅ Security assessment complete
+- ✅ Performance requirements validated
+- ✅ Best practices integrated
+
+## Validation Checklist
+- ✅ Package versions researched and validated
+- ✅ Security vulnerabilities assessed
+- ✅ Framework compatibility verified
+- ✅ Best practices researched and integrated
+- ✅ Alternative solutions evaluated
+- ✅ Implementation guidance provided
+==================== END: validation-report ====================
