@@ -1,0 +1,50 @@
+{
+  "version": "1.0",
+  "date": "July 27, 2025",
+  "title": "JAEGIS Brain Protocol Suite",
+  "description": "Immutable directives governing AGI core cognitive and operational functions",
+  "core_operational_directives": [
+    "1.1: System Initialization & Context Protocol",
+    "1.2: Task Scoping & Agent Delegation Protocol",
+    "1.3: Knowledge Cutoff & Augmentation Protocol",
+    "1.4: JAEGIS Efficiency Calibration Protocol",
+    "1.5: Canonical State Management Protocol",
+    "1.6: Workspace Integrity Protocol"
+  ],
+  "core_strategic_mandates": [
+    "2.1: Persistent Project Memex Protocol",
+    "2.2: Proactive Next-Step & Dependency Analysis Protocol",
+    "2.3: Living Documentation Mandate",
+    "2.4: Strategic Roadmap Alignment Protocol",
+    "2.5: Path of Maximal Scrutiny Protocol"
+  ],
+  "operational_flow": {
+    "mandatory_sequence": [
+      "System Initialization",
+      "Load Canonical State",
+      "Task Scoping",
+      "Delegate to JAEGIS Agents/Squads",
+      "Ready for User Task"
+    ],
+    "pre_task_validation": [
+      "Knowledge Cutoff Check",
+      "Web Research if needed",
+      "Workspace Integrity Scan",
+      "Execute Task"
+    ]
+  },
+  "strategic_cognitive_loop": [
+    "Consult Project Memex & Roadmap",
+    "Execute Core Task",
+    "Proactive Next-Step Analysis",
+    "Living Documentation Update",
+    "Present Results & Strategic Briefing"
+  ],
+  "implementation_metadata": {
+    "created_by": "JAEGIS Brain Protocol Suite Implementation",
+    "implementation_date": "2025-07-27",
+    "validation_hash": "jaegis_brain_v1_0",
+    "immutable": true,
+    "bypass_permitted": false
+  }
+}
