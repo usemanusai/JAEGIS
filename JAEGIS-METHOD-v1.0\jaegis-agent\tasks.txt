@@ -1,0 +1,275 @@
+==================== START: mode-selection ====================
+# Task: Enhanced Mode Selection with Validation
+
+## Purpose
+Present mandatory mode selection with enhanced validation and coordination capabilities
+
+## Execution Steps
+1. **System Initialization**
+   - Load agent configuration and validate system readiness
+   - Initialize shared context and validation systems
+   - Prepare agent coordination infrastructure
+
+2. **Mode Selection Presentation**
+   - Present mandatory mode selection menu
+   - Explain enhanced validation and coordination features
+   - Wait for explicit user selection (1 or 2)
+
+3. **Mode Activation**
+   - **Documentation Mode**: Activate PM → Architect → Validator workflow
+   - **Full Development Mode**: Activate full agent team with validation
+   - Initialize shared context for selected mode
+   - Prepare agent handoff queue
+
+## Validation Integration
+- Verify all agents are available and configured
+- Initialize dependency validation systems
+- Prepare web research capabilities
+- Set up collaborative intelligence framework
+
+## Success Criteria
+- User explicitly selects mode 1 or 2
+- Shared context is initialized
+- Agent team is prepared for coordination
+- Validation systems are active
+==================== END: mode-selection ====================
+
+==================== START: agent-coordination ====================
+# Task: Enhanced Agent Coordination with Shared Context
+
+## Purpose
+Orchestrate AI agent collaboration with shared context and validation
+
+## Coordination Framework
+### Shared Context Management
+- **Project State**: Current phase, decisions, and progress
+- **Agent Status**: Active agents, completed tasks, pending handoffs
+- **Validation Results**: Dependency checks, research findings, quality gates
+- **Knowledge Base**: Accumulated insights and decisions
+
+### Handoff Orchestration
+1. **Pre-Handoff Validation**
+   - Verify completion of current agent tasks
+   - Validate output quality and completeness
+   - Prepare enriched context for next agent
+
+2. **Context Transfer**
+   - Update shared context with current agent insights
+   - Prepare handoff materials and documentation
+   - Initialize next agent with complete context
+
+3. **Post-Handoff Validation**
+   - Verify successful context transfer
+   - Confirm next agent understanding
+   - Monitor collaborative progress
+
+## Agent Collaboration Patterns
+- **Sequential**: PM → Architect → DevOps → Dev
+- **Parallel**: Design Architect + System Architect
+- **Service**: Validator provides ongoing validation
+- **Collaborative**: All agents maintain shared awareness
+
+## Quality Gates
+- Each handoff requires validation checkpoint
+- Shared context must be updated before transitions
+- All outputs must pass quality standards
+- Dependencies must be validated before use
+==================== END: agent-coordination ====================
+
+==================== START: dependency-validation ====================
+# Task: Real-Time Dependency Validation with Web Research
+
+## Purpose
+Validate all dependencies, packages, and system requirements using current web research
+
+## Validation Process
+### 1. Package Version Research
+- **Current Versions**: Research latest stable versions
+- **Compatibility Matrix**: Check framework compatibility
+- **Security Status**: Verify no known vulnerabilities
+- **License Compliance**: Ensure compatible licensing
+
+### 2. System Requirements Validation
+- **Platform Availability**: Verify system tools exist
+- **Path Validation**: Check system PATH requirements
+- **Installation Methods**: Validate installation procedures
+- **Alternative Solutions**: Research backup options
+
+### 3. Framework Integration
+- **Version Compatibility**: Cross-framework version checking
+- **Migration Paths**: Identify upgrade requirements
+- **Best Practices**: Current implementation patterns
+- **Performance Impact**: Resource and performance considerations
+
+## Web Research Integration
+```javascript
+// Example validation process
+const validateDependency = async (packageName, version) => {
+  // Research current version
+  const currentVersion = await researchCurrentVersion(packageName);
+  
+  // Check security status
+  const securityStatus = await checkSecurityVulnerabilities(packageName, version);
+  
+  // Validate compatibility
+  const compatibility = await checkFrameworkCompatibility(packageName, version);
+  
+  return {
+    package: packageName,
+    requestedVersion: version,
+    currentVersion: currentVersion,
+    securityStatus: securityStatus,
+    compatibility: compatibility,
+    recommendation: generateRecommendation()
+  };
+};
+```
+
+## Validation Gates
+- **Pre-Generation**: Research before suggesting dependencies
+- **Real-Time**: Validate during code generation
+- **Post-Generation**: Final validation before handoff
+- **Continuous**: Monitor for security updates
+
+## Error Prevention
+- Never suggest outdated package versions
+- Always verify system tool availability
+- Research alternative solutions for missing tools
+- Provide installation guidance for required tools
+==================== END: dependency-validation ====================
+
+==================== START: web-research ====================
+# Task: Integrated Web Research for Current Standards
+
+## Purpose
+Provide real-time web research capabilities for current best practices and standards
+
+## Research Domains
+### Technology Research
+- **Framework Versions**: Latest stable releases and features
+- **Best Practices**: Current implementation patterns
+- **Performance Optimization**: Latest optimization techniques
+- **Security Standards**: Current security recommendations
+
+### Market Research
+- **Competitive Analysis**: Current market solutions
+- **User Trends**: Latest user experience patterns
+- **Technology Adoption**: Framework and tool adoption rates
+- **Industry Standards**: Current compliance requirements
+
+### Implementation Research
+- **Code Examples**: Current implementation patterns
+- **Configuration Standards**: Best practice configurations
+- **Deployment Patterns**: Modern deployment strategies
+- **Testing Approaches**: Current testing methodologies
+
+## Research Integration Points
+1. **Pre-Task Research**: Research before beginning any task
+2. **Real-Time Validation**: Continuous research during execution
+3. **Cross-Validation**: Verify information across multiple sources
+4. **Update Monitoring**: Track changes in recommendations
+
+## Research Quality Standards
+- **Source Verification**: Use authoritative sources
+- **Recency Validation**: Prioritize recent information
+- **Cross-Reference**: Validate across multiple sources
+- **Context Relevance**: Ensure research matches project context
+
+## Output Integration
+- Research findings integrated into agent outputs
+- Validation reports include research citations
+- Recommendations backed by current research
+- Alternative solutions based on research findings
+==================== END: web-research ====================
+
+==================== START: create-prd ====================
+# Task: Enhanced PRD Creation with Validation
+
+## Purpose
+Create comprehensive PRD with validation, research, and collaborative intelligence
+
+## Enhanced Workflow
+### 1. Context Integration
+- Review shared project context from previous agents
+- Integrate any existing research or validation findings
+- Understand project constraints and technical preferences
+
+### 2. Research-Backed Requirements
+- **Market Research**: Validate user needs against current trends
+- **Technology Research**: Ensure technical feasibility
+- **Competitive Analysis**: Understand market positioning
+- **User Research**: Evidence-based user need validation
+
+### 3. Collaborative PRD Generation
+- Use standardized PRD template with validation checkpoints
+- Integrate research findings into requirements
+- Prepare handoff context for technical teams
+- Include validation gates for technical feasibility
+
+### 4. Quality Assurance
+- Validate all requirements for technical feasibility
+- Ensure market research supports product decisions
+- Verify user needs are evidence-based
+- Prepare comprehensive handoff materials
+
+## Handoff Preparation
+- **For Design Architect**: UI/UX requirements with research backing
+- **For System Architect**: Technical requirements with validation
+- **Shared Context**: Updated project state and decisions
+- **Validation Report**: Research findings and feasibility assessment
+
+## Success Criteria
+- PRD passes all validation gates
+- Requirements are research-backed
+- Technical feasibility is validated
+- Handoff materials are comprehensive
+==================== END: create-prd ====================
+
+==================== START: create-architecture ====================
+# Task: Enhanced Architecture Creation with Validation
+
+## Purpose
+Create validated, research-backed system architecture with current best practices
+
+## Enhanced Architecture Process
+### 1. Context Integration
+- Review PRD and design specifications from previous agents
+- Understand validated requirements and constraints
+- Integrate shared project context and decisions
+
+### 2. Technology Research & Validation
+- **Framework Research**: Latest stable versions and best practices
+- **Dependency Validation**: Current, secure package versions
+- **Security Research**: Current security patterns and compliance
+- **Performance Research**: Optimization techniques and patterns
+
+### 3. Architecture Design with Validation
+- Design system architecture with validated technologies
+- Integrate security patterns from research
+- Ensure scalability and performance requirements
+- Validate all dependencies and frameworks
+
+### 4. Documentation & Handoff
+- Create comprehensive architecture documentation
+- Include validation reports and research findings
+- Prepare handoff materials for DevOps and Development
+- Update shared context with architectural decisions
+
+## Validation Gates
+- All technologies must be current and well-supported
+- Dependencies must pass security and compatibility checks
+- Architecture must meet performance requirements
+- Security patterns must be integrated
+
+## Research Integration
+- Framework version validation with web research
+- Security pattern research and integration
+- Performance optimization research
+- Industry best practices integration
+
+## Success Criteria
+- Architecture passes all validation gates
+- All dependencies are current and secure
+- Documentation is comprehensive and validated
+- Handoff materials enable seamless implementation
+==================== END: create-architecture ====================
