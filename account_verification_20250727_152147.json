@@ -1,0 +1,112 @@
+[
+  {
+    "account_name": "Primary Account",
+    "username": "usemanusai",
+    "token_valid": true,
+    "user_info": {
+      "login": "usemanusai",
+      "name": null,
+      "email": null,
+      "public_repos": 16,
+      "private_repos": 6
+    },
+    "rate_limit": {
+      "limit": 5000,
+      "remaining": 4999,
+      "reset": "2025-07-27T16:21:45"
+    },
+    "repo_access": true,
+    "repo_permissions": {
+      "admin": true,
+      "maintain": true,
+      "push": true,
+      "triage": true,
+      "pull": true
+    },
+    "errors": []
+  },
+  {
+    "account_name": "Secondary Account",
+    "username": "Alex-Cipher-AI",
+    "token_valid": true,
+    "user_info": {
+      "login": "Alex-Cipher-AI",
+      "name": null,
+      "email": "Alex.Cipher.AI@proton.me",
+      "public_repos": 3,
+      "private_repos": 0
+    },
+    "rate_limit": {
+      "limit": 5000,
+      "remaining": 4999,
+      "reset": "2025-07-27T16:21:46"
+    },
+    "repo_access": true,
+    "repo_permissions": {
+      "admin": false,
+      "maintain": false,
+      "push": false,
+      "triage": false,
+      "pull": true
+    },
+    "errors": [
+      "No write (push) permission to repository"
+    ]
+  },
+  {
+    "account_name": "Tertiary Account",
+    "username": "huggingfacer04",
+    "token_valid": true,
+    "user_info": {
+      "login": "huggingfacer04",
+      "name": null,
+      "email": null,
+      "public_repos": 3,
+      "private_repos": 0
+    },
+    "rate_limit": {
+      "limit": 5000,
+      "remaining": 4999,
+      "reset": "2025-07-27T16:21:46"
+    },
+    "repo_access": true,
+    "repo_permissions": {
+      "admin": false,
+      "maintain": false,
+      "push": false,
+      "triage": false,
+      "pull": true
+    },
+    "errors": [
+      "No write (push) permission to repository"
+    ]
+  },
+  {
+    "account_name": "Quaternary Account",
+    "username": "huggingfacer06",
+    "token_valid": true,
+    "user_info": {
+      "login": "huggingfacer06",
+      "name": null,
+      "email": null,
+      "public_repos": 0,
+      "private_repos": 0
+    },
+    "rate_limit": {
+      "limit": 5000,
+      "remaining": 4999,
+      "reset": "2025-07-27T16:21:47"
+    },
+    "repo_access": true,
+    "repo_permissions": {
+      "admin": false,
+      "maintain": false,
+      "push": false,
+      "triage": false,
+      "pull": true
+    },
+    "errors": [
+      "No write (push) permission to repository"
+    ]
+  }
+]
