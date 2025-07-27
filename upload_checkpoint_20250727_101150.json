@@ -1,0 +1,45 @@
+{
+  "timestamp": "2025-07-27T10:11:50.421637",
+  "upload_stats": {
+    "total_files": 32464,
+    "uploaded_files": 7,
+    "failed_files": 14,
+    "skipped_files": 1,
+    "total_size_mb": 0.19356822967529297,
+    "start_time": 1753603897.356334,
+    "phases_completed": 1
+  },
+  "phase_results": [
+    {
+      "phase_id": "phase_4",
+      "total_files": 22,
+      "uploaded_files": 7,
+      "failed_files": 14,
+      "skipped_files": 1,
+      "start_time": 1753603902.53599,
+      "current_file": "core\\protocols\\amasiap_protocol.py",
+      "errors": [
+        "core\\brain_protocol\\agent_creator.py: HTTP 409: {\"message\":\"is at 13433b304fbe129bdc3421a76df251621ca903eb but expected 0866a69cf34d18a2b28c06b53b883559bc26961b\",\"documentation_url\":\"https://docs.github.com/rest/repos/contents#create-or-update-file-contents\",\"status\":\"409\"}",
+        "core\\brain_protocol\\canonical_state_management.py: HTTP 409: {\"message\":\"is at 13433b304fbe129bdc3421a76df251621ca903eb but expected 0866a69cf34d18a2b28c06b53b883559bc26961b\",\"documentation_url\":\"https://docs.github.com/rest/repos/contents#create-or-update-file-contents\",\"status\":\"409\"}",
+        "core\\brain_protocol\\efficiency_calibration.py: HTTP 409: {\"message\":\"is at 13433b304fbe129bdc3421a76df251621ca903eb but expected 0866a69cf34d18a2b28c06b53b883559bc26961b\",\"documentation_url\":\"https://docs.github.com/rest/repos/contents#create-or-update-file-contents\",\"status\":\"409\"}",
+        "core\\brain_protocol\\knowledge_augmentation.py: HTTP 409: {\"message\":\"is at 13433b304fbe129bdc3421a76df251621ca903eb but expected 0866a69cf34d18a2b28c06b53b883559bc26961b\",\"documentation_url\":\"https://docs.github.com/rest/repos/contents#create-or-update-file-contents\",\"status\":\"409\"}",
+        "core\\brain_protocol\\maximal_scrutiny.py: HTTP 409: {\"message\":\"is at 228d17c17abf9cd2f1d642fea072b3f5cd7d4f11 but expected 13433b304fbe129bdc3421a76df251621ca903eb\",\"documentation_url\":\"https://docs.github.com/rest/repos/contents#create-or-update-file-contents\",\"status\":\"409\"}",
+        "core\\brain_protocol\\project_memex.py: HTTP 409: {\"message\":\"is at 228d17c17abf9cd2f1d642fea072b3f5cd7d4f11 but expected 13433b304fbe129bdc3421a76df251621ca903eb\",\"documentation_url\":\"https://docs.github.com/rest/repos/contents#create-or-update-file-contents\",\"status\":\"409\"}",
+        "core\\brain_protocol\\protocol_suite.json: HTTP 409: {\"message\":\"is at 228d17c17abf9cd2f1d642fea072b3f5cd7d4f11 but expected 13433b304fbe129bdc3421a76df251621ca903eb\",\"documentation_url\":\"https://docs.github.com/rest/repos/contents#create-or-update-file-contents\",\"status\":\"409\"}",
+        "core\\brain_protocol\\strategic_roadmap_alignment.py: HTTP 409: {\"message\":\"is at 228d17c17abf9cd2f1d642fea072b3f5cd7d4f11 but expected 13433b304fbe129bdc3421a76df251621ca903eb\",\"documentation_url\":\"https://docs.github.com/rest/repos/contents#create-or-update-file-contents\",\"status\":\"409\"}",
+        "core\\brain_protocol\\system_initialization.py: HTTP 409: {\"message\":\"is at 83134b9dd8763b8e879b193da8f1617efc110620 but expected 228d17c17abf9cd2f1d642fea072b3f5cd7d4f11\",\"documentation_url\":\"https://docs.github.com/rest/repos/contents#create-or-update-file-contents\",\"status\":\"409\"}",
+        "core\\brain_protocol\\system_integration_testing.py: HTTP 409: {\"message\":\"is at 83134b9dd8763b8e879b193da8f1617efc110620 but expected 228d17c17abf9cd2f1d642fea072b3f5cd7d4f11\",\"documentation_url\":\"https://docs.github.com/rest/repos/contents#create-or-update-file-contents\",\"status\":\"409\"}",
+        "core\\brain_protocol\\task_scoping_delegation.py: HTTP 409: {\"message\":\"is at 83134b9dd8763b8e879b193da8f1617efc110620 but expected 228d17c17abf9cd2f1d642fea072b3f5cd7d4f11\",\"documentation_url\":\"https://docs.github.com/rest/repos/contents#create-or-update-file-contents\",\"status\":\"409\"}",
+        "core\\brain_protocol\\workspace_integrity.py: HTTP 409: {\"message\":\"is at 83134b9dd8763b8e879b193da8f1617efc110620 but expected 228d17c17abf9cd2f1d642fea072b3f5cd7d4f11\",\"documentation_url\":\"https://docs.github.com/rest/repos/contents#create-or-update-file-contents\",\"status\":\"409\"}",
+        "core\\garas\\gap_detection.py: HTTP 409: {\"message\":\"is at 1f828cda1f417d5b22ca35efd36d581385a6f4d4 but expected 83134b9dd8763b8e879b193da8f1617efc110620\",\"documentation_url\":\"https://docs.github.com/rest/repos/contents#create-or-update-file-contents\",\"status\":\"409\"}",
+        "core\\garas\\research_analysis.py: HTTP 409: {\"message\":\"is at 1f828cda1f417d5b22ca35efd36d581385a6f4d4 but expected 83134b9dd8763b8e879b193da8f1617efc110620\",\"documentation_url\":\"https://docs.github.com/rest/repos/contents#create-or-update-file-contents\",\"status\":\"409\"}"
+      ]
+    }
+  ],
+  "docqa_stats": {
+    "active": true,
+    "processed_files": 0,
+    "documentation_files_count": 0,
+    "optimization_level": "maximum"
+  }
+}
