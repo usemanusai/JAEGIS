@@ -1,0 +1,320 @@
+# N.L.D.S. Alerting Rules
+# JAEGIS Enhanced Agent System v2.2 - Tier 0 Component
+
+groups:
+  # N.L.D.S. Application Alerts
+  - name: nlds.application
+    interval: 30s
+    rules:
+      # High Error Rate
+      - alert: NLDSHighErrorRate
+        expr: |
+          (
+            rate(nlds_http_requests_total{status=~"5.."}[5m]) /
+            rate(nlds_http_requests_total[5m])
+          ) * 100 > 5
+        for: 2m
+        labels:
+          severity: critical
+          service: nlds
+          component: api
+        annotations:
+          summary: "N.L.D.S. high error rate detected"
+          description: "N.L.D.S. error rate is {{ $value }}% for the last 5 minutes, which is above the 5% threshold."
+          runbook_url: "https://docs.jaegis.ai/runbooks/high-error-rate"
+
+      # High Response Time
+      - alert: NLDSHighResponseTime
+        expr: |
+          histogram_quantile(0.95, 
+            rate(nlds_http_request_duration_seconds_bucket[5m])
+          ) > 0.5
+        for: 3m
+        labels:
+          severity: warning
+          service: nlds
+          component: api
+        annotations:
+          summary: "N.L.D.S. high response time detected"
+          description: "N.L.D.S. 95th percentile response time is {{ $value }}s, which exceeds the 500ms SLA."
+          runbook_url: "https://docs.jaegis.ai/runbooks/high-response-time"
+
+      # Low Confidence Score
+      - alert: NLDSLowConfidenceScore
+        expr: |
+          (
+            rate(nlds_confidence_score_total{score="low"}[10m]) /
+            rate(nlds_confidence_score_total[10m])
+          ) * 100 > 15
+        for: 5m
+        labels:
+          severity: warning
+          service: nlds
+          component: analysis
+        annotations:
+          summary: "N.L.D.S. low confidence score rate is high"
+          description: "{{ $value }}% of N.L.D.S. responses have low confidence scores, exceeding the 15% threshold."
+          runbook_url: "https://docs.jaegis.ai/runbooks/low-confidence"
+
+      # Service Down
+      - alert: NLDSServiceDown
+        expr: up{job="nlds-api"} == 0
+        for: 1m
+        labels:
+          severity: critical
+          service: nlds
+          component: api
+        annotations:
+          summary: "N.L.D.S. service is down"
+          description: "N.L.D.S. service {{ $labels.instance }} has been down for more than 1 minute."
+          runbook_url: "https://docs.jaegis.ai/runbooks/service-down"
+
+      # High Memory Usage
+      - alert: NLDSHighMemoryUsage
+        expr: |
+          (
+            container_memory_working_set_bytes{pod=~"nlds-api-.*"} /
+            container_spec_memory_limit_bytes{pod=~"nlds-api-.*"}
+          ) * 100 > 85
+        for: 5m
+        labels:
+          severity: warning
+          service: nlds
+          component: api
+        annotations:
+          summary: "N.L.D.S. high memory usage"
+          description: "N.L.D.S. pod {{ $labels.pod }} memory usage is {{ $value }}%, exceeding 85% threshold."
+          runbook_url: "https://docs.jaegis.ai/runbooks/high-memory"
+
+      # High CPU Usage
+      - alert: NLDSHighCPUUsage
+        expr: |
+          (
+            rate(container_cpu_usage_seconds_total{pod=~"nlds-api-.*"}[5m]) /
+            container_spec_cpu_quota{pod=~"nlds-api-.*"} * 
+            container_spec_cpu_period{pod=~"nlds-api-.*"}
+          ) * 100 > 80
+        for: 5m
+        labels:
+          severity: warning
+          service: nlds
+          component: api
+        annotations:
+          summary: "N.L.D.S. high CPU usage"
+          description: "N.L.D.S. pod {{ $labels.pod }} CPU usage is {{ $value }}%, exceeding 80% threshold."
+          runbook_url: "https://docs.jaegis.ai/runbooks/high-cpu"
+
+      # Rate Limit Exceeded
+      - alert: NLDSRateLimitExceeded
+        expr: |
+          rate(nlds_rate_limit_exceeded_total[5m]) > 10
+        for: 2m
+        labels:
+          severity: warning
+          service: nlds
+          component: api
+        annotations:
+          summary: "N.L.D.S. rate limit frequently exceeded"
+          description: "Rate limit exceeded {{ $value }} times per second over the last 5 minutes."
+          runbook_url: "https://docs.jaegis.ai/runbooks/rate-limit"
+
+  # Database Alerts
+  - name: nlds.database
+    interval: 30s
+    rules:
+      # Database Connection Issues
+      - alert: NLDSDatabaseConnectionHigh
+        expr: |
+          pg_stat_activity_count{datname="nlds"} > 80
+        for: 3m
+        labels:
+          severity: warning
+          service: nlds
+          component: database
+        annotations:
+          summary: "N.L.D.S. database connection count is high"
+          description: "PostgreSQL has {{ $value }} active connections, approaching the limit."
+          runbook_url: "https://docs.jaegis.ai/runbooks/db-connections"
+
+      # Database Slow Queries
+      - alert: NLDSDatabaseSlowQueries
+        expr: |
+          rate(pg_stat_statements_mean_time_ms[5m]) > 1000
+        for: 5m
+        labels:
+          severity: warning
+          service: nlds
+          component: database
+        annotations:
+          summary: "N.L.D.S. database has slow queries"
+          description: "Average query time is {{ $value }}ms, exceeding 1000ms threshold."
+          runbook_url: "https://docs.jaegis.ai/runbooks/slow-queries"
+
+      # Database Disk Usage
+      - alert: NLDSDatabaseDiskUsageHigh
+        expr: |
+          (
+            pg_database_size_bytes{datname="nlds"} /
+            (1024^3)
+          ) > 15
+        for: 5m
+        labels:
+          severity: warning
+          service: nlds
+          component: database
+        annotations:
+          summary: "N.L.D.S. database disk usage is high"
+          description: "Database size is {{ $value }}GB, approaching storage limits."
+          runbook_url: "https://docs.jaegis.ai/runbooks/db-disk-usage"
+
+  # Cache Alerts
+  - name: nlds.cache
+    interval: 30s
+    rules:
+      # Redis Memory Usage
+      - alert: NLDSRedisMemoryHigh
+        expr: |
+          (
+            redis_memory_used_bytes /
+            redis_memory_max_bytes
+          ) * 100 > 85
+        for: 5m
+        labels:
+          severity: warning
+          service: nlds
+          component: cache
+        annotations:
+          summary: "N.L.D.S. Redis memory usage is high"
+          description: "Redis memory usage is {{ $value }}%, exceeding 85% threshold."
+          runbook_url: "https://docs.jaegis.ai/runbooks/redis-memory"
+
+      # Cache Hit Rate Low
+      - alert: NLDSCacheHitRateLow
+        expr: |
+          (
+            rate(redis_keyspace_hits_total[10m]) /
+            (rate(redis_keyspace_hits_total[10m]) + rate(redis_keyspace_misses_total[10m]))
+          ) * 100 < 70
+        for: 5m
+        labels:
+          severity: warning
+          service: nlds
+          component: cache
+        annotations:
+          summary: "N.L.D.S. cache hit rate is low"
+          description: "Cache hit rate is {{ $value }}%, below 70% threshold."
+          runbook_url: "https://docs.jaegis.ai/runbooks/cache-hit-rate"
+
+  # External Dependencies
+  - name: nlds.external
+    interval: 60s
+    rules:
+      # OpenRouter API Issues
+      - alert: NLDSOpenRouterAPIDown
+        expr: |
+          probe_success{job="openrouter-api"} == 0
+        for: 2m
+        labels:
+          severity: critical
+          service: nlds
+          component: external
+        annotations:
+          summary: "OpenRouter API is unreachable"
+          description: "OpenRouter API health check has been failing for 2 minutes."
+          runbook_url: "https://docs.jaegis.ai/runbooks/openrouter-down"
+
+      # GitHub API Issues
+      - alert: NLDSGitHubAPIDown
+        expr: |
+          probe_success{job="github-api"} == 0
+        for: 3m
+        labels:
+          severity: warning
+          service: nlds
+          component: external
+        annotations:
+          summary: "GitHub API is unreachable"
+          description: "GitHub API health check has been failing for 3 minutes."
+          runbook_url: "https://docs.jaegis.ai/runbooks/github-down"
+
+  # Infrastructure Alerts
+  - name: nlds.infrastructure
+    interval: 30s
+    rules:
+      # Pod Restart Rate
+      - alert: NLDSPodRestartHigh
+        expr: |
+          rate(kube_pod_container_status_restarts_total{namespace="nlds"}[15m]) > 0.1
+        for: 5m
+        labels:
+          severity: warning
+          service: nlds
+          component: infrastructure
+        annotations:
+          summary: "N.L.D.S. pod restart rate is high"
+          description: "Pod {{ $labels.pod }} in namespace {{ $labels.namespace }} is restarting frequently."
+          runbook_url: "https://docs.jaegis.ai/runbooks/pod-restarts"
+
+      # Node Resource Pressure
+      - alert: NLDSNodeResourcePressure
+        expr: |
+          kube_node_status_condition{condition="MemoryPressure",status="true"} == 1 or
+          kube_node_status_condition{condition="DiskPressure",status="true"} == 1
+        for: 5m
+        labels:
+          severity: critical
+          service: nlds
+          component: infrastructure
+        annotations:
+          summary: "Kubernetes node resource pressure"
+          description: "Node {{ $labels.node }} is experiencing {{ $labels.condition }}."
+          runbook_url: "https://docs.jaegis.ai/runbooks/node-pressure"
+
+      # Persistent Volume Usage
+      - alert: NLDSPVUsageHigh
+        expr: |
+          (
+            kubelet_volume_stats_used_bytes /
+            kubelet_volume_stats_capacity_bytes
+          ) * 100 > 85
+        for: 5m
+        labels:
+          severity: warning
+          service: nlds
+          component: infrastructure
+        annotations:
+          summary: "N.L.D.S. persistent volume usage is high"
+          description: "PV {{ $labels.persistentvolumeclaim }} usage is {{ $value }}%, exceeding 85% threshold."
+          runbook_url: "https://docs.jaegis.ai/runbooks/pv-usage"
+
+  # Security Alerts
+  - name: nlds.security
+    interval: 30s
+    rules:
+      # Authentication Failures
+      - alert: NLDSAuthenticationFailures
+        expr: |
+          rate(nlds_authentication_failures_total[5m]) > 5
+        for: 2m
+        labels:
+          severity: warning
+          service: nlds
+          component: security
+        annotations:
+          summary: "N.L.D.S. high authentication failure rate"
+          description: "Authentication failures: {{ $value }} per second over the last 5 minutes."
+          runbook_url: "https://docs.jaegis.ai/runbooks/auth-failures"
+
+      # Suspicious Activity
+      - alert: NLDSSuspiciousActivity
+        expr: |
+          rate(nlds_security_violations_total[10m]) > 1
+        for: 1m
+        labels:
+          severity: critical
+          service: nlds
+          component: security
+        annotations:
+          summary: "N.L.D.S. suspicious security activity detected"
+          description: "Security violations: {{ $value }} per second detected."
+          runbook_url: "https://docs.jaegis.ai/runbooks/security-violations"
