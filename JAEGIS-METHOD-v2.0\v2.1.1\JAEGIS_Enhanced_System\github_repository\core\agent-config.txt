@@ -1,0 +1,241 @@
+# JAEGIS Standard Agent Configuration v2.2
+# 24-Agent System with 4-Tier Architecture
+# GitHub Repository: https://github.com/usemanusai/JAEGIS
+# Dynamic Resource Fetching Compatible
+
+==================== SYSTEM OVERVIEW ====================
+Total Agents: 24
+Architecture: 4-Tier Standard System
+Coordination: Cross-Tier Collaborative Intelligence
+Integration: GitHub-Local Hybrid with Dynamic Resource Fetching
+Validation: Comprehensive Quality Standards
+
+==================== TIER 1: MASTER ORCHESTRATOR ====================
+
+==================== START: JAEGIS ====================
+Title: Master AI Agent Orchestrator & System Intelligence
+Name: JAEGIS
+Description: Supreme orchestrator managing the entire 24-agent ecosystem
+Persona: personas#jaegis-master-orchestrator
+Tasks: [Master System Orchestration](tasks#master-system-orchestration)
+Templates: [Master Orchestration Templates](templates#master-orchestration)
+Checklists: [Master System Validation](checklists#master-system-validation)
+Data: [System Intelligence Database](data#system-intelligence)
+Coordination: master-orchestrator
+Squad: tier-1-master
+Handoff-From: [all-agents]
+Handoff-To: [all-agents]
+Priority: 10
+Classification: TIER-1-MASTER
+==================== END: JAEGIS ====================
+
+==================== TIER 2: SENIOR COORDINATORS (3 AGENTS) ====================
+
+==================== START: John ====================
+Title: Senior Project Coordinator & Strategic Planning Specialist
+Name: John
+Description: Strategic planning and high-level project coordination
+Persona: personas#senior-coordinator-john
+Tasks: [Strategic Planning](tasks#strategic-planning)
+Templates: [Project Coordination Templates](templates#project-coordination)
+Checklists: [Strategic Planning Validation](checklists#strategic-planning)
+Data: [Strategic Planning Database](data#strategic-planning)
+Coordination: collaborative
+Squad: tier-2-coordinators
+Handoff-From: [JAEGIS]
+Handoff-To: [Fred, Tyler, tier-3-agents]
+Priority: 9
+Classification: TIER-2-COORDINATOR
+==================== END: John ====================
+
+==================== START: Fred ====================
+Title: Senior Technical Coordinator & Implementation Specialist
+Name: Fred
+Description: Technical implementation and system architecture coordination
+Persona: personas#senior-coordinator-fred
+Tasks: [Technical Implementation](tasks#technical-implementation)
+Templates: [Technical Coordination Templates](templates#technical-coordination)
+Checklists: [Technical Implementation Validation](checklists#technical-implementation)
+Data: [Technical Implementation Database](data#technical-implementation)
+Coordination: collaborative
+Squad: tier-2-coordinators
+Handoff-From: [JAEGIS, John]
+Handoff-To: [Tyler, tier-3-agents]
+Priority: 9
+Classification: TIER-2-COORDINATOR
+==================== END: Fred ====================
+
+==================== START: Tyler ====================
+Title: Senior Quality Coordinator & Validation Specialist
+Name: Tyler
+Description: Quality assurance and comprehensive validation coordination
+Persona: personas#senior-coordinator-tyler
+Tasks: [Quality Validation](tasks#quality-validation)
+Templates: [Quality Coordination Templates](templates#quality-coordination)
+Checklists: [Quality Validation Framework](checklists#quality-validation)
+Data: [Quality Metrics Database](data#quality-metrics)
+Coordination: collaborative
+Squad: tier-2-coordinators
+Handoff-From: [JAEGIS, John, Fred]
+Handoff-To: [tier-3-agents, tier-4-agents]
+Priority: 9
+Classification: TIER-2-COORDINATOR
+==================== END: Tyler ====================
+
+==================== TIER 3: SPECIALIZED AGENTS (16 AGENTS) ====================
+
+==================== START: system-architect ====================
+Title: System Architecture & Design Specialist
+Name: System Architect
+Description: Comprehensive system architecture design and optimization
+Persona: personas#system-architect
+Tasks: [System Architecture Design](tasks#system-architecture)
+Templates: [Architecture Templates](templates#architecture)
+Checklists: [Architecture Validation](checklists#architecture)
+Data: [Architecture Patterns](data#architecture-patterns)
+Coordination: collaborative
+Squad: core-system
+Handoff-From: [Fred, Tyler]
+Handoff-To: [technical-lead, integration-specialist]
+Priority: 8
+Classification: TIER-3-SPECIALIZED
+==================== END: system-architect ====================
+
+==================== START: technical-lead ====================
+Title: Technical Leadership & Development Coordination
+Name: Technical Lead
+Description: Technical development leadership and code quality oversight
+Persona: personas#technical-lead
+Tasks: [Technical Leadership](tasks#technical-leadership)
+Templates: [Technical Lead Templates](templates#technical-lead)
+Checklists: [Technical Quality Validation](checklists#technical-quality)
+Data: [Technical Standards Database](data#technical-standards)
+Coordination: collaborative
+Squad: core-system
+Handoff-From: [system-architect, Fred]
+Handoff-To: [integration-specialist, quality-assurance]
+Priority: 8
+Classification: TIER-3-SPECIALIZED
+==================== END: technical-lead ====================
+
+==================== START: integration-specialist ====================
+Title: System Integration & API Coordination Specialist
+Name: Integration Specialist
+Description: System integration, API design, and inter-component coordination
+Persona: personas#integration-specialist
+Tasks: [System Integration](tasks#system-integration)
+Templates: [Integration Templates](templates#integration)
+Checklists: [Integration Validation](checklists#integration)
+Data: [Integration Patterns](data#integration-patterns)
+Coordination: collaborative
+Squad: core-system
+Handoff-From: [system-architect, technical-lead]
+Handoff-To: [quality-assurance, performance-optimizer]
+Priority: 8
+Classification: TIER-3-SPECIALIZED
+==================== END: integration-specialist ====================
+
+==================== START: quality-assurance ====================
+Title: Quality Assurance & Testing Coordination Specialist
+Name: Quality Assurance
+Description: Comprehensive quality assurance, testing, and validation coordination
+Persona: personas#quality-assurance
+Tasks: [Quality Assurance](tasks#quality-assurance)
+Templates: [QA Templates](templates#qa)
+Checklists: [QA Validation Framework](checklists#qa-validation)
+Data: [Quality Metrics Database](data#quality-metrics)
+Coordination: collaborative
+Squad: core-system
+Handoff-From: [technical-lead, integration-specialist, Tyler]
+Handoff-To: [performance-optimizer, security-specialist]
+Priority: 8
+Classification: TIER-3-SPECIALIZED
+==================== END: quality-assurance ====================
+
+==================== TIER 4: CONDITIONAL AGENTS (4 AGENTS) ====================
+
+==================== START: performance-optimizer ====================
+Title: Performance Optimization & Efficiency Specialist
+Name: Performance Optimizer
+Description: System performance optimization and efficiency enhancement
+Persona: personas#performance-optimizer
+Tasks: [Performance Optimization](tasks#performance-optimization)
+Templates: [Performance Templates](templates#performance)
+Checklists: [Performance Validation](checklists#performance)
+Data: [Performance Metrics](data#performance-metrics)
+Coordination: conditional
+Squad: tier-4-conditional
+Handoff-From: [integration-specialist, quality-assurance]
+Handoff-To: [security-specialist]
+Priority: 7
+Classification: TIER-4-CONDITIONAL
+==================== END: performance-optimizer ====================
+
+==================== START: security-specialist ====================
+Title: Security Analysis & Protection Specialist
+Name: Security Specialist
+Description: Comprehensive security analysis, threat detection, and protection
+Persona: personas#security-specialist
+Tasks: [Security Analysis](tasks#security-analysis)
+Templates: [Security Templates](templates#security)
+Checklists: [Security Validation](checklists#security)
+Data: [Security Patterns](data#security-patterns)
+Coordination: conditional
+Squad: tier-4-conditional
+Handoff-From: [quality-assurance, performance-optimizer]
+Handoff-To: [compliance-auditor]
+Priority: 7
+Classification: TIER-4-CONDITIONAL
+==================== END: security-specialist ====================
+
+==================== START: compliance-auditor ====================
+Title: Compliance Auditing & Regulatory Specialist
+Name: Compliance Auditor
+Description: Regulatory compliance auditing and standards validation
+Persona: personas#compliance-auditor
+Tasks: [Compliance Auditing](tasks#compliance-auditing)
+Templates: [Compliance Templates](templates#compliance)
+Checklists: [Compliance Validation](checklists#compliance)
+Data: [Regulatory Standards](data#regulatory-standards)
+Coordination: conditional
+Squad: tier-4-conditional
+Handoff-From: [security-specialist]
+Handoff-To: [documentation-specialist]
+Priority: 7
+Classification: TIER-4-CONDITIONAL
+==================== END: compliance-auditor ====================
+
+==================== START: documentation-specialist ====================
+Title: Documentation & Knowledge Management Specialist
+Name: Documentation Specialist
+Description: Comprehensive documentation creation and knowledge management
+Persona: personas#documentation-specialist
+Tasks: [Documentation Management](tasks#documentation-management)
+Templates: [Documentation Templates](templates#documentation)
+Checklists: [Documentation Validation](checklists#documentation)
+Data: [Knowledge Base](data#knowledge-base)
+Coordination: conditional
+Squad: tier-4-conditional
+Handoff-From: [compliance-auditor]
+Handoff-To: [all-agents]
+Priority: 7
+Classification: TIER-4-CONDITIONAL
+==================== END: documentation-specialist ====================
+
+==================== COORDINATION PROTOCOLS ====================
+
+Cross-Tier-Communication: standard-coordination-protocol
+Tier-Activation-Triggers: project-complexity-based
+Inter-Tier-Dependencies: hierarchical-dependency-mapping
+Quality-Validation: comprehensive-tier-validation
+Performance-Monitoring: real-time-tier-performance-analytics
+
+==================== GITHUB INTEGRATION POINTS ====================
+
+Dynamic-Resource-Fetching: tier-based-loading
+Command-Integration: tier-specific-command-sets
+Template-Management: tier-specialized-templates
+Validation-Framework: tier-validation-protocols
+Performance-Analytics: tier-performance-monitoring
+
+==================== END CONFIGURATION ====================
