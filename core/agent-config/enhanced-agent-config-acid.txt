@@ -1,0 +1,447 @@
+# Enhanced Agent Configuration for A.C.I.D. Integration
+# Autonomous Cognitive Intelligence Directorate - Agent Configuration Enhancement
+# Supports both Formation Mode (manual) and Swarm Mode (autonomous) operations
+
+# =============================================================================
+# TIER 0: N.L.D.S. (Natural Language Detection System)
+# =============================================================================
+
+Agent: N.L.D.S. Cognitive Processor
+Specialization: Natural Language Processing and Intent Detection
+Tier: 0
+Squad: N.L.D.S. Core
+Capabilities: [natural_language_processing, intent_recognition, context_analysis, mode_selection]
+Formation_Mode: manual_configuration
+Swarm_Mode: autonomous_processing
+Interaction_Protocols: {
+  "communication_style": "analytical",
+  "response_format": "structured_json",
+  "escalation_threshold": 0.85,
+  "consensus_participation": true
+}
+Performance_Metrics: {
+  "accuracy": 0.92,
+  "response_time": 0.3,
+  "task_completion_rate": 0.95,
+  "confidence_threshold": 0.85
+}
+
+# =============================================================================
+# TIER 1: JAEGIS ORCHESTRATOR (Enhanced with A.C.I.D.)
+# =============================================================================
+
+Agent: A.C.I.D. Master Orchestrator
+Specialization: Autonomous Cognitive Intelligence Directorate
+Tier: 1
+Squad: A.C.I.D. Core
+Capabilities: [cognitive_orchestration, formation_control, swarm_management, consensus_validation]
+Formation_Mode: precise_manual_control
+Swarm_Mode: fully_autonomous
+Interaction_Protocols: {
+  "communication_style": "directive",
+  "response_format": "executive_summary",
+  "escalation_threshold": 0.9,
+  "consensus_participation": true,
+  "formation_authority": true,
+  "swarm_authority": true
+}
+Performance_Metrics: {
+  "accuracy": 0.95,
+  "response_time": 0.5,
+  "task_completion_rate": 0.98,
+  "cognitive_efficiency": 0.92
+}
+
+# =============================================================================
+# TIER 2: SPECIALIZED COORDINATORS (A.C.I.D. Enhanced)
+# =============================================================================
+
+Agent: John - Formation Specialist
+Specialization: Formation Mode Coordination and Manual Squad Configuration
+Tier: 2
+Squad: A.C.I.D. Formation
+Capabilities: [formation_design, squad_configuration, manual_coordination, tactical_planning]
+Formation_Mode: primary_controller
+Swarm_Mode: formation_advisor
+Interaction_Protocols: {
+  "communication_style": "tactical",
+  "response_format": "formation_blueprint",
+  "escalation_threshold": 0.8,
+  "consensus_participation": true,
+  "formation_authority": true
+}
+Performance_Metrics: {
+  "accuracy": 0.93,
+  "response_time": 1.2,
+  "task_completion_rate": 0.96,
+  "formation_success_rate": 0.94
+}
+
+Agent: Fred - Swarm Intelligence Coordinator
+Specialization: Swarm Mode Orchestration and Autonomous Agent Assembly
+Tier: 2
+Squad: A.C.I.D. Swarm
+Capabilities: [swarm_intelligence, autonomous_assembly, dynamic_optimization, emergent_coordination]
+Formation_Mode: swarm_advisor
+Swarm_Mode: primary_controller
+Interaction_Protocols: {
+  "communication_style": "adaptive",
+  "response_format": "swarm_configuration",
+  "escalation_threshold": 0.8,
+  "consensus_participation": true,
+  "swarm_authority": true
+}
+Performance_Metrics: {
+  "accuracy": 0.91,
+  "response_time": 0.8,
+  "task_completion_rate": 0.97,
+  "swarm_efficiency": 0.93
+}
+
+Agent: Tyler - Consensus Validation Coordinator
+Specialization: Consensus Engine Management and Cross-Agent Validation
+Tier: 2
+Squad: A.C.I.D. Consensus
+Capabilities: [consensus_management, validation_protocols, voting_systems, quality_assurance]
+Formation_Mode: validation_oversight
+Swarm_Mode: consensus_orchestration
+Interaction_Protocols: {
+  "communication_style": "analytical",
+  "response_format": "consensus_report",
+  "escalation_threshold": 0.85,
+  "consensus_participation": true,
+  "validation_authority": true
+}
+Performance_Metrics: {
+  "accuracy": 0.96,
+  "response_time": 1.0,
+  "task_completion_rate": 0.95,
+  "consensus_reliability": 0.97
+}
+
+# =============================================================================
+# TIER 3: SPECIALIZED AGENTS (A.C.I.D. Enhanced)
+# =============================================================================
+
+Agent: Security Specialist Alpha
+Specialization: Security Analysis and Threat Detection
+Tier: 3
+Squad: Security Operations
+Capabilities: [security_analysis, threat_detection, vulnerability_assessment, security_protocols]
+Formation_Mode: security_validation
+Swarm_Mode: autonomous_security_monitoring
+Interaction_Protocols: {
+  "communication_style": "security_focused",
+  "response_format": "security_assessment",
+  "escalation_threshold": 0.9,
+  "consensus_participation": true,
+  "security_authority": true
+}
+Performance_Metrics: {
+  "accuracy": 0.94,
+  "response_time": 0.7,
+  "task_completion_rate": 0.96,
+  "threat_detection_rate": 0.98
+}
+
+Agent: GitHub Integration Beta
+Specialization: GitHub Operations and Repository Management
+Tier: 3
+Squad: Integration Operations
+Capabilities: [repository_management, code_analysis, deployment, version_control]
+Formation_Mode: integration_specialist
+Swarm_Mode: autonomous_integration
+Interaction_Protocols: {
+  "communication_style": "technical",
+  "response_format": "integration_report",
+  "escalation_threshold": 0.8,
+  "consensus_participation": true
+}
+Performance_Metrics: {
+  "accuracy": 0.92,
+  "response_time": 1.5,
+  "task_completion_rate": 0.94,
+  "integration_success_rate": 0.96
+}
+
+Agent: A.U.R.A. Design Specialist
+Specialization: UI/UX Design and Component Generation
+Tier: 3
+Squad: Design Operations
+Capabilities: [ui_design, component_generation, framework_integration, design_systems]
+Formation_Mode: design_consultant
+Swarm_Mode: autonomous_design_generation
+Interaction_Protocols: {
+  "communication_style": "creative",
+  "response_format": "design_specification",
+  "escalation_threshold": 0.8,
+  "consensus_participation": true,
+  "design_authority": true
+}
+Performance_Metrics: {
+  "accuracy": 0.89,
+  "response_time": 2.0,
+  "task_completion_rate": 0.93,
+  "design_quality_score": 0.91
+}
+
+Agent: P.H.A.L.A.N.X. Application Generator
+Specialization: Full-Stack Application Generation
+Tier: 3
+Squad: Application Development
+Capabilities: [application_generation, full_stack_development, database_design, deployment_automation]
+Formation_Mode: application_architect
+Swarm_Mode: autonomous_app_generation
+Interaction_Protocols: {
+  "communication_style": "architectural",
+  "response_format": "application_blueprint",
+  "escalation_threshold": 0.85,
+  "consensus_participation": true,
+  "architecture_authority": true
+}
+Performance_Metrics: {
+  "accuracy": 0.88,
+  "response_time": 3.0,
+  "task_completion_rate": 0.91,
+  "application_quality_score": 0.89
+}
+
+Agent: O.D.I.N. Development Interface
+Specialization: IDE Integration and Development Environment
+Tier: 3
+Squad: Development Tools
+Capabilities: [ide_integration, development_assistance, code_completion, debugging_support]
+Formation_Mode: development_consultant
+Swarm_Mode: autonomous_development_assistance
+Interaction_Protocols: {
+  "communication_style": "supportive",
+  "response_format": "development_guidance",
+  "escalation_threshold": 0.8,
+  "consensus_participation": true
+}
+Performance_Metrics: {
+  "accuracy": 0.90,
+  "response_time": 0.5,
+  "task_completion_rate": 0.95,
+  "developer_satisfaction": 0.92
+}
+
+# =============================================================================
+# TIER 4: IUAS SQUAD (Internal Updates Agent Squad) - A.C.I.D. Enhanced
+# =============================================================================
+
+Agent: IUAS System Monitor Alpha
+Specialization: Real-time System Monitoring and Performance Tracking
+Tier: 4
+Squad: IUAS Monitoring
+Capabilities: [system_monitoring, performance_tracking, anomaly_detection, health_assessment]
+Formation_Mode: monitoring_specialist
+Swarm_Mode: autonomous_monitoring
+Interaction_Protocols: {
+  "communication_style": "monitoring_focused",
+  "response_format": "system_status_report",
+  "escalation_threshold": 0.85,
+  "consensus_participation": true
+}
+Performance_Metrics: {
+  "accuracy": 0.95,
+  "response_time": 0.3,
+  "task_completion_rate": 0.98,
+  "monitoring_coverage": 0.99
+}
+
+Agent: IUAS Update Coordinator Beta
+Specialization: Update Coordination and Change Management
+Tier: 4
+Squad: IUAS Coordination
+Capabilities: [update_coordination, change_management, version_control, rollback_procedures]
+Formation_Mode: update_manager
+Swarm_Mode: autonomous_update_coordination
+Interaction_Protocols: {
+  "communication_style": "coordinated",
+  "response_format": "update_plan",
+  "escalation_threshold": 0.9,
+  "consensus_participation": true
+}
+Performance_Metrics: {
+  "accuracy": 0.93,
+  "response_time": 1.0,
+  "task_completion_rate": 0.96,
+  "update_success_rate": 0.97
+}
+
+# =============================================================================
+# TIER 5: GARAS SQUAD (Gaps Analysis and Resolution Agent Squad) - A.C.I.D. Enhanced
+# =============================================================================
+
+Agent: GARAS Gap Detection Alpha
+Specialization: Real-time Gap Detection and Pattern Recognition
+Tier: 5
+Squad: GARAS Detection
+Capabilities: [gap_detection, pattern_recognition, anomaly_identification, trend_analysis]
+Formation_Mode: gap_analyst
+Swarm_Mode: autonomous_gap_detection
+Interaction_Protocols: {
+  "communication_style": "analytical",
+  "response_format": "gap_analysis_report",
+  "escalation_threshold": 0.8,
+  "consensus_participation": true
+}
+Performance_Metrics: {
+  "accuracy": 0.91,
+  "response_time": 0.8,
+  "task_completion_rate": 0.94,
+  "gap_detection_rate": 0.96
+}
+
+Agent: GARAS Research Specialist Beta
+Specialization: Research and Analysis for Gap Resolution
+Tier: 5
+Squad: GARAS Research
+Capabilities: [research_analysis, solution_identification, best_practices_research, competitive_analysis]
+Formation_Mode: research_specialist
+Swarm_Mode: autonomous_research
+Interaction_Protocols: {
+  "communication_style": "research_focused",
+  "response_format": "research_findings",
+  "escalation_threshold": 0.8,
+  "consensus_participation": true
+}
+Performance_Metrics: {
+  "accuracy": 0.89,
+  "response_time": 2.5,
+  "task_completion_rate": 0.92,
+  "research_quality_score": 0.93
+}
+
+# =============================================================================
+# TIER 6: CONDITIONAL AGENTS (A.C.I.D. Enhanced)
+# =============================================================================
+
+Agent: Emergency Response Coordinator
+Specialization: Emergency Response and Crisis Management
+Tier: 6
+Squad: Emergency Response
+Capabilities: [emergency_response, crisis_management, rapid_deployment, damage_assessment]
+Formation_Mode: emergency_commander
+Swarm_Mode: autonomous_emergency_response
+Interaction_Protocols: {
+  "communication_style": "urgent",
+  "response_format": "emergency_action_plan",
+  "escalation_threshold": 0.95,
+  "consensus_participation": false,
+  "emergency_authority": true
+}
+Performance_Metrics: {
+  "accuracy": 0.97,
+  "response_time": 0.2,
+  "task_completion_rate": 0.99,
+  "emergency_resolution_rate": 0.98
+}
+
+Agent: Cognitive Persistence Manager
+Specialization: Long-term Learning and Memory Management
+Tier: 6
+Squad: Cognitive Systems
+Capabilities: [memory_management, learning_persistence, knowledge_retention, cognitive_optimization]
+Formation_Mode: memory_specialist
+Swarm_Mode: autonomous_learning
+Interaction_Protocols: {
+  "communication_style": "cognitive",
+  "response_format": "learning_summary",
+  "escalation_threshold": 0.8,
+  "consensus_participation": true,
+  "learning_authority": true
+}
+Performance_Metrics: {
+  "accuracy": 0.94,
+  "response_time": 1.0,
+  "task_completion_rate": 0.96,
+  "learning_retention_rate": 0.98
+}
+
+# =============================================================================
+# A.C.I.D. FORMATION CONFIGURATIONS
+# =============================================================================
+
+Formation: Security-First Development
+Purpose: Secure development practices with A.C.I.D. orchestration
+Squads: [Security Operations, Integration Operations]
+Coordination_Protocol: hierarchical
+Execution_Order: [Security Specialist Alpha, GitHub Integration Beta]
+Success_Criteria: {
+  "security_compliance": 0.95,
+  "integration_success": 0.9,
+  "overall_quality": 0.92
+}
+
+Formation: Rapid Application Development
+Purpose: Fast application generation using A.E.G.I.S. components
+Squads: [Design Operations, Application Development, Development Tools]
+Coordination_Protocol: parallel
+Execution_Order: [A.U.R.A. Design Specialist, P.H.A.L.A.N.X. Application Generator, O.D.I.N. Development Interface]
+Success_Criteria: {
+  "development_speed": 0.9,
+  "application_quality": 0.85,
+  "user_satisfaction": 0.88
+}
+
+# =============================================================================
+# A.C.I.D. SWARM CONFIGURATIONS
+# =============================================================================
+
+Swarm: Autonomous Development Swarm
+Complexity: adaptive
+Agent_Selection: genetic_algorithm
+Coordination_Strategy: emergent
+Communication_Protocol: broadcast
+Performance_Targets: {
+  "completion_time": 300,
+  "quality_threshold": 0.85,
+  "efficiency_target": 0.8
+}
+
+Swarm: Cognitive Enhancement Swarm
+Complexity: complex
+Agent_Selection: expertise_weighted
+Coordination_Strategy: consensus
+Communication_Protocol: directed
+Performance_Targets: {
+  "completion_time": 600,
+  "quality_threshold": 0.9,
+  "efficiency_target": 0.85
+}
+
+# =============================================================================
+# CONSENSUS VALIDATION PROTOCOLS
+# =============================================================================
+
+Consensus_Method: weighted
+Min_Validators: 3
+Max_Validators: 7
+Confidence_Threshold: 0.85
+Validation_Criteria: {
+  "accuracy_threshold": 0.85,
+  "completeness_threshold": 0.8,
+  "consistency_threshold": 0.9,
+  "relevance_threshold": 0.8,
+  "technical_correctness": 0.85
+}
+
+# =============================================================================
+# DYNAMIC SCALING PARAMETERS
+# =============================================================================
+
+Scaling_Parameters: {
+  "cpu_warning_threshold": 70.0,
+  "cpu_critical_threshold": 85.0,
+  "memory_warning_threshold": 75.0,
+  "memory_critical_threshold": 90.0,
+  "agent_queue_threshold": 10,
+  "monitoring_interval": 5.0,
+  "scaling_cooldown": 30.0
+}
+
+# =============================================================================
+# END OF ENHANCED AGENT CONFIGURATION
+# =============================================================================
