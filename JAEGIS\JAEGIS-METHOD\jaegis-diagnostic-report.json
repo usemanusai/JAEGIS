@@ -1,0 +1,9 @@
+{
+  "timestamp": "2025-07-13T05:51:04.125Z",
+  "vsCodeVersion": null,
+  "extensionsjaegisFiles": {
+    "src/integration/AugmentIntegration.ts": true,
+    "out/integration/AugmentIntegration.js": true,
+    "package_jsontrue_packageJson": {},
+  "recommendations": []
+}
