@@ -1,12 +1,3 @@
-### USER
-Can you change all the namings to JAEGIS, and it should not be visible that it comes from that repo. Rethink the full text below, and come up with much smarter ways to handle this:
-OrKa-Reasoning
-OrKa Logo
-orkacore
-GitHub Tag PyPI - License
-codecov orka-reasoning
-PyPi Docker Static Badge
-Pepy Total Downloads
 AI Orchestration with 100x Faster Vector Search - OrKa transforms your AI workflows with YAML-driven agent orchestration, intelligent memory management, and lightning-fast semantic search powered by RedisStack HNSW indexing.
 🚀 What's New in V0.8.x
 🔄 Advanced Loop Node - Intelligent iterative workflows with cognitive insight extraction
