@@ -1,10 +1,5 @@
-
-
-
-
-
 # JAEGIS Internal Updates Agent Squad (IUAS) Configuration v2.2
-# 20-Agent Maintenance Squad for JAEGIS System Evolution
+# 128-Agent Maintenance Squad for JAEGIS System Evolution
 # GitHub Repository: https://github.com/usemanusai/JAEGIS
 # Tier 6: Maintenance & Enhancement Squad
 
